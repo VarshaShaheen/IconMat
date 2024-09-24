@@ -5,7 +5,8 @@ venv
 *.pyc
 __pycache__
 db.sqlite3
-/media
+media/
+static/
 **/migrations/0*
 
 **/*.log
