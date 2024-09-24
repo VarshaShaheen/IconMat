@@ -1,1 +1,13 @@
-.idea/
+# django default .gitignore
+venv
+.env
+.idea
+*.pyc
+__pycache__
+db.sqlite3
+/media
+**/migrations/0*
+
+**/*.log
+*.json
+*.sql
