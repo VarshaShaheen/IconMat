@@ -6,63 +6,142 @@
       Intro Section
     ============================-->
     <section id="intro">
-        <div class="intro-container wow fadeIn">
-            <img src="{% static 'img/iconmat_logo.png' %}" alt="logo" title="logo" class="img-fluid h-25">
-            <h1 class="mb-4 pb-0">International Conference on<br><span>Optoelectronic and Nanomaterials for Advanced Technology</span><br>(icONMAT
-                2025)</h1>
+        <div class="intro-container wow fadeIn text-center">
+            <img src="{% static 'img/iconmat_logo.png' %}" alt="icONMAT 2025 Logo" title="icONMAT 2025 Logo"
+                 class="img-fluid h-25 mb-4">
+            <h1 class="mb-4 pb-0">The 4th International Conference on<br>
+                <span>Optoelectronic and Nanomaterials for Advanced Technology</span><br>(icONMAT 2025)
+            </h1>
             <p class="mb-4 pb-0">February 11-14, 2025 at Cochin University of Science and Technology</p>
-            <a href="#" class="about-btn scrollto">About The Event</a>
+            <p class="mb-4 pb-0">Pre-conference workshop on 11th February 2025</p>
+        </div>
+    </section>
+
+    <!--==========================
+       Jointly Organized Section
+    ============================-->
+    <section id="jointly-organized" class="text-center mt-5">
+        <p>Jointly Organized By:</p>
+        <br>
+        <div class="d-flex justify-content-center align-items-center">
+            <img class="mx-3" src="{% static 'img/dop_logo.png' %}" alt="Department of Physics Logo"
+                 style="width: 200px; height: auto;">
+            <img class="mx-3" src="{% static 'img/cam_logo.png' %}" alt="Centre of Excellence Logo"
+                 style="width: 80px; height: auto;">
         </div>
     </section>
 
     <!--==========================
        About Section
-     ============================-->
+    ============================-->
     <section id="about">
         <div class="container">
+            <div class="section-header text-center mb-4">
+                <h2>About The Event</h2>
+            </div>
             <div class="row">
                 <div class="col">
-                    <h2>About The Event</h2>
                     <p>The 4th International Conference on Optoelectronic and Nanomaterials for Advanced Technology
                         (icONMAT 2025) will be held at Cochin University of Science and Technology from February 11-14,
                         2025. This event marks the fourth in a series that was formerly known as OMTAT (Optoelectronic
                         Materials and Thin Films for Advanced Technology). The first two conferences, OMTAT 2005 and
                         OMTAT 2013, were held at Rivera Suites in Kochi, India, while the third, icONMAT 2019, took
                         place at Cochin University of Science and Technology.
+                    </p>
+                    <p>
                         The conference aims to foster collaboration between academia and industry in nanomaterials,
-                        energy harvesting, energy storage and ultrafast laser technologies. It will provide a platform
+                        energy harvesting, energy storage, and ultrafast laser technologies. It will provide a platform
                         to showcase state-of-the-art techniques in synthesizing materials and designing nanostructures,
                         heterostructures, and thin films for specific applications. These high-performance materials
                         find uses in various applications, including gas sensors, photocatalysis, fuel cells, solar
-                        cells, optics, transparent electronics, and high-definition displays. The conference will delve
-                        into how factors such as process, architecture, size, and shape influence material performance
-                        for specific applications.
+                        cells, optics, transparent electronics, and high-definition displays.
+                    </p>
+                    <p>
+                        The conference will delve into how factors such as process, architecture, size, and shape
+                        influence material performance for specific applications.
+                    </p>
+                    <p>
                         Remarkable progress has been made in the field of ultrafast phenomena, with the spectral range
                         of ultrashort radiation pulses now extending to both long wavelengths like Terahertz radiation
                         and short wavelengths such as soft and hard X-rays. This versatility enables applications in
-                        solar energy, molecular electronics, and optoelectronic devices. The use of chirped pulse
-                        amplified femtosecond lasers allows for exploring materials and processes at extreme light
-                        intensities and with unprecedented temporal resolution. Applications include secondary particle
-                        and radiation sources, transient probing, and laser material processing such as micromachining.
-                        Under the "ultrafast" theme, the conference will focus on THz to X-ray radiation sources,
-                        pump-probe (transient) systems, materials processing, and intense laser-matter interactions.
+                        solar energy, molecular electronics, and optoelectronic devices.
+                    </p>
+                    <p>
                         The event will bring together scientists and engineers involved in the fabrication,
-                        characterization, and modelling of optoelectronic materials and devices to discuss the latest
-                        developments in the field. It will serve as an excellent platform for exchanging ideas and
-                        insights on advancements in advanced materials and processing for future optoelectronic
-                        applications.</p>
+                        characterization, and modeling of optoelectronic materials and devices to discuss the latest
+                        developments in the field.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!--==========================
+       Synopsys Section
+    ============================-->
+    <section id="synopsys" class="py-5">
+        <div class="container">
+            <div class="section-header text-center mb-4">
+                <h2 class="font-weight-bold display-4">Symposia</h2>
+            </div>
+            <div class="row">
+                {% for syn in symposia %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card">
+                            {% if syn.image %}
+                                <img src="{{ syn.image.url }}" class="card-img-top" alt="{{ syn.title }}">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ syn.title }}</h5>
+                                <p class="card-text">{{ syn.abstract|truncatewords:30 }}</p>
+                                <a href="{% url 'symposia_list' %}" class="link">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!--==========================
+       Team Section
+    ============================-->
     <section id="team" class="py-5">
         <div class="container">
             <div class="section-header text-center mb-5">
-                <h2>Meet Our Team</h2>
+                <h2>Conference Chairs</h2>
             </div>
             <div class="row">
-                {% for person in people %}
+                {% for person in chairs %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card text-center">
+                            {% if person.image %}
+                                <img src="{{ person.image.url }}" alt="{{ person.name }}"
+                                     class="card-img-top rounded-circle mx-auto d-block"
+                                     style="width: 150px; height: 150px; object-fit: cover; margin-top: 15px;">
+                            {% else %}
+                                <img src="{% static 'img/default-profile.png' %}" alt="Default Profile"
+                                     class="card-img-top rounded-circle mx-auto d-block"
+                                     style="width: 150px; height: 150px; object-fit: cover; margin-top: 15px;">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ person.name }}</h5>
+                                <p class="card-text">{{ person.designation }}</p>
+                                <p class="card-text">{{ person.message }}</p>
+                                <p class="card-text">
+                                    <strong>Email:</strong> {{ person.email }} <br>
+                                    <strong>Phone:</strong> {{ person.phone }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="section-header text-center mb-5">
+                <h2>Conference Patrons</h2>
+            </div>
+            <div class="row">
+                {% for person in patrons %}
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card text-center">
                             {% if person.image %}
@@ -91,20 +170,17 @@
     </section>
 
     <!--==========================
-     Venue Section
-   ============================-->
+       Venue Section
+    ============================-->
     <section id="venue" class="wow fadeInUp">
-
         <div class="container-fluid">
-
-            <div class="section-header">
+            <div class="section-header text-center mb-4">
                 <h2>Conference Venue</h2>
             </div>
-
             <div class="row no-gutters">
                 <div class="col-lg-6 venue-map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.6723259052646!2d76.32209752607413!3d10.043874790063802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d223eeb1de1%3A0xce06a9f0d256857a!2sSeminar%20Complex%2C%20CUSAT!5e0!3m2!1sen!2sin!4v1723393291682!5m2!1sen!2sin"
-                            frameborder="0" style="border:0" allowfullscreen></iframe>
+                            frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen></iframe>
                 </div>
 
                 <div class="col-lg-6 venue-info">
@@ -116,9 +192,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
-
 
 {% endblock %}

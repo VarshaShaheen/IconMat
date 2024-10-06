@@ -2,6 +2,8 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import People
+from .models import *
 
 admin.site.register(People)
+admin.site.register(Symposia)
+admin.site.register(Carousel)

@@ -17,6 +17,28 @@ class People(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 	image = models.ImageField(upload_to='people',null=True,blank=True)
 	designation = models.CharField(max_length=100,choices=DESIGNATION,default='Not Provided',null=True,blank=True)
+	priority = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.name
+
+
+class Symposia(models.Model):
+
+	title = models.CharField(max_length=100)
+	author = models.CharField(max_length=100,null=True,blank=True)
+	abstract = models.TextField(null=True,blank=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+	image = models.ImageField(upload_to='synopsys',null=True,blank=True)
+
+	def __str__(self):
+		return self.title
+
+class Carousel(models.Model):
+
+	title = models.CharField(max_length=100,null=True,blank=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+	image = models.ImageField(upload_to='carousel',null=True,blank=True)
+
+	def __str__(self):
+		return self.title
