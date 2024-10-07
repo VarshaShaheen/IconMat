@@ -106,8 +106,11 @@
         <div class="container">
             <div class="section-header text-center mb-5">
                 <h2>Meet Our Team</h2>
-            </div><div class="section-title mb-3">
-                <h4>Conference Patrons</h4>
+            </div>
+
+            <!-- Conference Patrons -->
+            <div class="section-title text-center mb-3">
+                <h4 class="font-weight-bold">Conference Patrons</h4>
             </div>
             <div class="row">
                 {% for person in patrons %}
@@ -124,15 +127,16 @@
                             {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">{{ person.name }}</h5>
-{#                                <p class="card-text">{{ person.designation }}</p>#}
                                 <p class="card-text">{{ person.message }}</p>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
-            <div class="section-title mb-3">
-                <h4>Conference Chairs</h4>
+
+            <!-- Conference Chairs -->
+            <div class="section-title text-center mb-3">
+                <h4 class="font-weight-bold">Conference Chairs</h4>
             </div>
             <div class="row">
                 {% for person in chairs %}
@@ -149,15 +153,126 @@
                             {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">{{ person.name }}</h5>
-{#                                <p class="card-text">{{ person.designation }}</p>#}
-                                <p class="card-text">{{ person.message }}</p>                               
+                                <p class="card-text">{{ person.message }}</p>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
+
+            <!-- Advisory Committee -->
+            <div class="section-title text-center mb-3">
+                <h4 class="font-weight-bold">Advisory Committee</h4>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card p-3 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Dr. Jatin Rath</h5>
+                            <p class="card-text">IIT Chennai</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card p-3 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Dr. Dinesh Kabra</h5>
+                            <p class="card-text">IIT Bombay</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card p-3 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Dr. Anil Kottantharayil</h5>
+                            <p class="card-text">IIT Bombay</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card p-3 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Dr. Krishnamurthy</h5>
+                            <p class="card-text">Center Director, TIFR, Hyderabad</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card p-3 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Dr. C. Anandharamakrishnan</h5>
+                            <p class="card-text">Director, NIIST, TVM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card p-3 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Prof. Sunil S. Bhagwat</h5>
+                            <p class="card-text">Director, IISER</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card p-3 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Prof. A. Seshadri Sekhar</h5>
+                            <p class="card-text">Director, IIT Palakkad</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card p-3 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Dr. P. S. Anil Kumar</h5>
+                            <p class="card-text">IISc, Bangalore</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card p-3 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Dr. Renu John</h5>
+                            <p class="card-text">IIT Hyderabad</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card p-3 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Prof. G. Ravindra Kunmar</h5>
+                            <p class="card-text">TIFR, Bombay</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card p-3 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Prof. Chandrabhas Narayana</h5>
+                            <p class="card-text">Rajiv Gandhi Centre for Biotechnology</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card p-3 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Prof. T Pradeep</h5>
+                            <p class="card-text">IIT Chennai</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card p-3 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Prof. K. N. Madhusoodanan</h5>
+                            <p class="card-text">CUSAT</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+
 
     <!--==========================
        Venue Section
