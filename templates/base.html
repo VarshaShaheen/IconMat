@@ -51,11 +51,16 @@
             <ul class="nav-menu">
                 <li class="{% if request.path == '/' %}menu-active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="#team">Committee</a></li>
-                <li class="{% if request.path == '/speakers/' %}menu-active{% endif %}"><a href="{% url 'speakers' %}">Speakers</a></li>
-                <li class="{% if request.path == '/programs/' %}menu-active{% endif %}"><a href="{% url 'programs' %}">Program </a></li>
-                <li class="{% if request.path == '/tourist_attractions/' %}menu-active{% endif %}"><a href="{% url 'tourist_attractions' %}">Tourist Attractions</a></li>
-                <li class="{% if request.path == '/contact/' %}menu-active{% endif %}"><a href="{% url 'contact' %}">Contact Us</a></li>
-                <li class="{% if request.path == '/registration/' %}menu-active{% endif %}"><a href="{% url 'registration' %}">Registration</a></li>
+                <li class="{% if request.path == '/speakers/' %}menu-active{% endif %}"><a href="{% url 'speakers' %}">Speakers</a>
+                </li>
+                <li class="{% if request.path == '/programs/' %}menu-active{% endif %}"><a href="{% url 'programs' %}">Program </a>
+                </li>
+                <li class="{% if request.path == '/tourist_attractions/' %}menu-active{% endif %}"><a
+                        href="{% url 'tourist_attractions' %}">Tourist Attractions</a></li>
+                <li class="{% if request.path == '/contact/' %}menu-active{% endif %}"><a href="{% url 'contact' %}">Contact
+                    Us</a></li>
+                <li class="{% if request.path == '/registration/' %}menu-active{% endif %}"><a
+                        href="{% url 'registration' %}">Registration</a></li>
             </ul>
         </nav><!-- #nav-menu-container -->
     </div>
@@ -83,22 +88,18 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'home' %}">Home</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="#team">Committie</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'speakers' %}">Speakers</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'programs' %}">Program</a></li>
                     </ul>
                 </div>
-
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'tourist_attractions' %}">Tourist Attractions</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'contact' %}">Contact Us</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'registration' %}">Registration</a></li>
                     </ul>
                 </div>
 
@@ -113,6 +114,7 @@
                         {#                        <strong>Phone:</strong> +1 5589 55488 55<br>#}
                         <strong>Email:</strong> iconmat@cusat.ac.in <br>
                     </p>
+                    <br>
 
                     <div class="social-links">
                         <a href="{{ social_link_instagram }}" class="instagram"><i class="fa fa-instagram"></i></a>
