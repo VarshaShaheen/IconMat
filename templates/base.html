@@ -26,6 +26,11 @@
     <link href="{% static 'lib/venobox/venobox.css' %}" rel="stylesheet">
     <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+
     <!-- Main Stylesheet File -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
@@ -44,9 +49,13 @@
 
         <nav id="nav-menu-container">
             <ul class="nav-menu">
-                <li class="menu-active"><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="{% url 'symposia_list' %}">Symposia</a></li>
+                <li class="{% if request.path == '/' %}menu-active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#team">Committee</a></li>
+                <li class="{% if request.path == '/speakers/' %}menu-active{% endif %}"><a href="{% url 'speakers' %}">Speakers</a></li>
+                <li class="{% if request.path == '/programs/' %}menu-active{% endif %}"><a href="{% url 'programs' %}">Program </a></li>
+                <li class="{% if request.path == '/tourist_attractions/' %}menu-active{% endif %}"><a href="{% url 'tourist_attractions' %}">Tourist Attractions</a></li>
+                <li class="{% if request.path == '/contact/' %}menu-active{% endif %}"><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li class="{% if request.path == '/registration/' %}menu-active{% endif %}"><a href="{% url 'registration' %}">Registration</a></li>
             </ul>
         </nav><!-- #nav-menu-container -->
     </div>
@@ -106,11 +115,9 @@
                     </p>
 
                     <div class="social-links">
-                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-                        <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-                        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                        <a href="{{ social_link_instagram }}" class="instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="{{ social_link_facebook }}" class="facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="{{ social_link_linkedin }}" class="linkedin"><i class="fa fa-linkedin"></i></a>
                     </div>
 
                 </div>

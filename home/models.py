@@ -42,3 +42,35 @@ class Carousel(models.Model):
 
 	def __str__(self):
 		return self.title
+
+class Program(models.Model):
+
+	title = models.CharField(max_length=100)
+	description = models.TextField(null=True,blank=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return self.title
+
+class Speaker(models.Model):
+
+	name = models.CharField(max_length=100)
+	email = models.EmailField(max_length=100,null=True,blank=True)
+	phone = models.CharField(max_length=15,default='Not Provided',null=True,blank=True)
+	message = models.TextField(default='Not Provided',null=True,blank=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+	image = models.ImageField(upload_to='speakers',null=True,blank=True)
+	priority = models.IntegerField(default=0)
+
+	def __str__(self):
+		return self.name
+
+class Social(models.Model):
+
+	instagram = models.URLField(max_length=100,null=True,blank=True)
+	linkedin = models.URLField(max_length=100,null=True,blank=True)
+	facebook = models.URLField(max_length=100,null=True,blank=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return 'Social Links'

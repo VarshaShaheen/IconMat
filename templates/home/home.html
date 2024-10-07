@@ -9,11 +9,11 @@
         <div class="intro-container wow fadeIn text-center">
             <img src="{% static 'img/iconmat_logo.png' %}" alt="icONMAT 2025 Logo" title="icONMAT 2025 Logo"
                  class="img-fluid h-25 mb-4">
-            <h1 class="mb-4 pb-0">The 4th International Conference on<br>
+            <h1 class="mb-4 pb-0">The 4<sup>th</sup> International Conference on<br>
                 <span>Optoelectronic and Nanomaterials for Advanced Technology</span><br>(icONMAT 2025)
             </h1>
             <p class="mb-4 pb-0">February 11-14, 2025 at Cochin University of Science and Technology</p>
-            <p class="mb-4 pb-0">Pre-conference workshop on 11th February 2025</p>
+            <p class="mb-4 pb-0">Pre-conference workshop on 11<sup>th</sup> February 2025</p>
         </div>
     </section>
 
@@ -25,9 +25,9 @@
         <br>
         <div class="d-flex justify-content-center align-items-center">
             <img class="mx-3" src="{% static 'img/dop_logo.png' %}" alt="Department of Physics Logo"
-                 style="width: 200px; height: auto;">
+                 style="width: 300px; height: auto;">
             <img class="mx-3" src="{% static 'img/cam_logo.png' %}" alt="Centre of Excellence Logo"
-                 style="width: 80px; height: auto;">
+                 style="width: 90px; height: auto;">
         </div>
     </section>
 
@@ -36,11 +36,11 @@
     ============================-->
     <section id="about">
         <div class="container">
-            <div class="section-header text-center mb-4">
-                <h2>About The Event</h2>
+            <div class="section-header text-center mb-">
+                <h2>About The Conference</h2>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col text-justify">
                     <p>The 4th International Conference on Optoelectronic and Nanomaterials for Advanced Technology
                         (icONMAT 2025) will be held at Cochin University of Science and Technology from February 11-14,
                         2025. This event marks the fourth in a series that was formerly known as OMTAT (Optoelectronic
@@ -55,18 +55,12 @@
                         heterostructures, and thin films for specific applications. These high-performance materials
                         find uses in various applications, including gas sensors, photocatalysis, fuel cells, solar
                         cells, optics, transparent electronics, and high-definition displays.
-                    </p>
-                    <p>
                         The conference will delve into how factors such as process, architecture, size, and shape
                         influence material performance for specific applications.
-                    </p>
-                    <p>
                         Remarkable progress has been made in the field of ultrafast phenomena, with the spectral range
                         of ultrashort radiation pulses now extending to both long wavelengths like Terahertz radiation
                         and short wavelengths such as soft and hard X-rays. This versatility enables applications in
                         solar energy, molecular electronics, and optoelectronic devices.
-                    </p>
-                    <p>
                         The event will bring together scientists and engineers involved in the fabrication,
                         characterization, and modeling of optoelectronic materials and devices to discuss the latest
                         developments in the field.
@@ -92,9 +86,9 @@
                                 <img src="{{ syn.image.url }}" class="card-img-top" alt="{{ syn.title }}">
                             {% endif %}
                             <div class="card-body">
-                                <h5 class="card-title">{{ syn.title }}</h5>
+                                <h5 class="card-title font-weight-bold">{{ syn.title }}</h5>
                                 <p class="card-text">{{ syn.abstract|truncatewords:30 }}</p>
-                                <a href="{% url 'symposia_list' %}" class="link">Read More</a>
+                                {#<a href="{% url 'symposia_list' %}" class="link">Read More</a>#}
                             </div>
                         </div>
                     </div>
@@ -109,32 +103,9 @@
     <section id="team" class="py-5">
         <div class="container">
             <div class="section-header text-center mb-5">
-                <h2>Conference Chairs</h2>
-            </div>
-            <div class="row">
-                {% for person in chairs %}
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card text-center">
-                            {% if person.image %}
-                                <img src="{{ person.image.url }}" alt="{{ person.name }}"
-                                     class="card-img-top rounded-circle mx-auto d-block"
-                                     style="width: 150px; height: 150px; object-fit: cover; margin-top: 15px;">
-                            {% else %}
-                                <img src="{% static 'img/default-profile.png' %}" alt="Default Profile"
-                                     class="card-img-top rounded-circle mx-auto d-block"
-                                     style="width: 150px; height: 150px; object-fit: cover; margin-top: 15px;">
-                            {% endif %}
-                            <div class="card-body">
-                                <h5 class="card-title">{{ person.name }}</h5>
-                                <p class="card-text">{{ person.designation }}</p>
-                                <p class="card-text">{{ person.message }}</p>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-            <div class="section-header text-center mb-5">
-                <h2>Conference Patrons</h2>
+                <h2>Meet Our Team</h2>
+            </div><div class="section-title mb-3">
+                <h4>Conference Patrons</h4>
             </div>
             <div class="row">
                 {% for person in patrons %}
@@ -151,7 +122,32 @@
                             {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">{{ person.name }}</h5>
-                                <p class="card-text">{{ person.designation }}</p>
+{#                                <p class="card-text">{{ person.designation }}</p>#}
+                                <p class="card-text">{{ person.message }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="section-title mb-3">
+                <h4>Conference Chairs</h4>
+            </div>
+            <div class="row">
+                {% for person in chairs %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card text-center">
+                            {% if person.image %}
+                                <img src="{{ person.image.url }}" alt="{{ person.name }}"
+                                     class="card-img-top rounded-circle mx-auto d-block"
+                                     style="width: 150px; height: 150px; object-fit: cover; margin-top: 15px;">
+                            {% else %}
+                                <img src="{% static 'img/default-profile.png' %}" alt="Default Profile"
+                                     class="card-img-top rounded-circle mx-auto d-block"
+                                     style="width: 150px; height: 150px; object-fit: cover; margin-top: 15px;">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ person.name }}</h5>
+{#                                <p class="card-text">{{ person.designation }}</p>#}
                                 <p class="card-text">{{ person.message }}</p>                               
                             </div>
                         </div>
