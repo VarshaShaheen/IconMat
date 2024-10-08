@@ -470,7 +470,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #intro {
     width: 100%;
-    height: 100vh;
+    height: 135vh;
     background: url(../img/cusat_adm.jpg) top center;
     background-size: cover;
     overflow: hidden;
