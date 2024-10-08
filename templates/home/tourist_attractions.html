@@ -1,9 +1,357 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <section id="programs" class="d-flex align-items-center justify-content-center min-vh-100 bg-light" style="min-height: 600px">
-        <div class="section-header container text-center">
-            <h3 class="font-weight-bold">This page will be updated soon</h3>
-        </div>
-    </section>
+    <!-- Attractions Sections -->
+    <div class="container navbar-margin">
+        <!-- Marine Drive -->
+        <section class="attraction-section row align-items-center my-5" data-aos="fade-right">
+            <div class="col-md-6">
+                <!-- Carousel for Marine Drive -->
+                <div id="carouselMarineDrive" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'img/tourist_attractions/0.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Marine Drive 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/1.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Marine Drive 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/2.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Marine Drive 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 attraction-text">
+                <h2>Marine Drive: The Waterfront Paradise</h2>
+                <p>A popular promenade along the backwaters with stunning views of the sunset. It’s a relaxing spot for
+                    a walk and features shopping complexes and boat cruises.</p>
+                <p class="text-muted">Distance from CUSAT: ~11 km</p>
+            </div>
+        </section>
+
+        <!-- Hill Palace Museum -->
+        <section class="attraction-section row align-items-center my-5 bg-light-gray" data-aos="fade-left">
+            <div class="col-md-6 order-md-2">
+                <!-- Carousel for Hill Palace -->
+                <div id="carouselHillPalace" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'img/tourist_attractions/3.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Hill Palace 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/4.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Hill Palace 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/5.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Hill Palace 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 attraction-text order-md-1">
+                <h2>Hill Palace Museum: The Royal Heritage</h2>
+                <p>The largest archaeological museum in Kerala, featuring royal artifacts, weapons, murals, and ancient
+                    manuscripts.</p>
+                <p class="text-muted">Distance from CUSAT: ~12 km</p>
+            </div>
+        </section>
+
+        <!-- Kadamakudy Islands -->
+        <section class="attraction-section row align-items-center my-5" data-aos="fade-right">
+            <div class="col-md-6">
+                <!-- Carousel for Kadamakudy Islands -->
+                <div id="carouselKadamakudy" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'img/tourist_attractions/6.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Kadamakudy Islands 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/7.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Kadamakudy Islands 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/8.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Kadamakudy Islands 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 attraction-text">
+                <h2>Kadamakudy Islands: The Tranquil Backwater Retreat</h2>
+                <p>A group of scenic islands known for vast paddy fields, fishing farms, and picturesque sunsets. It
+                    offers a peaceful escape into Kerala’s rural life.</p>
+                <p class="text-muted">Distance from CUSAT: ~16 km</p>
+            </div>
+        </section>
+
+        <!-- Mattancherry -->
+        <section class="attraction-section row align-items-center my-5 bg-light-gray" data-aos="fade-left">
+            <div class="col-md-6 order-md-2">
+                <!-- Carousel for Mattancherry -->
+                <div id="carouselMattancherry" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'img/tourist_attractions/9.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Mattancherry 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/10.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Mattancherry 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/11.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Mattancherry 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 attraction-text order-md-1">
+                <h2>Mattancherry: A Cultural Mosaic</h2>
+                <p>A historic gem with centuries-old Mattancherry Palace, spice markets, and the Jewish Synagogue. A
+                    cultural window into Kerala's past.</p>
+                <p class="text-muted">Distance from CUSAT: ~23 km</p>
+            </div>
+        </section>
+
+        <!-- Kumbalangi -->
+        <section class="attraction-section row align-items-center my-5" data-aos="fade-right">
+            <div class="col-md-6">
+                <!-- Carousel for Kumbalangi -->
+                <div id="carouselKumbalangi" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'img/tourist_attractions/12.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Kumbalangi 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/13.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Kumbalangi 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/14.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Kumbalangi 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 attraction-text">
+                <h2>Kumbalangi: The Eco-Friendly Fishing Village</h2>
+                <p>India's first eco-friendly tourism village, known for its vibrant fishing culture, backwaters, and
+                    tranquil rural life.</p>
+                <p class="text-muted">Distance from CUSAT: ~24 km</p>
+            </div>
+        </section>
+
+        <!-- Fort Kochi -->
+        <section class="attraction-section row align-items-center my-5 bg-light-gray" data-aos="fade-left">
+            <div class="col-md-6 order-md-2">
+                <!-- Carousel for Fort Kochi -->
+                <div id="carouselFortKochi" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'img/tourist_attractions/15.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/16.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/17.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 attraction-text order-md-1">
+                <h2>Fort Kochi: The Historical Gem</h2>
+                <p>Known for its colonial architecture, Fort Kochi offers attractions like Chinese fishing nets, St.
+                    Francis Church, and Fort Kochi Beach.</p>
+                <p class="text-muted">Distance from CUSAT: ~27 km</p>
+            </div>
+        </section>
+
+        <!-- Vypin Island -->
+        <section class="attraction-section row align-items-center my-5 bg-light-gray" data-aos="fade-right">
+            <div class="col-md-6 order-md-2">
+                <!-- Carousel for Fort Kochi -->
+                <div id="carouselVypinIsland" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'img/tourist_attractions/18.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/19.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/20.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 attraction-text order-md-2">
+                <h2>Vypin Island: The Coastal Paradise</h2>
+                <p>Vypin Island, located off the coast of Kochi, is a beautiful destination known for its
+                    tranquil beaches and rich cultural heritage. The island is easily accessible by ferry,
+                    making it a popular escape from the bustling city. Cherai Beach, one of the most famous
+                    beaches in Kerala, is situated here, offering golden sands, gentle waves, and a picturesque
+                    backdrop of coconut palms.</p>
+                <p class="text-muted">Distance from CUSAT: ~26 km</p>
+            </div>
+        </section>
+
+        <!-- Fort Kochi -->
+        <section class="attraction-section row align-items-center my-5 bg-light-gray" data-aos="fade-left">
+            <div class="col-md-6 order-md-2">
+                <!-- Carousel for Fort Kochi -->
+                <div id="carouselFortKochi" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'img/tourist_attractions/21.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/22.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/23.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 attraction-text order-md-1">
+                <h2>Paniyeli Poru: The Scenic Riverside Escape</h2>
+                <p>A serene natural spot on the banks of the Periyar River, Paniyeli Poru is known for its
+                    beautiful rock formations, gentle rapids, and lush green surroundings. It's a great spot for
+                    nature lovers, offering stunning views and trekking opportunities.</p>
+                <p class="text-muted">Distance from CUSAT: ~41 km</p>
+            </div>
+        </section>
+
+        <!-- Fort Kochi -->
+        <section class="attraction-section row align-items-center my-5 bg-light-gray" data-aos="fade-right">
+            <div class="col-md-6 order-md-2">
+                <!-- Carousel for Fort Kochi -->
+                <div id="carouselFortKochi" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'img/tourist_attractions/24.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/25.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/26.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 attraction-text order-md-2">
+                <h2>Thattekkad Bird Sanctuary: The Avian Haven</h2>
+                <p>Known as one of the richest bird habitats in India, Thattekkad Bird Sanctuary is a
+                    paradise for birdwatchers. Home to over 300 species of birds, this lush sanctuary was
+                    once described by ornithologist Dr. Salim Ali as "the richest bird habitat in peninsular
+                    India.</p>
+                <p class="text-muted">Distance from CUSAT: ~51 km</p>
+            </div>
+        </section>
+
+        <!-- Fort Kochi -->
+        <section class="attraction-section row align-items-center my-5 bg-light-gray" data-aos="fade-left">
+            <div class="col-md-6 order-md-2">
+                <!-- Carousel for Fort Kochi -->
+                <div id="carouselFortKochi" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'img/tourist_attractions/27.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/tourist_attractions/28.png' %}"
+                                 class="attraction-image d-block w-100"
+                                 alt="Fort Kochi 2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 attraction-text order-md-1">
+                <h2>Athirappilly Waterfalls: The Niagara of India</h2>
+                <p>Athirappilly, Kerala's largest waterfall, is a breathtaking cascade often called the "Niagara
+                    of India," set amidst the lush Sholayar forests along the Chalakudy River. Nearby,
+                    Vazhachal Waterfalls offers a more tranquil, expansive flow, perfect for nature walks and
+                    picnics. Ezhattumugham, a picturesque village just 15 km away, is known for its seven
+                    streams and serene surroundings, ideal for quiet riverside strolls. Thumbormozhi Eco
+                    Village, close to Ezhattumugham, features a butterfly garden and offers a peaceful retreat
+                    for nature lovers. Together, these destinations provide a rich blend of dramatic waterfalls,
+                    scenic rivers, and natural beauty, making them must-visit spots near Kochi.</p>
+                <p class="text-muted">Distance from CUSAT: ~55 km</p>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true,
+        });
+    </script>
+{% endblock %}
+
+{% block styles %}
+    <style>
+        .attraction-image {
+            height: 300px; /* Set a consistent height */
+            object-fit: cover; /* Ensures image retains aspect ratio while filling the container */
+        }
+    </style>
 {% endblock %}

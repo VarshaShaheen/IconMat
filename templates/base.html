@@ -30,9 +30,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
 
     <!-- Main Stylesheet File -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% block styles %}
+    {% endblock %}
 </head>
 
 <body>
@@ -44,13 +48,13 @@
     <div class="container">
 
         <div id="logo" class="pull-left">
-                    <a href="#intro" class="scrollto"><img src="{% static 'img/iconmat_logo.png' %}" alt="" title=""></a>
+            <a href="#intro" class="scrollto"><img src="{% static 'img/iconmat_logo.png' %}" alt="" title=""></a>
         </div>
 
         <nav id="nav-menu-container">
             <ul class="nav-menu">
                 <li class="{% if request.path == '/' %}menu-active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="#team">Committee</a></li>
+                <li><a href="{% url 'home' %}#team">Committee</a></li>
                 <li class="{% if request.path == '/speakers/' %}menu-active{% endif %}"><a href="{% url 'speakers' %}">Speakers</a>
                 </li>
                 <li class="{% if request.path == '/programs/' %}menu-active{% endif %}"><a href="{% url 'programs' %}">Program </a>
@@ -67,9 +71,10 @@
 </header><!-- #header -->
 
 <!-- Content Section -->
-{% block content %}
-{% endblock %}
-
+<section id="base-container">
+    {% block content %}
+    {% endblock %}
+</section>
 <!--==========================
   Footer
 ============================-->
@@ -97,7 +102,8 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Links</h4>
                     <ul>
-                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'tourist_attractions' %}">Tourist Attractions</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'tourist_attractions' %}">Tourist
+                            Attractions</a></li>
                         <li><i class="fa fa-angle-right"></i> <a href="{% url 'contact' %}">Contact Us</a></li>
                         <li><i class="fa fa-angle-right"></i> <a href="{% url 'registration' %}">Registration</a></li>
                     </ul>
@@ -147,6 +153,8 @@
 <script src="{% static 'lib/wow/wow.min.js' %}"></script>
 <script src="{% static 'lib/venobox/venobox.min.js' %}"></script>
 <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+{% block scripts %}
+{% endblock %}
 
 <!-- Contact Form JavaScript File -->
 <script src="{% static 'contactform/contactform.js' %}"></script>

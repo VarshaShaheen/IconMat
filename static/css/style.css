@@ -15,6 +15,11 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+.navbar-margin
+{
+  margin-top: 150px;
+}
+
 a {
   color: #f82249;
   transition: 0.5s;
