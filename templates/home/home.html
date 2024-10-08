@@ -6,36 +6,38 @@
       Intro Section
     ============================-->
     <section id="intro">
-        <div class="intro-container wow fadeIn text-center">
-            <img src="{% static 'img/iconmat_logo.png' %}" alt="icONMAT 2025 Logo" title="icONMAT 2025 Logo"
-                 class="img-fluid h-25 mb-4">
-            <h1 class="mb-4 pb-0">The 4<sup>th</sup> International Conference on<br>
+        <div class="intro-container wow fadeIn text-center" style="margin-top: 100px">
+            {#            <img src="{% static 'img/iconmat_logo.png' %}" alt="icONMAT 2025 Logo" title="icONMAT 2025 Logo"#}
+            {#                 class="img-fluid h-25 mb-4">#}
+            <h1 class="mb-2 pb-0">The 4<sup>th</sup> International Conference on<br>
                 <span>Optoelectronic and Nanomaterials for Advanced Technology</span><br>(icONMAT 2025)
             </h1>
-            <p class="mb-4 pb-0">February 11-14, 2025 at Cochin University of Science and Technology</p>
-            <p class="mb-4 pb-0">Pre-conference workshop on 11<sup>th</sup> February 2025</p>
-        </div>
-    </section>
+            <p class="mb-2 pb-0">February 11-14, 2025 at Cochin University of Science and Technology</p>
+            <p class="mb-2 pb-0">Pre-conference workshop on 11<sup>th</sup> February 2025</p>
 
-    <!--==========================
+            <!--==========================
        Jointly Organized Section
     ============================-->
-    <section id="jointly-organized" class="text-center mt-5">
-        <p>Jointly Organized By:</p>
-        <br>
-        <div class="d-flex flex-wrap justify-content-center align-items-center">
-            <div class="p-2">
-                <img class="img-fluid mx-1" src="{% static 'img/cam_logo.png' %}" alt="Centre of Excellence Logo"
-                     style="max-width: 90px; height: auto;">
-            </div>
-            <div class="p-2">
-                <img class="img-fluid mx-1" src="{% static 'img/dop_logo.png' %}" alt="Department of Physics Logo"
-                     style="max-width: 300px; height: auto;">
-            </div>
-            <div class="p-2">
-                <img class="img-fluid mx-1" src="{% static 'img/cusat_logo.png' %}" alt="Centre of Excellence Logo"
-                     style="max-width: 80px; height: auto;">
-            </div>
+            <section id="jointly-organized" class="text-center">
+                <p>Jointly Organized By:</p>
+                <div class="d-flex flex-wrap justify-content-center align-items-center">
+                    <div class="p-2">
+                        <img class="img-fluid mx-1" src="{% static 'img/cam_logo.png' %}"
+                             alt="Centre of Excellence Logo"
+                             style="max-width: 80px; height: auto;">
+                    </div>
+                    <div class="p-2">
+                        <img class="img-fluid mx-1" src="{% static 'img/dop_logo_bg.png' %}"
+                             alt="Department of Physics Logo"
+                             style="max-width: 250px; height: auto;">
+                    </div>
+                    <div class="p-2">
+                        <img class="img-fluid mx-1" src="{% static 'img/cusat_logo.png' %}"
+                             alt="Centre of Excellence Logo"
+                             style="max-width: 70px; height: auto;">
+                    </div>
+                </div>
+            </section>
         </div>
     </section>
 
@@ -134,7 +136,7 @@
                                      style="width: 150px; height: 150px; object-fit: cover; margin-top: 15px;">
                             {% endif %}
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">{{ person.name }}</h5>
+                                <h5 class="card-title font-weight-bold">{{ person.name }}</h5>
                                 <p class="card-text">{{ person.message }}</p>
                             </div>
                         </div>
@@ -160,7 +162,7 @@
                                      style="width: 150px; height: 150px; object-fit: cover; margin-top: 15px;">
                             {% endif %}
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">{{ person.name }}</h5>
+                                <h5 class="card-title font-weight-bold">{{ person.name }}</h5>
                                 <p class="card-text">{{ person.message }}</p>
                             </div>
                         </div>
@@ -173,110 +175,17 @@
                 <h4 class="font-weight-bold">Advisory Committee</h4>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                    <div class="card w-100 d-flex flex-column p-3 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Dr. Jatin Rath</h5>
-                            <p class="card-text">IIT Chennai</p>
+
+                {% for adv in advisory_committee %}
+                    <div class="col-lg-4 col-md-6 mb-4 d-flex">
+                        <div class="card w-100 d-flex flex-column p-3 text-center">
+                            <div class="card-body">
+                                <h5 class="card-title font-weight-bold">{{ adv.name}}</h5>
+                                <p class="card-text">{{ adv.designation }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                    <div class="card w-100 d-flex flex-column p-3 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Dr. Dinesh Kabra</h5>
-                            <p class="card-text">IIT Bombay</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                    <div class="card w-100 d-flex flex-column p-3 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Dr. Anil Kottantharayil</h5>
-                            <p class="card-text">IIT Bombay</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                    <div class="card w-100 d-flex flex-column p-3 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Dr. Krishnamurthy</h5>
-                            <p class="card-text">Center Director, TIFR, Hyderabad</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                    <div class="card w-100 d-flex flex-column p-3 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Dr. C. Anandharamakrishnan</h5>
-                            <p class="card-text">Director, NIIST, TVM</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                    <div class="card w-100 d-flex flex-column p-3 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Prof. Sunil S. Bhagwat</h5>
-                            <p class="card-text">Director, IISER</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                    <div class="card w-100 d-flex flex-column p-3 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Prof. A. Seshadri Sekhar</h5>
-                            <p class="card-text">Director, IIT Palakkad</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                    <div class="card w-100 d-flex flex-column p-3 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Dr. P. S. Anil Kumar</h5>
-                            <p class="card-text">IISc, Bangalore</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                    <div class="card w-100 d-flex flex-column p-3 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Dr. Renu John</h5>
-                            <p class="card-text">IIT Hyderabad</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                    <div class="card w-100 d-flex flex-column p-3 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Prof. G. Ravindra Kunmar</h5>
-                            <p class="card-text">TIFR, Bombay</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                    <div class="card w-100 d-flex flex-column p-3 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Prof. Chandrabhas Narayana</h5>
-                            <p class="card-text">Rajiv Gandhi Centre for Biotechnology</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                    <div class="card w-100 d-flex flex-column p-3 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Prof. T Pradeep</h5>
-                            <p class="card-text">IIT Chennai</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                    <div class="card w-100 d-flex flex-column p-3 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">Prof. K. N. Madhusoodanan</h5>
-                            <p class="card-text">CUSAT</p>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>

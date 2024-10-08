@@ -65,6 +65,21 @@ class Speaker(models.Model):
 	def __str__(self):
 		return self.name
 
+
+class AdvisoryCommittee(models.Model):
+
+	name = models.CharField(max_length=100)
+	email = models.EmailField(max_length=100,null=True,blank=True)
+	phone = models.CharField(max_length=15,default='',null=True,blank=True)
+	designation = models.CharField(max_length=100,default='',null=True,blank=True)
+	message = models.TextField(default='',null=True,blank=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+	image = models.ImageField(upload_to='speakers',null=True,blank=True)
+	priority = models.IntegerField(default=0)
+
+	def __str__(self):
+		return self.name
+
 class Social(models.Model):
 
 	instagram = models.URLField(max_length=100,null=True,blank=True)
