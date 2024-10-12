@@ -55,6 +55,7 @@ class Program(models.Model):
 class Speaker(models.Model):
 
 	name = models.CharField(max_length=100)
+	designation = models.CharField(max_length=100,default='',null=True,blank=True)
 	email = models.EmailField(max_length=100,null=True,blank=True)
 	phone = models.CharField(max_length=15,default='Not Provided',null=True,blank=True)
 	message = models.TextField(default='Not Provided',null=True,blank=True)
