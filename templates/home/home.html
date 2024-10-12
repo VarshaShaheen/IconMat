@@ -173,11 +173,20 @@
             <div class="row wow fadeInUp">
 
                 {% for adv in advisory_committee %}
-                    <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                        <div class="card w-100 d-flex flex-column p-3 text-center">
-                            <div class="card-body">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex">
+                        <div class="card w-100 d-flex flex-column text-center">
+                            {% if adv.image %}
+                                <img src="{{ adv.image.url }}" alt="{{ adv.name }}"
+                                     class="card-img-top img-fluid"
+                                     style="height: 300px; object-fit: cover; width: 100%;">
+                            {% else %}
+                                <img src="{% static 'img/default-profile.png' %}" alt="Default Profile"
+                                     class="card-img-top img-fluid"
+                                     style="height: 300px; object-fit: cover; width: 100%;">
+                            {% endif %}
+                            <div class="card-body d-flex flex-column">
                                 <h5 class="card-title font-weight-bold">{{ adv.name }}</h5>
-                                <p class="card-text">{{ adv.designation }}</p>
+                                <p class="card-text">{{ adv.message }}</p>
                             </div>
                         </div>
                     </div>

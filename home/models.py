@@ -75,7 +75,7 @@ class AdvisoryCommittee(models.Model):
 	designation = models.CharField(max_length=100,default='',null=True,blank=True)
 	message = models.TextField(default='',null=True,blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
-	image = models.ImageField(upload_to='speakers',null=True,blank=True)
+	image = models.ImageField(upload_to='advisory',null=True,blank=True)
 	priority = models.IntegerField(default=0)
 
 	def __str__(self):
