@@ -225,3 +225,18 @@
     </section>
 
 {% endblock %}
+
+
+<!-- Custom Styles -->
+{% block styles %}
+    <style>
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        {#box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);#}
+        }
+    </style>
+{% endblock %}

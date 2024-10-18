@@ -19,7 +19,7 @@ def symposia_list(request):
 	return render(request, 'home/symposia.html', {'symposia': symposia})
 
 def speakers(request):
-	speakers = Speaker.objects.all()
+	speakers = Speaker.objects.all().order_by('priority')
 	return render(request, 'home/speakers.html', {'speakers': speakers})
 
 def programs(request):
