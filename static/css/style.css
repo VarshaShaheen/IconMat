@@ -543,6 +543,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     #intro {
         height: 135vh;
     }
+
     #intro h1 {
         font-size: 36px;
     }
@@ -571,6 +572,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     #intro {
         height: 150vh;
     }
+
     #intro h1 {
         font-size: 28px;
     }
@@ -1588,4 +1590,29 @@ body.mobile-nav-active #mobile-nav-toggle {
     #subscribe button {
         margin-top: 10px;
     }
+}
+
+
+.image-container {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+    color: white; /* Text color */
+    display: flex;
+    align-items: end;
+    justify-content: start;
+    padding: 1rem; /* Adjust as needed */
+    transition: opacity 0.3s; /* Smooth transition for hover effect */
+}
+
+.abstract {
+    margin: 0; /* Remove default margins */
+    font-weight: bold;
 }
