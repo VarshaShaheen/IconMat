@@ -67,29 +67,25 @@
                 <li class="{% if request.path == '/registration/' %}menu-active{% endif %}"><a
                         href="{% url 'registration' %}">Registration</a>
                 </li>
-                <li class="{% if request.path == '/paper/submit_abstract/' %}menu-active{% endif %}"><a
-                        href="{% url 'abstract_submission' %}">Submit Abstract</a>
-                </li>
-                {% if user.is_authenticated %}
-                    <li class="{% if request.path == '/accounts/logout/' %}menu-active{% endif %}"><a
-                            href="{% url 'account_logout' %}" >Logout</a>
-                    </li>
-{#                    <p>You logged in as {{ request.user.first_name  }}</p>#}
-                {% else %}
-                    <li class="{% if request.path == '/accounts/signup/' %}menu-active{% endif %}"><a
-                            href="{% url 'account_login' %}">Sign In /Log in </a>
-                    </li>
-                {% endif %}
-
+                <li class="{% if request.path == '/registration/' %}menu-active{% endif %}"><a
+                        href="{% url 'abstract_submission' %}">Submit Abstract</a></li>
             </ul>
-
         </nav><!-- #nav-menu-container -->
-
     </div>
 </header><!-- #header -->
 
 <!-- Content Section -->
 <section id="base-container">
+{#    <section#}
+{#            style="background-image: url('{% static 'img/cusat_adm.jpg' %}');#}
+{#                    background-size: cover;#}
+{#                    background-position: center;#}
+{#                    height: 200px; display: flex;#}
+{#                    align-items: center; justify-content:#}
+{#                    center; color: #fff; text-align:#}
+{#                    center">#}
+{##}
+{#    </section>#}
     {% block content %}
     {% endblock %}
 </section>

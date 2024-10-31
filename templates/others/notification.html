@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Notification{% endblock %}
+
+{% block content %}
+    <section class="container my-5">
+        <div class="d-flex flex-column align-items-center justify-content-center min-vh-100">
+            <div class="alert alert-info shadow text-center w-100 w-md-75 w-lg-50" role="alert">
+                <h4 class="alert-heading">Notification</h4>
+                <p>{{ message }}</p>
+                <a href="{% url 'home' %}" class="btn btn-primary mt-3">Go to Home</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

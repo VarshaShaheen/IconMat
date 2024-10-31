@@ -1,25 +1,52 @@
-{% extends "account/base_manage.html" %}
+{#{% extends "account/base_manage.html" %}#}
+{#{% load allauth i18n %}#}
+{#{% block head_title %}#}
+{#    {% trans "Sign Out" %}#}
+{#{% endblock head_title %}#}
+{#{% block content %}#}
+{#    {% element h1 %}#}
+{#        {% trans "Sign Out" %}#}
+{#    {% endelement %}#}
+{#    {% element p %}#}
+{#        {% trans 'Are you sure you want to sign out?' %}#}
+{#    {% endelement %}#}
+{#    {% url 'account_logout' as action_url %}#}
+{#    {% element form method="post" action=action_url no_visible_fields=True %}#}
+{#        {% slot body %}#}
+{#            {% csrf_token %}#}
+{#            {{ redirect_field }}#}
+{#        {% endslot %}#}
+{#        {% slot actions %}#}
+{#            {% element button type="submit" %}#}
+{#                {% trans 'Sign Out' %}#}
+{#            {% endelement %}#}
+{#        {% endslot %}#}
+{#    {% endelement %}#}
+{#{% endblock content %}#}
+
+{% extends "accounts_base.html" %}
 {% load allauth i18n %}
 {% block head_title %}
     {% trans "Sign Out" %}
 {% endblock head_title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Out" %}
-    {% endelement %}
-    {% element p %}
-        {% trans 'Are you sure you want to sign out?' %}
-    {% endelement %}
-    {% url 'account_logout' as action_url %}
-    {% element form method="post" action=action_url no_visible_fields=True %}
-        {% slot body %}
+    <div class="container mb-5" style="margin-top: 10rem">
+        <h1 class="fw-bold">
+            {% trans "Log Out" %}
+        </h1>
+        <p>
+            {% trans 'Are you sure you want to log out?' %}
+        </p>
+        {% url 'account_logout' as action_url %}
+        <form method="post" action="{{ action_url }}">
             {% csrf_token %}
             {{ redirect_field }}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" %}
-                {% trans 'Sign Out' %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
+            <br>
+            <button type="submit" class="btn btn-danger">
+                {% trans 'Log Out' %}
+            </button>
+        </form>
+    </div>
 {% endblock content %}
+
