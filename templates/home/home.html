@@ -33,6 +33,21 @@
                     </div>
                 </div>
             </section>
+            <!-- Countdown Section -->
+{#            <div id="countdown" class="text-center fw-bold mt-5">#}
+{#                <h4 class="fw-bold text-white">Countdown to Conference:</h4>#}
+{#                <div class="d-flex justify-content-center">#}
+{#                    <div class="p-3">#}
+{#                        <h1 id="months" class="display-4">00</h1><br><h3 class="text-white">Months</h3>#}
+{#                    </div>#}
+{#                    <div class="p-3">#}
+{#                        <h1 id="days" class="display-4">00</h1><br><h3 class="text-white">Days</h3>#}
+{#                    </div>#}
+{#                    <div class="p-3">#}
+{#                        <h1 id="hours" class="display-4">00</h1><br><h3 class="text-white">Hours</h3>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
         </div>
     </section>
 
@@ -267,4 +282,28 @@
         {#box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);#}
         }
     </style>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        // Countdown Script
+        const eventDate = new Date('February 11, 2025 00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = eventDate - now;
+
+            // Time calculations for days, hours
+            const months = Math.floor(timeLeft / (1000 * 60 * 60 * 24 * 30.44)); // average month length
+            const days = Math.floor((timeLeft % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            document.getElementById('months').innerText = months.toString().padStart(2, '0');
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+    </script>
 {% endblock %}

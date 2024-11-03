@@ -6,8 +6,6 @@ from .models import PaperAbstract
 
 @admin.register(PaperAbstract)
 class PaperAbstractAdmin(admin.ModelAdmin):
-	list_display = ['title', 'authors', 'created_at', 'presentation']
-	list_filter = ['created_at', 'presentation']
-	search_fields = ['title', 'authors']
-	date_hierarchy = 'created_at'
-	list_per_page = 20
+	list_display = ['title', 'name','phone_number','title_of_abstract','designation','organization','symposia','abstract','mode_of_presentation']
+	list_filter = ['title', 'name','phone_number','title_of_abstract','designation','organization','symposia','abstract','mode_of_presentation']
+	search_fields = ['title', 'name','phone_number','title_of_abstract','designation','organization','symposia','abstract','mode_of_presentation']

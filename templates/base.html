@@ -67,8 +67,8 @@
                 <li class="{% if request.path == '/registration/' %}menu-active{% endif %}"><a
                         href="{% url 'registration' %}">Registration</a>
                 </li>
-                <li class="{% if request.path == '/paper/submit_abstract/' %}menu-active{% endif %}"><a
-                        href="{% url 'abstract_submission' %}">Submit Abstract</a>
+                <li class="{% if request.path == '/paper/abstract_details/' %}menu-active{% endif %}"><a
+                        href="{% url 'abstract_details' %}">Submit Abstract</a>
                 </li>
                 {% if user.is_authenticated %}
                     <li class="{% if request.path == '/accounts/logout/' %}menu-active{% endif %}"><a

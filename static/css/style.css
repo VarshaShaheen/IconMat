@@ -148,14 +148,18 @@ h6 {
 --------------------------------------------------------------*/
 
 #header {
-    height: 90px;
-    padding: 25px 0;
+    /*height: 90px;*/
+    /*padding: 25px 0;*/
     position: fixed;
     left: 0;
     top: 0;
     right: 0;
     transition: all 0.5s;
     z-index: 997;
+    background: rgba(6, 12, 34, 0.98);
+    height: 70px;
+    padding: 15px 0;
+    transition: all 0.5s;
 }
 
 #header.header-scrolled,

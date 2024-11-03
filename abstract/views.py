@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from django.views.generic import TemplateView
+
 from .forms import PaperAbstractForm
 
 
@@ -35,3 +37,11 @@ def abstract_submission(request):
 
 	# Render form page with any messages
 	return render(request, 'abstract/abstract_submission.html', {'form': form})
+
+
+class AbstractDetail(TemplateView):
+	template_name = 'abstract/abstract_details.html'
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		return context

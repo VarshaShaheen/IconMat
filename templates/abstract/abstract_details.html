@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Header Section -->
+    <section
+            style="background-image: url('{% static 'img/cusat_adm.jpg' %}'); background-size: cover; background-position: center; height: 500px; display: flex; align-items: center; justify-content: center; color: #fff; text-align: center"></section>
+
+    <!-- Abstract Detail Section -->
+    <section class="container my-5">
+        <div class="section-header text-center mb-5">
+            <h2 class="font-weight-bold display-4">Abstract Submission</h2>
+        </div>
+
+        <div class="row">
+            <!-- Left Side (Image) -->
+            <div class="col-md-6 ">
+                <img src="{% static 'img/abstract_template.png' %}" alt="Abstract Image" class=" border img-fluid w-100"
+                     style="border-radius: 10px;">
+            </div>
+
+            <!-- Right Side (Description and Button) -->
+            <div class="col-md-6 d-flex flex-column mt-3 mt-md-0 ">
+                <h4 class="font-weight-bold ">Submit Your Research Abstract</h4>
+                <p class="">Submit your research abstract here. Please follow the template guidelines for
+                    formatting and submission.</p>
+                <a class="mt-3" target="_blank"
+                   href="{% static 'files/abstract_template_icONMAT.doc' %}">Download Abstract
+                    Template</a>
+                <a class="btn btn-danger btn-sm mt-3" target="_blank"
+                   href="{% url 'abstract_submission' %}">Submit Abstract</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
