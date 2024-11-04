@@ -34,7 +34,7 @@ class PaperAbstract(models.Model):
 	organization = models.CharField(max_length=100, default='')
 	keywords = models.CharField(max_length=500, blank=True, null=True)
 	symposia = models.ForeignKey(Symposia, on_delete=models.CASCADE)
-	abstract = models.FileField(upload_to='abstracts', null=True, blank=True)
+	abstract = models.FileField(upload_to='abstracts')
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 	mode_of_presentation = models.CharField(max_length=100, choices=MODE_OF_PRESENTATION, default='oral')
