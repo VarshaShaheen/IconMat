@@ -53,9 +53,9 @@ class PaperAbstract(models.Model):
 			'content'     : f"New Abstract {self.title}, Submitted  by {self.user.first_name} {self.user.email} use the link to download the file https://iconmat2025{self.abstract.url} ",
 			'user_name'   : self.user.first_name,
 			'keywords'    : self.keywords,
-			'file'        : self.file,
+			'file'        : self.abstract,
 			'created_at'  : self.created_at,
 			'updated_at'  : self.updated_at,
-			'presentation': self.presentation,
+			'mode_of_presentation': self.mode_of_presentation,
 		}
 		threading.Thread(target=send_html_email, args=(context['subject'], self.user.email, context)).start()
