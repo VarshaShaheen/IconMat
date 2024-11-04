@@ -50,7 +50,7 @@ class PaperAbstract(models.Model):
 	def send_email(self):
 		context = {
 			'subject'     : 'New Abstract Submitted',
-			'content'     : f"New Abstract {self.title}, Submitted  by {self.user.first_name} {self.user.email} use the link to download the file https://localhost:8000{self.file.url} ",
+			'content'     : f"New Abstract {self.title}, Submitted  by {self.user.first_name} {self.user.email} use the link to download the file https://iconmat2025{self.abstract.url} ",
 			'user_name'   : self.user.first_name,
 			'keywords'    : self.keywords,
 			'file'        : self.file,
