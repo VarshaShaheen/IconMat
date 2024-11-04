@@ -2,8 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
+import logging
 
 from .forms import PaperAbstractForm
+
+logger = logging.getLogger(__name__)
 
 
 @login_required
@@ -21,8 +24,15 @@ def abstract_submission(request):
 				abstract.save()
 
 				# Attempt to send the confirmation email
-				abstract.send_email()
+				try:
+					abstract.send_email()
+				except Exception as e:
 
+					logger.error(f"Error sending email: {e}")
+					messages.error(request,
+					               'There was an error sending the confirmation email. Please contact the administrator.')
+					return render(request, 'others/notification.html', {
+						'message': "There was an error sending the confirmation email. Please contact the administrator"})
 				# Success message
 				return render(request, 'others/notification.html', {'message': "Abstract submitted successfully!"})
 
