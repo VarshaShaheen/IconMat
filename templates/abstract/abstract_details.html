@@ -20,16 +20,29 @@
             </div>
 
             <!-- Right Side (Description and Button) -->
-            <div class="col-md-6 d-flex flex-column mt-3 mt-md-0 ">
-                <h4 class="font-weight-bold ">Submit Your Research Abstract</h4>
-                <p class="">Submit your research abstract here. Please follow the template guidelines for
-                    formatting and submission.</p>
-                <a class="mt-3" target="_blank"
-                   href="{% static 'files/abstract_template_icONMAT.doc' %}">Download Abstract
-                    Template</a>
-                <a class="btn btn-danger btn-sm mt-3" target="_blank"
-                   href="{% url 'abstract_submission' %}">Submit Abstract</a>
+            <div class="col-md-6 d-flex flex-column mt-3 mt-md-0">
+                <h4 class="font-weight-bold"><strong>Submit Your Research Abstract</strong></h4>
+                <p>Submit your research abstract here. Please follow the template guidelines for formatting and
+                    submission.</p>
+
+                <!-- Submission Dates Box -->
+                <div class=" mt-3 p-1 ">
+
+                    <h6 class="mb-2"><strong>Abstract Submission:</strong> 1st November to 30th November 2024</h6>
+                    <h6 class="mb-2"><strong>Deadline:</strong> 30th November 2024</h6>
+                    <h6><strong>Acceptance of Abstract:</strong> 10th December 2024</h6>
+                </div>
+
+
+                <!-- Download and Submit Links -->
+                <a class="mt-3" target="_blank" href="{% static 'files/abstract_template_icONMAT.doc' %}">
+                    Download Abstract Template
+                </a>
+                <a class="btn btn-danger btn-sm mt-3" target="_blank" href="{% url 'abstract_submission' %}">
+                    Submit Abstract
+                </a>
             </div>
+
         </div>
     </section>
 {% endblock %}
