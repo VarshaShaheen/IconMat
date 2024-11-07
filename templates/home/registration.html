@@ -1,9 +1,122 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <section id="registration" class="d-flex align-items-center justify-content-center min-vh-100 bg-light" style="min-height: 600px">
-        <div class="section-header container text-center">
-            <h3 class="font-weight-bold">The Registration will be starting soon</h3>
+
+    <section class=" py-5 " style="margin-top: 5rem;">
+        <div class="container">
+            <!-- Registration Header -->
+            <div class="section-header text-center mb-5 wow fadeInUp">
+                <h2 class="fw-bold display-4">Registration Details for icONMAT 2025</h2>
+                <p>The Registration process will be starting soon!</p>
+
+            </div>
+
+            <!-- Registration Dates Table -->
+            <div class="table-responsive my-4 wow fadeInUp">
+                <table class="table table-bordered text-left bg-white ">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Event</th>
+                        <th scope="col">Dates</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Early Bird Registration</strong></td>
+                        <td>15th November, 2024 to 10th January, 2025</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Deadline for Full Paper Submission</strong></td>
+                        <td>25th January, 2025</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Spot Registration for Indian Students &amp; Faculties</strong></td>
+                        <td>11th February, 2025</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Additional Information Card -->
+            <div class="card w-100 p-4 mb-5 wow fadeInUp">
+                <h5 class="fw-bold">Spot Registration Fees:</h5>
+                <ul class="list-unstyled">
+                    <li><strong>Students:</strong> <span class="fw-bold text-danger">6000 INR</span></li>
+                    <li><strong>Faculty/Research Personnel:</strong> <span class="fw-bold text-danger">9000 INR</span>
+                    </li>
+                </ul>
+            </div>
+            
+            {% include 'home/registration_fee.html' %}
+            
+            <!-- Registration Includes Section -->
+            <div class="mt-5">
+                <h5 class="fw-bold text-center mb-4">Registration Includes:</h5>
+                <div class="row justify-content-center">
+                    <!-- Individual Cards for Each Inclusion -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card text-center p-3 h-100">
+                            <div class="card-body">
+                                <h6 class="fw-bold text-primary">Accommodation</h6>
+                                <p class="text-muted mb-0">Comfortable stay during the conference</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card text-center p-3 h-100">
+                            <div class="card-body">
+                                <h6 class="fw-bold text-primary">Registration Kit</h6>
+                                <p class="text-muted mb-0">Essential materials for all attendees</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card text-center p-3 h-100">
+                            <div class="card-body">
+                                <h6 class="fw-bold text-primary">Banquet Dinner</h6>
+                                <p class="text-muted mb-0">Enjoy an exclusive dinner event</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card text-center p-3 h-100">
+                            <div class="card-body">
+                                <h6 class="fw-bold text-primary">Complimentary Tea & Lunch</h6>
+                                <p class="text-muted mb-0">Refreshments and meals provided</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            <!-- Fellowship Information -->
+            <div class="card w-100 p-4 mb-5 wow fadeInUp">
+                <h5 class="fw-bold">Fellowship Opportunities:</h5>
+                <p class="text-muted">
+                    Limited fellowships are available for Indian students/scholars presenting at icONMAT 2025.
+                    Applicants should
+                    provide a declaration co-signed by their advisor/guide stating they haven’t received financial
+                    support to
+                    attend the conference.
+                </p>
+            </div>
+
+
         </div>
     </section>
+
+{% endblock %}
+
+
+<!-- Custom Styles -->
+{% block styles %}
+    <style>
+        .card {
+            transition: transform 0.3s ease, box-s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        {#box-12px 24px rgba(0, 0, 0, 0.2);#}
+        }
+    </style>
 {% endblock %}
