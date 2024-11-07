@@ -7,11 +7,49 @@
     <meta charset="utf-8">
     <title>icONMAT 2025</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title"
+          content="icONMAT 2025 - 4th International Conference on Optoelectronic and Nanomaterials for Advanced Technology">
+    <meta name="description"
+          content="Join the 4th International Conference on Optoelectronic and Nanomaterials for Advanced Technology (icONMAT 2025) from February 11-14, 2025 at Cochin University of Science and Technology. This event explores advancements in nanomaterials, energy storage, ultrafast laser technologies, and more.">
+
+    <!-- SEO Meta Tags -->
+    <meta name="keywords"
+          content="icONMAT 2025, International Conference, Optoelectronic Materials, Nanomaterials, Advanced Technology, Cochin University, CUSAT, energy harvesting, ultrafast lasers, solar cells, fuel cells, gas sensors, photocatalysis, optoelectronics, thin films, high-definition displays">
+    <meta name="robots" content="index, follow">
+    <meta name="author"
+          content="Cochin University of Science and Technology, Department of Physics, Centre of Excellence">
+    <meta name="language" content="English">
+    <link rel="canonical" href="https://www.iconmat2025.cusat.ac.in/">
+
+    <!-- Open Graph Meta Tags (for Facebook, LinkedIn, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.iconmat2025.cusat.ac.in/">
+    <meta property="og:title"
+          content="icONMAT 2025 - 4th International Conference on Optoelectronic and Nanomaterials for Advanced Technology">
+    <meta property="og:description"
+          content="The 4th International Conference on Optoelectronic and Nanomaterials for Advanced Technology, taking place February 11-14, 2025, at Cochin University of Science and Technology. Join us to explore advancements in nanotechnology, energy solutions, and ultrafast laser applications.">
+    <meta property="og:image" content="https://www.iconmat2025.cusat.ac.in/images/iconmat-banner.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.iconmat2025.cusat.ac.in/">
+    <meta name="twitter:title"
+          content="icONMAT 2025 - 4th International Conference on Optoelectronic and Nanomaterials for Advanced Technology">
+    <meta name="twitter:description"
+          content="Join the icONMAT 2025 conference at CUSAT, February 11-14, 2025, for insights on nanomaterials, energy storage, and advanced laser applications.">
+    <meta name="twitter:image" content="https://www.iconmat2025.cusat.ac.in/images/iconmat-banner.jpg">
+
+    <!-- Favicon and Apple Touch Icon -->
+    <link rel="icon" href="https://www.iconmat2025.cusat.ac.in/static/image/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://www.iconmat2025.cusat.ac.in/apple-touch-icon.png">
+
 
     <!-- Favicons -->
-    {# <link href="{% static 'img/favicon.png' %}" rel="icon"> #}
+     <link href="{% static 'img/iconmat_logo.png' %}" rel="icon"> 
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
@@ -72,9 +110,9 @@
                 </li>
                 {% if user.is_authenticated %}
                     <li class="{% if request.path == '/accounts/logout/' %}menu-active{% endif %}"><a
-                            href="{% url 'account_logout' %}" >Logout</a>
+                            href="{% url 'account_logout' %}">Logout</a>
                     </li>
-{#                    <p>You logged in as {{ request.user.first_name  }}</p>#}
+                    {#                    <p>You logged in as {{ request.user.first_name  }}</p>#}
                 {% else %}
                     <li class="{% if request.path == '/accounts/signup/' %}menu-active{% endif %}"><a
                             href="{% url 'account_login' %}">Sign In /Log in </a>
