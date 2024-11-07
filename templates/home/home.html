@@ -34,20 +34,20 @@
                 </div>
             </section>
             <!-- Countdown Section -->
-{#            <div id="countdown" class="text-center fw-bold mt-5">#}
-{#                <h4 class="fw-bold text-white">Countdown to Conference:</h4>#}
-{#                <div class="d-flex justify-content-center">#}
-{#                    <div class="p-3">#}
-{#                        <h1 id="months" class="display-4">00</h1><br><h3 class="text-white">Months</h3>#}
-{#                    </div>#}
-{#                    <div class="p-3">#}
-{#                        <h1 id="days" class="display-4">00</h1><br><h3 class="text-white">Days</h3>#}
-{#                    </div>#}
-{#                    <div class="p-3">#}
-{#                        <h1 id="hours" class="display-4">00</h1><br><h3 class="text-white">Hours</h3>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
+            {#            <div id="countdown" class="text-center fw-bold mt-5">#}
+            {#                <h4 class="fw-bold text-white">Countdown to Conference:</h4>#}
+            {#                <div class="d-flex justify-content-center">#}
+            {#                    <div class="p-3">#}
+            {#                        <h1 id="months" class="display-4">00</h1><br><h3 class="text-white">Months</h3>#}
+            {#                    </div>#}
+            {#                    <div class="p-3">#}
+            {#                        <h1 id="days" class="display-4">00</h1><br><h3 class="text-white">Days</h3>#}
+            {#                    </div>#}
+            {#                    <div class="p-3">#}
+            {#                        <h1 id="hours" class="display-4">00</h1><br><h3 class="text-white">Hours</h3>#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#            </div>#}
         </div>
     </section>
 
@@ -118,6 +118,64 @@
             </div>
         </div>
     </section>
+
+    <!-- Important Dates Section -->
+    <section class="container my-5">
+        <div class="section-header text-center mb-">
+            <h2>Important Dates</h2>
+        </div>
+        <div class="row text-center">
+            <!-- Abstract Submission Card -->
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card border-0 rounded-3 p-4">
+                    <h5 class="card-title fw-bold mb-3">Abstract Submission</h5>
+                    <strong class="card-text text-muted">1st November to 30th November 2024</strong>
+                </div>
+            </div>
+
+            <!-- Acceptance of Abstract Card -->
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card border-0 rounded-3 p-4">
+                    <h5 class="card-title fw-bold mb-3">Acceptance of Abstract</h5>
+                    <strong class="card-text text-muted">10th December 2024</strong>
+                </div>
+            </div>
+
+            <!-- Early Bird Registration Card -->
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card border-0 rounded-3 p-4">
+                    <h5 class="card-title fw-bold mb-3">Early Bird Registration</h5>
+                    <strong class="card-text text-muted">15th November 2024 to 10th January, 2025</strong>
+                </div>
+            </div>
+
+            <!-- Deadline for Full Paper Submission Card -->
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card border-0 rounded-3 p-4">
+                    <h5 class="card-title fw-bold mb-3">Deadline for Full Paper Submission</h5>
+                    <strong class="card-text text-muted">25th January 2025</strong>
+                </div>
+            </div>
+
+            <!-- Spot Registration for Indian Students & Faculties Card -->
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card border-0 rounded-3 p-4">
+                    <h5 class="card-title fw-bold mb-3">Spot Registration for Indian Students & Faculties</h5>
+                    <strong class="card-text text-muted">11th February 2025</strong>
+                </div>
+            </div>
+            <!-- Event Date -->
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card border-0 rounded-3 p-4">
+                    <h5 class="card-title fw-bold mb-3">Event Dates</h5>
+                    <strong class="card-text text-muted">11th February 2025 to 14th February 2025 </strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
 
 
 
@@ -238,6 +296,14 @@
             </div>
         </div>
     </section>
+
+    <section class="container py-5">
+        <div class="section-header text-center mb-4">
+            <h2>Registration</h2>
+        </div>
+        {% include 'home/registration_fee.html' %}
+    </section>
+
 
 
 
