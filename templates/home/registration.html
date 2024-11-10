@@ -8,11 +8,10 @@
             <div class="section-header text-center mb-5 wow fadeInUp">
                 <h2 class="fw-bold display-4">Registration Details for icONMAT 2025</h2>
                 <p>The Registration process will be starting soon!</p>
-
             </div>
 
             <!-- Registration Dates Table -->
-            <div class="table-responsive my-4 wow fadeInUp">
+            <div class="table-responsive my-3 wow fadeInUp">
                 <table class="table table-bordered text-left bg-white ">
                     <thead class="thead-light">
                     <tr>
@@ -38,31 +37,35 @@
             </div>
 
             <!-- Additional Information Card -->
-            <div class="card w-100 p-4 mb-5 wow fadeInUp">
+            <div class="card w-100 p-4 mb-4 wow fadeInUp">
                 <h5 class="fw-bold">Spot Registration Fees:</h5>
                 <ul class="list-unstyled">
-                    <li><strong>Students:</strong> <span class="fw-bold text-danger">6000 INR</span></li>
+                    <li><strong>Students:</strong> <span class="fw-bold text-danger">4500 INR</span></li>
                     <li><strong>Faculty/Research Personnel:</strong> <span class="fw-bold text-danger">9000 INR</span>
                     </li>
                 </ul>
             </div>
-            
+            <!-- Additional Information Card -->
+            <div class="card w-100 p-4 mb-4 wow fadeInUp">
+                <h5 class="fw-bold">Pre-Conference Workshop:</h5>
+                <p class="pb-1">
+                    Participants are required to register separately for the pre-conference workshop, scheduled for
+                    February 11, 2025. <span class="text-danger"> Please note that seats are limited.</span> <br>
+                    The Registration process will be starting soon!
+                </p>
+                <p class="pb-1">
+                    <strong>Registration Fee:</strong> <span class="fw-bold text-danger">500 INR/50 USD</span>
+                </p>
+            </div>
+
             {% include 'home/registration_fee.html' %}
-            
+
             <!-- Registration Includes Section -->
             <div class="mt-5">
                 <h5 class="fw-bold text-center mb-4">Registration Includes:</h5>
                 <div class="row justify-content-center">
                     <!-- Individual Cards for Each Inclusion -->
-                    <div class="col-md-3 mb-4">
-                        <div class="card text-center p-3 h-100">
-                            <div class="card-body">
-                                <h6 class="fw-bold text-primary">Accommodation</h6>
-                                <p class="text-muted mb-0">Comfortable stay during the conference</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <div class="card text-center p-3 h-100">
                             <div class="card-body">
                                 <h6 class="fw-bold text-primary">Registration Kit</h6>
@@ -70,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <div class="card text-center p-3 h-100">
                             <div class="card-body">
                                 <h6 class="fw-bold text-primary">Banquet Dinner</h6>
@@ -78,7 +81,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <div class="card text-center p-3 h-100">
                             <div class="card-body">
                                 <h6 class="fw-bold text-primary">Complimentary Tea & Lunch</h6>
@@ -87,21 +90,29 @@
                         </div>
                     </div>
                 </div>
-                
-            <!-- Fellowship Information -->
-            <div class="card w-100 p-4 mb-5 wow fadeInUp">
-                <h5 class="fw-bold">Fellowship Opportunities:</h5>
-                <p class="text-muted">
-                    Limited fellowships are available for Indian students/scholars presenting at icONMAT 2025.
-                    Applicants should
-                    provide a declaration co-signed by their advisor/guide stating they haven’t received financial
-                    support to
-                    attend the conference.
-                </p>
+
+                <!-- Note -->
+                <div class="card w-100 p-4 mb-4 wow fadeInUp">
+                    <h5 class="fw-bold"> Registration does not include Accommodation:</h5>
+                    <p class="text-muted">
+                        Please note that accommodation charges are to be paid separately by delegates requiring
+                        accommodation. Details and charges for accommodation will be updated soon.
+                    </p>
+                </div>
+                <!-- Fellowship Information -->
+                <div class="card w-100 p-4 mb-4 wow fadeInUp">
+                    <h5 class="fw-bold">Fellowship Opportunities:</h5>
+                    <p class="text-muted">
+                        Limited fellowships are available for Indian students/scholars presenting at icONMAT 2025.
+                        Applicants should
+                        provide a declaration co-signed by their advisor/guide stating they haven’t received financial
+                        support to
+                        attend the conference.
+                    </p>
+                </div>
+
+
             </div>
-
-
-        </div>
     </section>
 
 {% endblock %}
