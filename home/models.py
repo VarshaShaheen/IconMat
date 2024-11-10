@@ -80,7 +80,7 @@ class AdvisoryCommittee(models.Model):
 		return self.name
 
 
-class LocalAdvisoryCommittee(models.Model):
+class LocalOrganisingCommittiee(models.Model):
 	name = models.CharField(max_length=100)
 	email = models.EmailField(max_length=100, null=True, blank=True)
 	phone = models.CharField(max_length=15, default='', null=True, blank=True)

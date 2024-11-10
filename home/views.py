@@ -7,7 +7,7 @@ def home(request):
 	           'patrons'        : People.objects.filter(designation='Conference Patron').order_by('priority'),
 	           'speakers'       : Speaker.objects.all().order_by('priority'),
 	           'advisory_committee': AdvisoryCommittee.objects.all().order_by('priority'),
-	           'local_advisory_committee': LocalAdvisoryCommittee.objects.all().order_by('priority'),
+	           'local_advisory_committee': LocalOrganisingCommittiee.objects.all().order_by('priority'),
 	           'symposia'       : Symposia.objects.all(),
 	           'carousel_images': Carousel.objects.all(),
 	           'programs'       : Program.objects.all(),
