@@ -11,3 +11,8 @@ admin.site.register(Speaker)
 admin.site.register(Social)
 admin.site.register(AdvisoryCommittee)
 admin.site.register(LocalOrganisingCommittiee)
+admin.site.register(Notification)
+
+@admin.register(Settings)
+class SettingsAdmin(admin.ModelAdmin):
+    pass

@@ -90,7 +90,6 @@ class LocalOrganisingCommittiee(models.Model):
 	image = models.ImageField(upload_to='advisory', null=True, blank=True)
 	priority = models.IntegerField(default=100)
 
-
 	def __str__(self):
 		return self.name
 
@@ -103,3 +102,14 @@ class Social(models.Model):
 
 	def __str__(self):
 		return 'Social Links'
+
+
+class Notification(models.Model):
+	notification = models.CharField(max_length=50, null=True, blank=True)
+	link = models.URLField(max_length=100, null=True, blank=True)
+
+	def __str__(self):
+		return str(self.notification)
+
+class Settings(models.Model):
+	pass

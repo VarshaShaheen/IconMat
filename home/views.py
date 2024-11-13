@@ -11,6 +11,8 @@ def home(request):
 	           'symposia'       : Symposia.objects.all(),
 	           'carousel_images': Carousel.objects.all(),
 	           'programs'       : Program.objects.all(),
+	           'notification'   : Notification.objects.last(),
+	           'notification_link' : Notification.objects.last().link if  Notification.objects.last().link else "#"
 	           }
 	return render(request, 'home/home.html', context)
 

@@ -1,0 +1,33 @@
+{% block content %}
+    <div class="container mt-3">
+        <div class="marquee text-black p-2 rounded w-100">
+            <a href="{{ notification_link }}"><span class="w-100 fw-bold">{{ notification }} </span></a>
+        </div>
+    </div>
+
+    <style>
+        .marquee a {
+            color: black; /* Default link color */
+            text-decoration: none;
+        }
+
+        .marquee a:hover {
+            color: #c82333; /* Hover color */
+        }
+
+        .marquee span {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+{% endblock %}
