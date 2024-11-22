@@ -109,10 +109,9 @@
                     <li class="{% if request.path == '/accounts/logout/' %}menu-active{% endif %}"><a
                             href="{% url 'account_logout' %}">Logout</a>
                     </li>
-                    {#                    <p>You logged in as {{ request.user.first_name  }}</p>#}
                 {% else %}
                     <li class="{% if request.path == '/accounts/signup/' %}menu-active{% endif %}"><a
-                            href="{% url 'account_login' %}">Sign In /Log in </a>
+                            href="{% url 'account_login' %}">Log in / Sign Up</a>
                     </li>
                 {% endif %}
 
@@ -166,7 +165,7 @@
                     <h4>Contact Us</h4>
                     <p>
                         Convenor
-                        Department of Physics <br>
+                        icONMAT 2025 <br>
                         Cochin University of Science and Technology <br>
                         Kochi, Kerala, India <br>
 

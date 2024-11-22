@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 import logging
 
+from home.models import Dates
+
 from .forms import PaperAbstractForm
 
 logger = logging.getLogger(__name__)
@@ -54,4 +56,5 @@ class AbstractDetail(TemplateView):
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
+		context['dates'] = Dates.objects.last()
 		return context

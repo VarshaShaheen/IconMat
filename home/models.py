@@ -113,3 +113,23 @@ class Notification(models.Model):
 
 class Settings(models.Model):
 	pass
+
+
+
+class Dates(models.Model):
+	abstract_submission_start_date = models.DateField()
+	abstract_submission_end_date = models.DateField()
+
+	acceptance_of_abstract = models.DateField()
+
+	early_bird_registration_start = models.DateField()
+	early_bird_registration_end = models.DateField()
+
+	full_paper_submission_deadline = models.DateField()
+	spot_registration_for_indian_students_and_faculties = models.DateField()
+
+	event_start_date = models.DateField()
+	event_end_date = models.DateField()
+
+	def __str__(self):
+		return str(self.id)
