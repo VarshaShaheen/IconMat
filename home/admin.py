@@ -13,7 +13,9 @@ admin.site.register(AdvisoryCommittee)
 admin.site.register(LocalOrganisingCommittiee)
 admin.site.register(Notification)
 admin.site.register(Dates)
+admin.site.register(TouristAttraction)
+
 
 @admin.register(Settings)
 class SettingsAdmin(admin.ModelAdmin):
-    pass
+	pass

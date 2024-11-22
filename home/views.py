@@ -11,8 +11,7 @@ def home(request):
 	           'symposia'                : Symposia.objects.all(),
 	           'carousel_images'         : Carousel.objects.all(),
 	           'programs'                : Program.objects.all(),
-	           'notification'            : Notification.objects.last(),
-	           'notification_link'       : Notification.objects.last().link if Notification.objects.last().link else "#",
+	           'notifications'           : Notification.objects.all().order_by("id"),
 	           'dates'                   : Dates.objects.last()
 	           }
 	return render(request, 'home/home.html', context)
@@ -42,4 +41,5 @@ def contact(request):
 
 
 def tourist_attractions(request):
-	return render(request, 'home/tourist_attractions.html')
+	context = {"attractions": TouristAttraction.objects.all()}
+	return render(request, 'home/tourist_attractions.html',context)

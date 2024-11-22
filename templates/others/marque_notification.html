@@ -1,24 +1,41 @@
 {% block content %}
     <div class="container mt-3">
-        <div class="marquee text-black p-2 rounded w-100">
-            <a href="{{ notification_link }}"><span class="w-100 fw-bold">{{ notification }} </span></a>
+        <div class="marquee text-black p-2 bg-light rounded w-100 overflow-hidden">
+            <div class="marquee-content">
+                {% for noti in notifications %}
+                    <a href="{{ noti.link|default:'#' }}">
+                        <span class="fw-bold">| {{ noti.notification }} </span>
+                    </a>
+                {% endfor %}
+            </div>
         </div>
     </div>
 
     <style>
+        .marquee {
+            position: relative;
+            width: 100%;
+            overflow: hidden; /* Hide overflowing content */
+            white-space: nowrap; /* Prevent wrapping */
+        }
+
+        .marquee-content {
+            {#display: inline-block;#}
+            animation: marquee 25s linear infinite; /* Smooth horizontal scroll */
+            animation-play-state: running;
+        }
+
+        .marquee-content:hover {
+            animation-play-state: paused; /* Pause animation on hover */
+        }
+
         .marquee a {
-            color: black; /* Default link color */
+            color: black;
             text-decoration: none;
         }
 
         .marquee a:hover {
-            color: #c82333; /* Hover color */
-        }
-
-        .marquee span {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 25s linear infinite;
+            color: #c82333;
         }
 
         @keyframes marquee {
@@ -27,6 +44,17 @@
             }
             to {
                 transform: translateX(-100%);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .marquee {
+                padding: 1rem;
+            }
+
+            .marquee-content {
+                animation-duration: 30s; /* Adjust speed for smaller screens */
             }
         }
     </style>

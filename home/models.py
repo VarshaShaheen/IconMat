@@ -133,3 +133,18 @@ class Dates(models.Model):
 
 	def __str__(self):
 		return str(self.id)
+
+
+class TouristAttraction(models.Model):
+	title = models.CharField(max_length=150)
+	description = models.TextField()
+	image1 = models.ImageField(upload_to='tourist_attractions', null=True, blank=True)
+	image2 = models.ImageField(upload_to='tourist_attractions', null=True, blank=True)
+	image3 = models.ImageField(upload_to='tourist_attractions', null=True, blank=True)
+	distance_from_cusat = models.FloatField(null=True,blank=True)
+	location = models.URLField(null=True, blank=True)
+	source = models.URLField(null=True,blank=True)
+
+	def __str__(self):
+		return self.title
+
