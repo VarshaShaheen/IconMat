@@ -155,9 +155,9 @@ h6 {
     top: 0;
     right: 0;
     transition: all 0.5s;
-    z-index: 997;
+    z-index: 100;
     background: rgba(6, 12, 34, 0.98);
-    height: 70px;
+    height: 75px;
     padding: 15px 0;
     transition: all 0.5s;
 }
@@ -178,6 +178,7 @@ h6 {
     font-family: "Raleway", sans-serif;
     font-weight: 700;
     letter-spacing: 3px;
+    z-index: 500;
 }
 
 #header #logo h1 span {
@@ -191,8 +192,9 @@ h6 {
 
 #logo img {
     padding: 0;
-    margin: 0;
+    margin-top: -7px;
     max-height: 100px;
+    z-index: 200;
 }
 
 /*--------------------------------------------------------------

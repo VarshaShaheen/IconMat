@@ -1,27 +1,27 @@
 {% block content %}
-    <div class="container mt-3">
-        <div class="marquee text-black p-2 bg-light rounded w-100 overflow-hidden">
-            <div class="marquee-content">
-                {% for noti in notifications %}
-                    <a href="{{ noti.link|default:'#' }}">
-                        <span class="fw-bold">| {{ noti.notification }} </span>
-                    </a>
-                {% endfor %}
-            </div>
+    <div class="marquee p-2 w-100 overflow-hidden ">
+        <div class="marquee-content">
+            {% for noti in notifications %}
+                <a href="{{ noti.link|default:'#' }}">
+                    <span class="fw-bold">| {{ noti.notification }} </span>
+                </a>
+            {% endfor %}
         </div>
     </div>
 
     <style>
         .marquee {
-            position: relative;
+            background: rgba(6, 12, 34, 0.98);
+            position: fixed;
+            top: 69px;
             width: 100%;
             overflow: hidden; /* Hide overflowing content */
             white-space: nowrap; /* Prevent wrapping */
+            z-index: -1;
         }
 
         .marquee-content {
-            {#display: inline-block;#}
-            animation: marquee 25s linear infinite; /* Smooth horizontal scroll */
+        {#display: inline-block;#} animation: marquee 25s linear infinite; /* Smooth horizontal scroll */
             animation-play-state: running;
         }
 
@@ -30,7 +30,7 @@
         }
 
         .marquee a {
-            color: black;
+            color: white;
             text-decoration: none;
         }
 
@@ -49,12 +49,9 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .marquee {
-                padding: 1rem;
-            }
 
             .marquee-content {
-                animation-duration: 30s; /* Adjust speed for smaller screens */
+                animation-duration: 15s; /* Adjust speed for smaller screens */
             }
         }
     </style>
