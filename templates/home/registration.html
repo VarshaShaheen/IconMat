@@ -22,15 +22,16 @@
                     <tbody>
                     <tr>
                         <td><strong>Early Bird Registration</strong></td>
-                        <td>15th November, 2024 to 10th January, 2025</td>
+                        <td>{{ dates.early_bird_registration_start|date:"jS F Y" }}
+                            to {{ dates.early_bird_registration_end|date:"jS F Y" }}</td>
                     </tr>
                     <tr>
                         <td><strong>Deadline for Full Paper Submission</strong></td>
-                        <td>25th January, 2025</td>
+                        <td>{{ dates.full_paper_submission_deadline|date:"jS F Y" }}</td>
                     </tr>
                     <tr>
                         <td><strong>Spot Registration for Indian Students &amp; Faculties</strong></td>
-                        <td>11th February, 2025</td>
+                        <td>{{ dates.spot_registration_for_indian_students_and_faculties|date:"jS F Y" }}</td>
                     </tr>
                     </tbody>
                 </table>

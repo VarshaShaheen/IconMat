@@ -33,7 +33,8 @@ def programs(request):
 
 
 def registration(request):
-	return render(request, 'home/registration.html')
+	context = {"dates" : Dates.objects.last()}
+	return render(request, 'home/registration.html',context)
 
 
 def contact(request):
