@@ -20,23 +20,38 @@ def process_payment(request):
 		post_data = request.POST.dict()
 
 		# Extract fields from the POST data
-		reference_no = request.POST.get("ReferenceNo")  # Use 'ReferenceNo' instead of 'Reference No' for consistency
-		transaction_status = request.POST.get("Response Code")
-		hash_val = request.POST.get("RS")
+		rs = request.POST.get("RS")
+
+
+		id = request.POST.get("ID")
+		response_code = request.POST.get("Response Code")
+		ref_no = request.POST.get("Unique Ref Number")  # Use 'ReferenceNo' instead of 'Reference No' for consistency
+		service_tax_amount = request.POST.get("Service Tax Amount")
+		processing_fee = request.POST.get("Processing Fee Amount")
+		total_amount = request.POST.get("Total Amount")
+		transaction_amount = request.POST.get("Transaction Amount")
+		transaction_date = request.POST.get("Transaction Date")
+		intercharge_value = request.POST.get("Interchange Value")
+		tdr = request.POST.get("TDR")
+		payment_mode = request.POST.get("Payment Mode")
+		submerchant_id = request.POST.get("SubMerchantId")
+		ref_no_2 = request.POST.get("ReferenceNo")
+		tps = request.POST.get("TPS")
+
 
 		# Validate hash
 		expected_hash = hashlib.sha512(
-			f"{reference_no}|{transaction_status}|{AES_KEY}".encode()
+			f"{id}|{response_code}|{ref_no}|{service_tax_amount}|{service_tax_amount}|{processing_fee}|{total_amount}|{transaction_amount}|{transaction_date}|{intercharge_value}|{tdr}|{payment_mode}|{submerchant_id}|{ref_no_2}|{tps}|{AES_KEY}".encode()
 		).hexdigest()
 
 		# Prepare the response data (sending POST data as JSON response)
 		response_data = {
 			"received_data"     : post_data,
-			"Reference No"      : reference_no,
-			"Transaction Status": transaction_status,
-			"Received RS"       : hash_val,
+			"Reference No"      : ref_no,
+			"Transaction Status": response_code,
+			"Received RS"       : rs,
 			"Expected RS"       : expected_hash,
-			"Validation Result" : "Success" if hash_val == expected_hash else "Failed"
+			"Validation Result" : "Success" if rs == expected_hash else "Failed"
 		}
 
 		# Return JSON response with the POST data and validation result
