@@ -41,7 +41,7 @@ def process_payment(request):
 
 		# Validate hash
 		expected_hash = hashlib.sha512(
-			f"{id}|{response_code}|{ref_no}|{service_tax_amount}|{service_tax_amount}|{processing_fee}|{total_amount}|{transaction_amount}|{transaction_date}|{intercharge_value}|{tdr}|{payment_mode}|{submerchant_id}|{ref_no_2}|{tps}|{AES_KEY}".encode()
+			f"{id}|{response_code}|{ref_no}|{service_tax_amount}|{processing_fee}|{total_amount}|{transaction_amount}|{transaction_date}|{intercharge_value}|{tdr}|{payment_mode}|{submerchant_id}|{ref_no_2}|{tps}|{AES_KEY}".encode()
 		).hexdigest()
 
 		# Prepare the response data (sending POST data as JSON response)
