@@ -22,16 +22,24 @@
                     <tbody>
                     <tr>
                         <td><strong>Early Bird Registration</strong></td>
-                        <td>{{ dates.early_bird_registration_start|date:"jS F Y" }}
-                            to {{ dates.early_bird_registration_end|date:"jS F Y" }}</td>
+                        <td>
+                            {{ dates.early_bird_registration_start|date:"j" }}<sup>{{ dates.early_bird_registration_start|date:"S" }}</sup>
+                            {{ dates.early_bird_registration_start|date:"F Y" }}
+                            to
+                            {{ dates.early_bird_registration_end|date:"j" }}<sup>{{ dates.early_bird_registration_end|date:"S" }}</sup>
+                            {{ dates.early_bird_registration_end|date:"F Y" }}
+
+                        </td>
                     </tr>
                     <tr>
                         <td><strong>Deadline for Full Paper Submission</strong></td>
-                        <td>{{ dates.full_paper_submission_deadline|date:"jS F Y" }}</td>
+                        <td>{{ dates.full_paper_submission_deadline|date:"j" }}<sup>{{ dates.full_paper_submission_deadline|date:"S" }}</sup> {{ dates.full_paper_submission_deadline|date:"F Y" }}
+                        </td>
                     </tr>
                     <tr>
                         <td><strong>Spot Registration for Indian Students &amp; Faculties</strong></td>
-                        <td>{{ dates.spot_registration_for_indian_students_and_faculties|date:"jS F Y" }}</td>
+                        <td>{{ dates.spot_registration_for_indian_students_and_faculties|date:"j" }}<sup>{{ dates.spot_registration_for_indian_students_and_faculties|date:"S" }}</sup> {{ dates.spot_registration_for_indian_students_and_faculties|date:"F Y" }}
+                        </td>
                     </tr>
                     </tbody>
                 </table>

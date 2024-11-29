@@ -28,12 +28,20 @@
                 <!-- Submission Dates Box -->
                 <div class=" mt-3 p-1 ">
 
-                    <h6 class="mb-2"><strong>Abstract
-                        Submission:</strong> {{ dates.abstract_submission_start_date|date:"jS F Y" }}
-                        to {{ dates.abstract_submission_end_date|date:"jS F Y" }}</h6>
-                    <h6 class="mb-2"><strong>Deadline:</strong> {{ dates.abstract_submission_end_date|date:"jS F Y" }}
+                    <h6 class="mb-2">
+                        <strong>Abstract Submission:</strong>
+                        {{ dates.abstract_submission_start_date|date:"j" }}<sup>{{ dates.abstract_submission_start_date|date:"S" }}</sup>
+                        {{ dates.abstract_submission_start_date|date:"F Y" }}
+                        to
+                        {{ dates.abstract_submission_end_date|date:"j" }}<sup>{{ dates.abstract_submission_end_date|date:"S" }}</sup>
+                        {{ dates.abstract_submission_end_date|date:"F Y" }}
                     </h6>
-                    <h6><strong>Acceptance of Abstract:</strong> {{ dates.acceptance_of_abstract|date:"jS F Y" }}
+                    <h6 class="mb-2">
+                        <strong>Deadline:</strong> {{ dates.abstract_submission_end_date|date:"j" }}<sup>{{ dates.abstract_submission_end_date|date:"S" }}</sup>
+                        {{ dates.abstract_submission_end_date|date:"F Y" }}
+                    </h6>
+                    <h6><strong>Acceptance of Abstract:</strong>
+                        {{ dates.acceptance_of_abstract|date:"j" }}<sup>{{ dates.acceptance_of_abstract|date:"S" }}</sup> {{ dates.abstract_submission_start_date|date:"F Y" }}
                     </h6>
                 </div>
 

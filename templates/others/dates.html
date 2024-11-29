@@ -10,16 +10,23 @@
             <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card border-0 rounded-3 p-4">
                     <h5 class="card-title fw-bold mb-3">Abstract Submission</h5>
-                    <strong class="card-text text-muted">{{ dates.abstract_submission_start_date|date:"jS F Y" }}
-                        to {{ dates.abstract_submission_end_date|date:"jS F Y" }} </strong>
+                    <strong class="card-text text-muted">
+                        {{ dates.abstract_submission_start_date|date:"j" }}<sup>{{ dates.abstract_submission_start_date|date:"S" }}</sup>
+                        {{ dates.abstract_submission_start_date|date:"F Y" }}
+                        to
+                        {{ dates.abstract_submission_end_date|date:"j" }}<sup>{{ dates.abstract_submission_end_date|date:"S" }}</sup>
+                        {{ dates.abstract_submission_end_date|date:"F Y" }}
+                    </strong>
                 </div>
             </div>
+
 
             <!-- Acceptance of Abstract Card -->
             <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card border-0 rounded-3 p-4">
                     <h5 class="card-title fw-bold mb-3">Acceptance of Abstract</h5>
-                    <strong class="card-text text-muted">{{ dates.acceptance_of_abstract|date:"jS F Y" }}</strong>
+                    <strong class="card-text text-muted">{{ dates.acceptance_of_abstract|date:"j" }}<sup>{{ dates.acceptance_of_abstract|date:"S" }}</sup> {{ dates.abstract_submission_start_date|date:"F Y" }}
+                    </strong>
                 </div>
             </div>
 
@@ -27,8 +34,13 @@
             <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card border-0 rounded-3 p-4">
                     <h5 class="card-title fw-bold mb-3">Early Bird Registration</h5>
-                    <strong class="card-text text-muted">{{ dates.early_bird_registration_start|date:"jS F Y" }}
-                        to {{ dates.early_bird_registration_end|date:"jS F Y" }} </strong>
+                    <strong class="card-text text-muted">
+                        {{ dates.early_bird_registration_start|date:"j" }}<sup>{{ dates.early_bird_registration_start|date:"S" }}</sup>
+                        {{ dates.early_bird_registration_start|date:"F Y" }}
+                        to
+                        {{ dates.early_bird_registration_end|date:"j" }}<sup>{{ dates.early_bird_registration_end|date:"S" }}</sup>
+                        {{ dates.early_bird_registration_end|date:"F Y" }}
+                    </strong>
                 </div>
             </div>
 
@@ -36,7 +48,8 @@
             <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card border-0 rounded-3 p-4">
                     <h5 class="card-title fw-bold mb-3">Deadline for Full Paper Submission</h5>
-                    <strong class="card-text text-muted">{{ dates.full_paper_submission_deadline|date:"jS F Y" }}</strong>
+                    <strong class="card-text text-muted">{{ dates.full_paper_submission_deadline|date:"j" }}<sup>{{ dates.full_paper_submission_deadline|date:"S" }}</sup> {{ dates.full_paper_submission_deadline|date:"F Y" }}
+                    </strong>
                 </div>
             </div>
 
@@ -44,15 +57,21 @@
             <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card border-0 rounded-3 p-4">
                     <h5 class="card-title fw-bold mb-3">Spot Registration for Indian Students & Faculties</h5>
-                    <strong class="card-text text-muted">{{ dates.spot_registration_for_indian_students_and_faculties|date:"jS F Y" }}</strong>
+                    <strong class="card-text text-muted">{{ dates.spot_registration_for_indian_students_and_faculties|date:"j" }}<sup>{{ dates.spot_registration_for_indian_students_and_faculties|date:"S" }}</sup> {{ dates.spot_registration_for_indian_students_and_faculties|date:"F Y" }}
+                    </strong>
                 </div>
             </div>
             <!-- Event Date -->
             <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card border-0 rounded-3 p-4">
                     <h5 class="card-title fw-bold mb-3">Event Dates</h5>
-                    <strong class="card-text text-muted">{{ dates.event_start_date|date:"jS F Y" }}
-                        to {{ dates.event_end_date|date:"jS F Y" }} </strong>
+                    <strong class="card-text text-muted">
+                        {{ dates.event_start_date|date:"j" }}<sup>{{ dates.event_start_date|date:"S" }}</sup>
+                        {{ dates.event_start_date|date:"F Y" }}
+                        to
+                        {{ dates.event_end_date|date:"j" }}<sup>{{ dates.event_end_date|date:"S" }}</sup>
+                        {{ dates.event_end_date|date:"F Y" }}
+                    </strong>
                 </div>
             </div>
         </div>
