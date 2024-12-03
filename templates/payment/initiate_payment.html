@@ -3,61 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EazyPay Integration</title>
+    <title>Payment Form</title>
 </head>
 <body>
-<h1>EazyPay Payment Gateway</h1>
-<form id="paymentForm" method="POST" action="https://eazypayuat.icicibank.com/EazyPG">
-    <!-- Static fields -->
-    <input type="hidden" name="merchantid" value="140921">
+<h1>Initiate Payment</h1>
+<form method="POST" action="https://eazypayuat.icicibank.com/EazyPG">
+    {% csrf_token %}
 
-    <!-- Dynamic fields -->
-    <input type="hidden" name="mandatory fields" id="mandatoryFields">
-    <input type="hidden" name="optional fields" id="optionalFields">
-    <input type="hidden" name="returnurl" id="returnURL">
-    <input type="hidden" name="Reference No" id="referenceNo">
-    <input type="hidden" name="submerchantid" id="subMerchantId">
-    <input type="hidden" name="transaction amount" id="transactionAmount">
-    <input type="hidden" name="paymode" id="payMode">
+    <!-- Hidden fields for encrypted payment data -->
+    <input type="hidden" name="merchantid" value="{{ merchantid }}">
 
-    <button type="button" onclick="preparePayment()">Pay Now</button>
+    <input type="hidden" name="mandatory fields" value="{{ mandatoryFields }}">
+    <input type="hidden" name="optional fields" value="{{ optionalFields }}">
+    <input type="hidden" name="returnurl" value="{{ returnURL }}">
+    <input type="hidden" name="Reference No" value="{{ referenceNo }}">
+    <input type="hidden" name="submerchantid" value="{{ subMerchantId }}">
+    <input type="hidden" name="transaction amount" value="{{ transactionAmount }}">
+    <input type="hidden" name="paymode" value="{{ payMode }}">
+
+    <!-- Submit Button -->
+    <button type="submit">Submit Payment</button>
+
 </form>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-<script>
-    const AES_KEY = "1400012609205020"; // Replace with your encryption key
-
-    function encryptData(data) {
-        const encrypted = CryptoJS.AES.encrypt(
-            data,
-            CryptoJS.enc.Utf8.parse(AES_KEY),
-            {mode: CryptoJS.mode.ECB, padding: CryptoJS.pad.Pkcs7}
-        );
-        return encrypted.toString();
-    }
-
-    function preparePayment() {
-        // Replace with actual transaction details
-        const mandatoryFields = "123abcde|45|1000|26/NOV/2024";
-        const optionalFields = "x|test@gmail.com|9876543210|x|x";
-        const returnURL = "https://iconmat2025.cusat.ac.in/payment/process/";
-        const referenceNo = "123abcde";
-        const subMerchantId = "45";
-        const transactionAmount = "1000";
-        const payMode = "9";
-
-        // Encrypt values
-        document.getElementById("mandatoryFields").value = encryptData(mandatoryFields);
-        document.getElementById("optionalFields").value = encryptData(optionalFields);
-        document.getElementById("returnURL").value = encryptData(returnURL);
-        document.getElementById("referenceNo").value = encryptData(referenceNo);
-        document.getElementById("subMerchantId").value = encryptData(subMerchantId);
-        document.getElementById("transactionAmount").value = encryptData(transactionAmount);
-        document.getElementById("payMode").value = encryptData(payMode);
-
-        // Submit the form
-        document.getElementById("paymentForm").submit();
-    }
-</script>
 </body>
 </html>

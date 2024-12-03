@@ -3,11 +3,69 @@ import hashlib
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from registration.models import Registration
+from django.shortcuts import get_object_or_404
+import json
 
-# Create your views here.
+from .models import Payment
+
+# AES Key (16 bytes for AES-128)
+AES_KEY = b"1400012609205020"  # Replace with your encryption key
 
 
-AES_KEY = "1400012609205020"  # Replace with your encryption key
+def encrypt_data(data):
+	"""Encrypt data using AES ECB mode with PKCS7 padding."""
+	from Crypto.Cipher import AES
+	from Crypto.Util.Padding import pad
+	import base64
+
+	data_bytes = data.encode('utf-8')
+	cipher = AES.new(AES_KEY, AES.MODE_ECB)
+	padded_data = pad(data_bytes, AES.block_size)
+
+	# Encrypt the data
+	encrypted = cipher.encrypt(padded_data)
+
+	# Encode the encrypted data as base64 to make it a readable string
+	return base64.b64encode(encrypted).decode('utf-8')
+
+
+def prepare_payment_data(registration, fee_structure):
+	# Replace with actual transaction details
+	print(fee_structure, registration)
+	mandatory_fields = "1023abcdee|45|10000|26/NOV/2024"
+	optional_fields = "x|test@gmail.com|9876543210|x|x"
+	return_url = "http://localhost:8000/payment/process/"
+	reference_no = "1023abcdee"
+	sub_merchant_id = "45"
+	transaction_amount = "10000"
+	pay_mode = "9"
+
+	return {
+		"mandatoryFields"  : encrypt_data(mandatory_fields),
+		"optionalFields"   : encrypt_data(optional_fields),
+		"returnURL"        : encrypt_data(return_url),
+		"referenceNo"      : encrypt_data(reference_no),
+		"subMerchantId"    : encrypt_data(sub_merchant_id),
+		"transactionAmount": encrypt_data(transaction_amount),
+		"payMode"          : encrypt_data(pay_mode)
+	}
+
+
+def initiate_payment(request):
+	context = {'registration': get_object_or_404(Registration, user=request.user)}
+
+	payment_data = prepare_payment_data(context['registration'], context['registration'].fee_structure)
+	payment, created = Payment.objects.get_or_create(user=request.user, registration=context['registration'],
+	                                                 fee_structure=context['registration'].fee_structure,
+	                                                 payment_request_data=json.dumps(payment_data))
+
+	# Add the payment data to the context
+	context.update(payment_data)
+	context['merchantid'] = 140921
+	print(context)
+
+	return render(request, "payment/initiate_payment.html", context)
 
 
 @csrf_exempt
@@ -21,7 +79,6 @@ def process_payment(request):
 
 		# Extract fields from the POST data
 		rs = request.POST.get("RS")
-
 
 		id = request.POST.get("ID")
 		response_code = request.POST.get("Response Code")
@@ -37,7 +94,6 @@ def process_payment(request):
 		submerchant_id = request.POST.get("SubMerchantId")
 		ref_no_2 = request.POST.get("ReferenceNo")
 		tps = request.POST.get("TPS")
-
 
 		# Validate hash
 		expected_hash = hashlib.sha512(
@@ -58,7 +114,3 @@ def process_payment(request):
 		return JsonResponse(response_data)
 
 	return JsonResponse({"error": "Invalid request method"}, status=405)
-
-
-def initiate_payment(request):
-	return render(request, "payment/initiate_payment.html")
