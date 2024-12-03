@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Review and Payment{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% include 'others/registration_progress.html' %}
+
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-10 col-lg-8">
+                <h2 class="text-center mb-4">Review and Payment</h2>
+
+                <form method="POST" action="#">
+                    {% csrf_token %}
+
+                    <!-- Personal Information Card -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4>Personal Information</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Title:</strong> {{ registration.title }}</p>
+                                    <p><strong>First Name:</strong> {{ registration.first_name }}</p>
+                                    <p><strong>Last Name:</strong> {{ registration.last_name }}</p>
+                                    <p><strong>Designation:</strong> {{ registration.designation }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <strong>Affiliation/Institution:</strong> {{ registration.affiliation_or_institution }}
+                                    </p>
+                                    <p><strong>Email:</strong> {{ registration.email }}</p>
+                                    <p><strong>Contact Number:</strong> {{ registration.contact_number }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location & Category Card -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4>Location & Category</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {% if registration.country == 'Other' %}
+                                        {% if not registration.other_country %}
+                                            <p class="text-danger"><strong>Country:</strong> No Country Specified</p>
+                                        {% else %}
+                                            <p ><strong>Country:</strong> {{ registration.other_country }}</p>
+                                            {% endif %}
+                                    {% else %}
+                                        <p><strong>Country:</strong> {{ registration.country }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Category of
+                                        Participant:</strong> {{ registration.category_of_participant }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conference Details Card -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4>Conference Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Conference Registration:</strong>
+                                        {% if registration.conference_registration %} Yes {% else %} No {% endif %}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Pre-conference Workshop Registration:</strong>
+                                        {% if registration.pre_conference_workshop_registration %} Yes {% else %}
+                                            No {% endif %}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accommodation Preferences Card -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4>Accommodation Preferences</h4>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Accommodation Preference:</strong> {{ registration.accommodation_preference }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Fee Details Card -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4>Fee Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Registration Fee:</strong> {{ registration.fee_structure.registration_fee }}</p>
+                            <p><strong>Pre-conference workshop Fee:</strong> {{ registration.fee_structure.pre_conference_workshop_fee }}</p>
+                            <p><strong>Accommodation Fee:</strong> {{ registration.fee_structure.accommodation_fee }}</p>
+                            <h5 class="fw-bold py-2">Total Fee: {{ registration.fee_structure.total_fee }}</h5>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Proceed to Payment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
