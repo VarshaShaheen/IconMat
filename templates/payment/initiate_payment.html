@@ -1,29 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Form</title>
-</head>
-<body>
-<h1>Initiate Payment</h1>
-<form method="POST" action="https://eazypay.icicibank.com/EazyPG">
-    {% csrf_token %}
+{% extends 'base.html' %}
 
-    <!-- Hidden fields for encrypted payment data -->
-    <input type="hidden" name="merchantid" value="{{ merchantid }}">
+{% block content %}
+    <section class="container d-flex align-items-center justify-content-center"
+             style="min-height: 60vh; margin-top: 7rem;">
+        <div class="card p-4" style="max-width: 500px; width: 100%;">
+            <h1 class="text-center fw-bold mb-4">Confirm Payment</h1>
 
-    <input type="hidden" name="mandatory fields" value="{{ mandatoryFields }}">
-    <input type="hidden" name="optional fields" value="{{ optionalFields }}">
-    <input type="hidden" name="returnurl" value="{{ returnURL }}">
-    <input type="hidden" name="Reference No" value="{{ referenceNo }}">
-    <input type="hidden" name="submerchantid" value="{{ subMerchantId }}">
-    <input type="hidden" name="transaction amount" value="{{ transactionAmount }}">
-    <input type="hidden" name="paymode" value="{{ payMode }}">
+            <!-- Fee Details -->
+            <div class="mb-3">
+                <table class="table table-bordered table-striped text-center">
+                    <thead class="table-dark">
+                    <tr>
+                        <th class="text-start">Fee Type</th>
+                        <th class="text-end">Amount (₹)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="text-start"><strong>Registration Fee</strong></td>
+                        <td class="text-end fs-5 fw-bold">₹{{ registration.fee_structure.registration_fee }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start"><strong>Pre-Conference Workshop Fee</strong></td>
+                        <td class="text-end fs-5 fw-bold">
+                            ₹{{ registration.fee_structure.pre_conference_workshop_fee }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-start"><strong>Accommodation Fee</strong></td>
+                        <td class="text-end fs-5 fw-bold">₹{{ registration.fee_structure.accommodation_fee }}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr class="table-success">
+                        <td class="text-start"><strong>Total Fee</strong></td>
+                        <td class="text-end fs-4 fw-bold">₹{{ registration.fee_structure.total_fee }}</td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
 
-    <!-- Submit Button -->
-    <button type="submit">Submit Payment</button>
 
-</form>
-</body>
-</html>
+            <!-- Payment Form -->
+            <form method="POST" action="https://eazypayuat.icicibank.com/EazyPG">
+                {% csrf_token %}
+
+                <!-- Hidden fields for encrypted payment data -->
+                <input type="hidden" name="merchantid" value="{{ merchantid }}">
+                <input type="hidden" name="mandatory fields" value="{{ mandatoryFields }}">
+                <input type="hidden" name="optional fields" value="{{ optionalFields }}">
+                <input type="hidden" name="returnurl" value="{{ returnURL }}">
+                <input type="hidden" name="Reference No" value="{{ referenceNo }}">
+                <input type="hidden" name="submerchantid" value="{{ subMerchantId }}">
+                <input type="hidden" name="transaction amount" value="{{ transactionAmount }}">
+                <input type="hidden" name="paymode" value="{{ payMode }}">
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button class="btn btn-sm btn-success btn-lg w-100" type="submit">Submit Payment</button>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

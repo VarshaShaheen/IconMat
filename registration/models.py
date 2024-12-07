@@ -70,7 +70,7 @@ class FeeStructure(models.Model):
 
 
 class Registration(models.Model):
-	title_choices = [('Prof,', 'Prof'), ('Dr', 'Dr'), ('Mr', 'Mr'), ('Ms', 'Ms'), ]
+	title_choices = [('Prof', 'Prof'), ('Dr', 'Dr'), ('Mr', 'Mr'), ('Ms', 'Ms'), ]
 	country_choices = [('India', 'India'), ('Other', 'Other'), ]
 	category_choices = [('Invited Speaker', 'Invited Speaker'),
 	                    ('Faculty/Research Personnel', 'Faculty/Research Personnel'), ('Student', 'Student'),
@@ -112,6 +112,10 @@ class Registration(models.Model):
 
 	def accommodation_required(self):
 		return True if self.accommodation_preference != 'No Accommodation Required' else False
+
+	@property
+	def full_name(self):
+		return f"{self.title}.{self.first_name} {self.last_name}"
 
 	def __str__(self):
 		return str(self.title) + str(self.first_name) + str(self.last_name)
