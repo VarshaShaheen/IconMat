@@ -10,7 +10,7 @@ import json
 from .models import Payment
 
 # AES Key (16 bytes for AES-128)
-AES_KEY = b"1400012609205020"  # Replace with your encryption key
+AES_KEY = b"3819510767701000"  # Replace with your encryption key
 
 
 def encrypt_data(data):
@@ -33,12 +33,12 @@ def encrypt_data(data):
 def prepare_payment_data(registration, fee_structure):
 	# Replace with actual transaction details
 	print(fee_structure, registration)
-	mandatory_fields = "1023abcdee|45|10000|26/NOV/2024"
-	optional_fields = "x|test@gmail.com|9876543210|x|x"
+	mandatory_fields = "123abc|45|10"
+	optional_fields = "x|x|x|0|0|0|x|9876543210"
 	return_url = "http://localhost:8000/payment/process/"
-	reference_no = "1023abcdee"
+	reference_no = "123abc"
 	sub_merchant_id = "45"
-	transaction_amount = "10000"
+	transaction_amount = "10"
 	pay_mode = "9"
 
 	return {
@@ -62,7 +62,7 @@ def initiate_payment(request):
 
 	# Add the payment data to the context
 	context.update(payment_data)
-	context['merchantid'] = 140921
+	context['merchantid'] = 386778
 	print(context)
 
 	return render(request, "payment/initiate_payment.html", context)
