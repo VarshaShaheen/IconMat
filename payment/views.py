@@ -10,10 +10,10 @@ import json
 from .models import Payment
 
 # AES Key (16 bytes for AES-128)
-AES_KEY = b"1400012609205020"  # Replace with your encryption key
+# AES_KEY = b"1400012609205020"  # Replace with your encryption key
 
 
-# AES_KEY = b"3819510767701000"  # Replace with your encryption key
+AES_KEY = b"3819510767701000"  # Replace with your encryption key
 
 
 def encrypt_data(data):
@@ -47,22 +47,22 @@ def validate_hash(rs, *args):
 
 def prepare_payment_data(payment):
 	# Replace with actual transaction details
-	# mandatory_fields = f"{payment.ref_no}|45|{payment.pg_amount}"
-	# optional_fields = f"icONMAT 2025|{payment.registration.full_name}|{payment.registration.category_of_participant}|{payment.fee_structure.registration_fee}|{payment.fee_structure.pre_conference_workshop_fee}|{payment.fee_structure.accommodation_fee}|Processing|123456789"
-	# return_url = "http://localhost:8000/payment/process/"
-	# reference_no = f"{payment.ref_no}"
-	# sub_merchant_id = "45"
-	# transaction_amount = f"{payment.pg_amount}"
-	# pay_mode = "9"
-	#
-	mandatory_fields = f"{payment.ref_no}|45|10|26/NOV/2024"
-	optional_fields = "x|test@gmail.com|9876543210|x|x"
-	# return_url = "http://localhost:8000/payment/process/"
-	return_url = "https://iconmat2025.cusat.ac.in/payment/process/"
+	mandatory_fields = f"{payment.ref_no}|45|{payment.pg_amount}"
+	optional_fields = f"icONMAT 2025|{payment.registration.full_name}|{payment.registration.category_of_participant}|{payment.fee_structure.registration_fee}|{payment.fee_structure.pre_conference_workshop_fee}|{payment.fee_structure.accommodation_fee}|Processing|123456789"
+	return_url = "http://localhost:8000/payment/process/"
 	reference_no = f"{payment.ref_no}"
 	sub_merchant_id = "45"
-	transaction_amount = "10"
+	transaction_amount = f"{payment.pg_amount}"
 	pay_mode = "9"
+
+	# mandatory_fields = f"{payment.ref_no}|45|10|26/NOV/2024"
+	# optional_fields = "x|test@gmail.com|9876543210|x|x"
+	# # return_url = "http://localhost:8000/payment/process/"
+	# return_url = "https://iconmat2025.cusat.ac.in/payment/process/"
+	# reference_no = f"{payment.ref_no}"
+	# sub_merchant_id = "45"
+	# transaction_amount = "10"
+	# pay_mode = "9"
 
 	payment_data = {
 		"mandatoryFields"  : mandatory_fields,
@@ -100,8 +100,8 @@ def initiate_payment(request):
 	# Add the payment data to the context
 	print("Reference No: ", payment.ref_no)
 	context.update(encrypted_payment_data)
-	# context['merchantid'] = 386778
-	context['merchantid'] = 140921
+	context['merchantid'] = 386778
+	# context['merchantid'] = 140921
 	print(context)
 
 	return render(request, "payment/initiate_payment.html", context)
@@ -112,6 +112,7 @@ def process_payment(request):
 	if request.method == "POST":
 		# Log raw data for debugging
 		print("Raw Data:", request.POST)
+		# print("\n", request.POST.get("Unique Ref Number"))
 		# payment = get_object_or_404(Payment,ref_no__exact=request.POST.get("Unique Ref Number"))
 		payment = Payment.objects.last()
 		payment.gateway_responce_data = json.dumps(request.POST.dict())
