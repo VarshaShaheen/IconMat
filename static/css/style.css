@@ -603,14 +603,14 @@ body.mobile-nav-active #mobile-nav-toggle {
     padding: 60px 0 40px 0;
 }
 
-#about:before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-}
+/*#about:before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    bottom: 0;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*}*/
 
 #about h2 {
     font-size: 36px;

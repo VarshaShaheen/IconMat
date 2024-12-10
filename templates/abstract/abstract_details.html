@@ -24,9 +24,23 @@
                 <h4 class="font-weight-bold"><strong>Submit Your Research Abstract</strong></h4>
                 <p>Submit your research abstract here. Please follow the template guidelines for formatting and
                     submission.</p>
-
                 <!-- Submission Dates Box -->
-                <div class=" mt-3 p-1 ">
+                <div class="mt-3 p-1 ">
+
+                    <div class="mb-2">
+                        <p>Authors are requested to submit one-page abstract online on or
+                            before {{ dates.abstract_submission_end_date|date:"j" }}<sup>{{ dates.abstract_submission_end_date|date:"S" }}</sup>
+                            {{ dates.abstract_submission_end_date|date:"F Y" }}
+                        <ul>
+                            <li>Peer-reviewed papers will be published in <strong>SCOPUS Indexed Proceedings</strong>.
+                            </li>
+                            <li>Selected papers will be published in <strong>Elsevier - Current Applied Physics
+                                (IF: 2.4).</strong>
+                            </li>
+                            <li>Awards for Best Oral, Flash, and Poster Presentations.</li>
+                        </ul>
+                        <small class="text-danger ">*Publication charges applicable if necessary.</small>
+                    </div>
 
                     <h6 class="mb-2">
                         <strong>Abstract Submission:</strong>
