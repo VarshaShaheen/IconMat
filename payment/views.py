@@ -49,7 +49,8 @@ def prepare_payment_data(payment):
 
 	mandatory_fields = f"{payment.ref_no}|45|{0.0}"
 	optional_fields = f"icONMAT 2025|{payment.registration.full_name}|{payment.registration.category_of_participant}|{payment.fee_structure.registration_fee}|{payment.fee_structure.pre_conference_workshop_fee}|{payment.fee_structure.accommodation_fee}|Processing|{payment.registration.raw_mobile_no}"
-	return_url = "http://localhost:8000/payment/process/"
+	# return_url = "http://localhost:8000/payment/process/"
+	return_url = "https://iconmat2025.cusat.ac.in/payment/process/"
 	reference_no = f"{payment.ref_no}"
 	sub_merchant_id = "45"
 	transaction_amount = f"{payment.pg_amount}"
