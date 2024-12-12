@@ -1,12 +1,17 @@
+import uuid
+from datetime import datetime
+
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import receiver
 
 
 # Create your models here.
 
 
 class FeeDetails(models.Model):
-	#Conference Registration Fees
+	# Conference Registration Fees
 	registration_fee_indian_student_early = models.FloatField(blank=True, null=True)
 	registration_fee_indian_faculty_or_research_personal_early = models.FloatField(blank=True, null=True)
 	registration_fee_indian_industry_early = models.FloatField(blank=True, null=True)
@@ -23,7 +28,7 @@ class FeeDetails(models.Model):
 	registration_fee_foreign_faculty_or_research_personal_late = models.FloatField(blank=True, null=True)
 	registration_fee_foreign_industry_late = models.FloatField(blank=True, null=True)
 
-	#Preconference Registraion Fees
+	# Preconference Registraion Fees
 	pre_conference_registration_fee_indian_student_early = models.FloatField(blank=True, null=True)
 	pre_conference_registration_fee_indian_faculty_or_research_personal_early = models.FloatField(blank=True, null=True)
 	pre_conference_registration_fee_indian_industry_early = models.FloatField(blank=True, null=True)
@@ -33,15 +38,15 @@ class FeeDetails(models.Model):
 	pre_conference_registration_fee_indian_industry_late = models.FloatField(blank=True, null=True)
 
 	pre_conference_registration_fee_foreign_student_early = models.FloatField(blank=True, null=True)
-	pre_conference_registration_fee_foreign_faculty_or_research_personal_early = models.FloatField(blank=True,null=True)
+	pre_conference_registration_fee_foreign_faculty_or_research_personal_early = models.FloatField(blank=True,
+	                                                                                               null=True)
 	pre_conference_registration_fee_foreign_industry_early = models.FloatField(blank=True, null=True)
 
 	pre_conference_registration_fee_foreign_student_late = models.FloatField(blank=True, null=True)
 	pre_conference_registration_fee_foreign_faculty_or_research_personal_late = models.FloatField(blank=True, null=True)
 	pre_conference_registration_fee_foreign_industry_late = models.FloatField(blank=True, null=True)
 
-
-	#Accomodation Fees
+	# Accomodation Fees
 	accommodation_foreign_student_single = models.FloatField(blank=True, null=True)
 	accommodation_foreign_faculty_or_research_personal_single = models.FloatField(blank=True, null=True)
 	accommodation_foreign_industry_single = models.FloatField(blank=True, null=True)
@@ -49,6 +54,7 @@ class FeeDetails(models.Model):
 	accommodation_foreign_student_shared = models.FloatField(blank=True, null=True)
 	accommodation_foreign_faculty_or_research_personal_shared = models.FloatField(blank=True, null=True)
 	accommodation_foreign_industry_shared = models.FloatField(blank=True, null=True)
+
 
 class FeeStructure(models.Model):
 	registration_fee = models.FloatField(blank=True, null=True)
@@ -73,7 +79,7 @@ class Registration(models.Model):
 	title_choices = [('Prof', 'Prof'), ('Dr', 'Dr'), ('Mr', 'Mr'), ('Ms', 'Ms'), ]
 	country_choices = [('India', 'India'), ('Other', 'Other'), ]
 	category_choices = [('Invited Speaker', 'Invited Speaker'),
-	                    ('Faculty/Research Personnel', 'Faculty/Research Personnel'), ('Student', 'Student'),
+	                    ('Faculty/Research Personnel/Post Doctoral Fellow', 'Faculty/Research Personnel/Post Doctoral Fellow'), ('Student', 'Student'),
 	                    ('Industry', 'Industry'), ]
 	accommodation_choices = [('Single Room', 'Single Room'), ('Shared Room', 'Shared Room'),
 	                         ('No Accommodation Required', 'No Accommodation Required'), ]
@@ -95,12 +101,14 @@ class Registration(models.Model):
 	conference_registration = models.BooleanField(default=False)
 	pre_conference_workshop_registration = models.BooleanField(default=False)
 
-	accommodation_preference = models.CharField(max_length=50, choices=accommodation_choices,default='No Accommodation Required')
+	accommodation_preference = models.CharField(max_length=50, choices=accommodation_choices,
+	                                            default='No Accommodation Required')
 
 	fee_structure = models.ForeignKey(FeeStructure, on_delete=models.CASCADE, blank=True, null=True)
 
 	registration_completed = models.BooleanField(default=False)
 	created_at = models.DateTimeField(auto_now_add=True)
+	reg_id = models.CharField(max_length=100, blank=True, null=True)
 
 	step = models.IntegerField(default=1)
 
@@ -122,5 +130,11 @@ class Registration(models.Model):
 
 	@property
 	def raw_mobile_no(self):
-		#last 10 digits of the mobile number
+		# last 10 digits of the mobile number
 		return self.contact_number[-10:]
+
+
+@receiver(pre_save, sender=Registration)
+def registration_completed(sender, instance, **kwargs):
+	if instance.registration_completed and not instance.reg_id:
+		instance.reg_id = f"ICO-{instance.user.id}-{instance.id}"

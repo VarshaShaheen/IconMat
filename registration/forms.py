@@ -10,6 +10,15 @@ class BasicInfoForm(forms.ModelForm):
 		fields = ['title', 'first_name', 'last_name', 'email', 'contact_number', 'affiliation_or_institution',
 		          'designation', 'country', 'other_country', 'category_of_participant', ]
 
+	def __init__(self, *args, **kwargs):
+		instance = kwargs.get('instance')
+		super().__init__(*args, **kwargs)
+		if instance and instance.user:
+			print(f"Pre-filling form: {instance.user.first_name}, {instance.user.last_name}, {instance.user.email}")
+			self.initial['first_name'] = instance.user.first_name.split(' ')[0]
+			self.initial['last_name'] = " ".join(instance.user.first_name.split(' ')[1:]) if len(instance.user.first_name.split(' ')) > 1 else ''
+			self.initial['email'] = instance.user.email
+
 
 class ConferenceInfoForm(forms.ModelForm):
 	class Meta:

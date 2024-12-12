@@ -8,7 +8,7 @@
                         class="nav-link {% if request.resolver_match.url_name == 'basic_info' %}active{% elif current_step < 1 %}disabled{% endif %}"
                         href="{% if current_step >= 1 %}{% url 'basic_info' %}{% else %}#{% endif %}"
                 >
-                    <strong>1. Basic Information</strong>
+                    <small>Basic Information</small>
                 </a>
             </li>
             <li class="nav-item">
@@ -16,23 +16,25 @@
                         class="nav-link {% if request.resolver_match.url_name == 'conference_info' %}active{% elif current_step < 2 %}disabled{% endif %}"
                         href="{% if current_step >= 2 %}{% url 'conference_info' %}{% else %}#{% endif %}"
                 >
-                    <strong>2. Conference</strong>
+                    <small>Conference</small>
                 </a>
             </li>
-            <li class="nav-item">
-                <a
-                        class="nav-link {% if request.resolver_match.url_name == 'additional_info' %}active{% elif current_step < 3 %}disabled{% endif %}"
-                        href="{% if current_step >= 3 %}{% url 'additional_info' %}{% else %}#{% endif %}"
-                >
-                    <strong>3. Accommodation</strong>
-                </a>
-            </li>
+            {% if registration.foriegn_delegates %}
+                <li class="nav-item">
+                    <a
+                            class="nav-link {% if request.resolver_match.url_name == 'additional_info' %}active{% elif current_step < 3 %}disabled{% endif %}"
+                            href="{% if current_step >= 3 %}{% url 'additional_info' %}{% else %}#{% endif %}"
+                    >
+                        <small>Accommodation</small>
+                    </a>
+                </li>
+            {% endif %}
             <li class="nav-item">
                 <a
                         class="nav-link {% if request.resolver_match.url_name == 'review_and_payment' %}active{% elif current_step < 4 %}disabled{% endif %}"
                         href="{% if current_step >= 4 %}{% url 'review_and_payment' %}{% else %}#{% endif %}"
                 >
-                    <strong>4. Review & Payment</strong>
+                    <small>    Review & Payment</small>
                 </a>
             </li>
         </ul>

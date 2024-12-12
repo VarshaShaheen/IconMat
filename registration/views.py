@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 
@@ -15,6 +16,7 @@ def basic_info(request):
 	registration, created = Registration.objects.get_or_create(user=request.user)
 	if not registration.registration_completed:
 		context = {
+			'registration': registration,
 			'current_step': registration.step,
 			'total_steps' : 4
 		}
@@ -44,6 +46,7 @@ def conference_info(request):
 	registration, created = Registration.objects.get_or_create(user=request.user)
 	if not registration.registration_completed:
 		context = {
+			'registration': registration,
 			'current_step': registration.step,
 			'total_steps' : 4
 		}
@@ -53,9 +56,14 @@ def conference_info(request):
 			if form.is_valid():
 				# Save the form
 				reg = form.save(commit=False)
-				reg.step = 3
+				reg.step = 4
 				reg.save()
-				return redirect('additional_info')
+				if reg.foriegn_delegates():
+					reg.step = 3
+					reg.save()
+					return redirect('additional_info')
+				else:
+					return redirect('review_and_payment')
 			context['form'] = form
 
 		else:
@@ -72,6 +80,7 @@ def additional_info(request):
 	registration, created = Registration.objects.get_or_create(user=request.user)
 	if not registration.registration_completed:
 		context = {
+			'registration': registration,
 			'current_step': registration.step,
 			'total_steps' : 4
 		}
@@ -123,9 +132,14 @@ def review_and_payment(request):
 		return redirect('registration_completed')
 
 
-def registration_completed(request, pay_ref_no):
+def registration_completed(request, pay_ref_no=None):
 	registration, created = Registration.objects.get_or_create(user=request.user)
-	payment = get_object_or_404(Payment, ref_no=pay_ref_no)
+	payment = Payment.objects.filter(ref_no=pay_ref_no).last()
+	if not pay_ref_no:
+		payment = Payment.objects.filter(registration=registration, status_code='E000').last()
+	if not payment:
+		raise Http404("Payment does not exist")
+
 	context = {'registration': registration,
 	           'payment'     : payment, }
 

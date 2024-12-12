@@ -148,7 +148,7 @@ def process_payment(request):
 			if response_code == 'E000':  # Payment Success
 				payment.registration.registration_completed = True
 				payment.registration.save()
-				return redirect('registration_completed', ref_no_2)
+				return redirect('registration_completed_ref_no', ref_no_2)
 			else:  # Payment Failed
 				payment.registration.registration_completed = False
 				payment.registration.save()
