@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
+
+from payment.models import Payment
 from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -33,7 +35,7 @@ def basic_info(request):
 
 		return render(request, 'registration/basic_info.html', context)
 	else:
-		return redirect('registration_complete')
+		return redirect('registration_completed')
 
 
 @login_required
@@ -63,7 +65,7 @@ def conference_info(request):
 
 		return render(request, 'registration/conference_info.html', context)
 	else:
-		return redirect('registration_complete')
+		return redirect('registration_completed')
 
 
 def additional_info(request):
@@ -90,7 +92,7 @@ def additional_info(request):
 
 		return render(request, 'registration/additional_info.html', context)
 	else:
-		return redirect('registration_complete')
+		return redirect('registration_completed')
 
 
 def review_and_payment(request):
@@ -118,22 +120,35 @@ def review_and_payment(request):
 		return render(request, 'registration/review_and_payment.html', context)
 
 	else:
-		return redirect('registration_complete')
+		return redirect('registration_completed')
 
 
-def registration_completed(request):
+def registration_completed(request, pay_ref_no):
 	registration, created = Registration.objects.get_or_create(user=request.user)
-	context = {'registration': registration}
+	payment = get_object_or_404(Payment, ref_no=pay_ref_no)
+	context = {'registration': registration,
+	           'payment'     : payment, }
+
 	# send email
 	# make event ticket
 	if registration.registration_completed:
-		return render(request, 'registration/registration_completed.html',context   )
+		return render(request, 'registration/registration_completed.html', context)
 	else:
 		return redirect('basic_info')
+
+
+def registration_failed(request, pay_ref_no):
+	registration, created = Registration.objects.get_or_create(user=request.user)
+	payment = get_object_or_404(Payment, ref_no=pay_ref_no)
+	context = {'registration': registration,
+	           'payment'     : payment, }
+	return render(request, 'registration/registration_failed.html', context)
+
 
 def calculate_payment(registration):
 	fee_details = FeeDetails.objects.first()
 	# Calculate the registration fee based on the category of the participant
+	registration_fee, pre_conference_reg_fee, accommodation_fee = [0, 0, 0]
 	early = True
 
 	# Early Registration Fee for Indian Participants (Early)

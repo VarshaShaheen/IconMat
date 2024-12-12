@@ -5,9 +5,9 @@
 
 {% block content %}
 
-    
+
     <div class="container">
-    {% include 'others/registration_progress.html' %}
+        {% include 'others/registration_progress.html' %}
 
         <div class="row justify-content-center">
             <div class="col-md-6 w-100  mb-5">
@@ -15,8 +15,29 @@
                 <form method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Next</button>
                 </form>
+                <div class="card w-100 my-3 p-4 mb-4">
+                    <h5 class="fw-bold">Conference:</h5>
+                    <p class="pb-1">
+                        Participants are required to select <span class="text-danger">"Conference registration"</span>,
+                        for iconmat2025 Registration. <br>
+                    </p>
+                </div>
+                <div class="card w-100 my-3 p-4 mb-4">
+                    <h5 class="fw-bold">Pre-Conference Workshop:</h5>
+                    <p class="pb-1">
+                        Participants are required to select <span class="text-danger">"Pre conference workshop registration"</span>,
+                        for iconmat2025 Pre-Conference Workshop Registration. <br>
+                    </p>
+                </div>
+                <div class="card w-100 my-3 p-4 mb-4">
+                    <h5 class="fw-bold">Conference & Pre-Conference Workshop:</h5>
+                    <p class="pb-1">
+                        Participants are required to select both  <span class="text-danger">"Conference registration & Pre conference workshop registration"</span>,
+                        for both conference and workshop registration. <br>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

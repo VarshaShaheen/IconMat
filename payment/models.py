@@ -17,6 +17,7 @@ class Payment(models.Model):
 	payment_request_data = models.JSONField(blank=True, null=True)
 	gateway_responce_data = models.JSONField(blank=True, null=True)
 	ref_no = models.CharField(max_length=100, blank=True, null=True)
+	date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
 		return f"{self.ref_no}"

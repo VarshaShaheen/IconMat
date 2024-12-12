@@ -153,6 +153,35 @@
                 </table>
             </div>
 
+            <div class="table-responsive mb-5">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col" colspan="2" class="text-center fw-bold">Transaction Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Transaction ID</th>
+                        <td>{{ payment.ref_no }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Amount</th>
+                        <td>{{ payment.pg_amount }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Payment Date</th>
+                        <td>{{ payment.date }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Payment Status Code</th>
+                        <td>{{ payment.status_code }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
             <div class="text-center">
                 <a href="/" class="btn btn-primary">Go to Homepage</a>
             </div>

@@ -119,3 +119,8 @@ class Registration(models.Model):
 
 	def __str__(self):
 		return str(self.title) + str(self.first_name) + str(self.last_name)
+
+	@property
+	def raw_mobile_no(self):
+		#last 10 digits of the mobile number
+		return self.contact_number[-10:]

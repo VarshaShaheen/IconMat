@@ -1,7 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-
 from .models import Registration
 
 
@@ -51,18 +50,26 @@ class AdditionalInfoForm(forms.ModelForm):
 				choices=Registration.accommodation_choices,
 				label="Accommodation Preference",
 				widget=forms.Select(attrs={"class": "form-control"}),
-				required=False  # Make this field optional if needed
+				required=False,  # Make this field optional if needed
 			)
+
+			if instance.accommodation_preference:
+				self.fields['accommodation_preference'].initial = instance.accommodation_preference
+			else:
+				self.fields['accommodation_preference'].initial = Registration.accommodation_preference
 
 	def save(self, commit=True):
 		instance = super().save(commit=False)  # Don't commit yet; handle the extra field
 
 		# Check if accommodation_preference exists in cleaned data and save it
-		if 'accommodation_preference' in self.cleaned_data:
-			instance.accommodation_preference = self.cleaned_data['accommodation_preference']
+		accommodation_preference = self.cleaned_data.get('accommodation_preference', None)
+		if accommodation_preference is not None:
+			instance.accommodation_preference = accommodation_preference
+			print("Accommodation Preference: ", instance.accommodation_preference)
 		else:
-			# If not set, you can assign a default value or leave it empty
+			# If not set, assign a default value or leave it empty
 			instance.accommodation_preference = "No Accommodation Required"
+			print("Accommodation Preference not set: ", instance.accommodation_preference)
 
 		if commit:
 			instance.save()

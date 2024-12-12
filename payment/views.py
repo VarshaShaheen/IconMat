@@ -44,11 +44,11 @@ def validate_hash(rs, *args):
 	# Return comparison result
 	return rs == expected_hash
 
-
 def prepare_payment_data(payment):
 	# Replace with actual transaction details
-	mandatory_fields = f"{payment.ref_no}|45|{payment.pg_amount}"
-	optional_fields = f"icONMAT 2025|{payment.registration.full_name}|{payment.registration.category_of_participant}|{payment.fee_structure.registration_fee}|{payment.fee_structure.pre_conference_workshop_fee}|{payment.fee_structure.accommodation_fee}|Processing|123456789"
+
+	mandatory_fields = f"{payment.ref_no}|45|{0.0}"
+	optional_fields = f"icONMAT 2025|{payment.registration.full_name}|{payment.registration.category_of_participant}|{payment.fee_structure.registration_fee}|{payment.fee_structure.pre_conference_workshop_fee}|{payment.fee_structure.accommodation_fee}|Processing|{payment.registration.raw_mobile_no}"
 	return_url = "http://localhost:8000/payment/process/"
 	reference_no = f"{payment.ref_no}"
 	sub_merchant_id = "45"
@@ -100,8 +100,8 @@ def initiate_payment(request):
 	# Add the payment data to the context
 	print("Reference No: ", payment.ref_no)
 	context.update(encrypted_payment_data)
-	context['merchantid'] = 386778
-	# context['merchantid'] = 140921
+	context['merchantid'] = 386778 #real
+	# context['merchantid'] = 140921 #test
 	print(context)
 
 	return render(request, "payment/initiate_payment.html", context)
@@ -111,10 +111,10 @@ def initiate_payment(request):
 def process_payment(request):
 	if request.method == "POST":
 		# Log raw data for debugging
-		print("Raw Data:", request.POST)
-		# print("\n", request.POST.get("Unique Ref Number"))
-		# payment = get_object_or_404(Payment,ref_no__exact=request.POST.get("Unique Ref Number"))
-		payment = Payment.objects.last()
+		# print("Raw Data:", request.POST)
+		print("\n", request.POST.get("ReferenceNo"))
+		payment = get_object_or_404(Payment,ref_no__exact=request.POST.get("ReferenceNo"))
+		# payment = Payment.objects.last()
 		payment.gateway_responce_data = json.dumps(request.POST.dict())
 		payment.save()
 
@@ -143,21 +143,21 @@ def process_payment(request):
 		if validate_hash(rs, res_id, response_code, ref_no, service_tax_amount, processing_fee, total_amount,
 		                 transaction_amount, transaction_date, intercharge_value, tdr, payment_mode, submerchant_id,
 		                 ref_no_2, tps):
+			# response_code = 'E000'  # For testing purposes
 			if response_code == 'E000':  # Payment Success
 				payment.registration.registration_completed = True
 				payment.registration.save()
-			elif response_code == 'E008':  # Payment Failed
-				print(response_code)
+				return redirect('registration_completed', ref_no_2)
+			else:  # Payment Failed
+				payment.registration.registration_completed = False
+				payment.registration.save()
+
+				print("Payment failed")
+				return redirect('registration_failed', ref_no_2)
+
 		else:
 			print("Hash validation failed")
-
-		# Prepare the response data (sending POST data as JSON response)
-		response_data = {
-			"received_data": request.POST.dict(),
-		}
-
-		# Return JSON response with the POST data and validation result
-		return JsonResponse(response_data)
+			return redirect('registration_failed',ref_no_2)
 
 	return JsonResponse({"error": "Invalid request method"}, status=405)
 

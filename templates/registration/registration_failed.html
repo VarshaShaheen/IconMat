@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Registration Completed{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top: 10rem;">
+        <div class="col-md-10 col-lg-8 mx-auto">
+
+            <div class="section-header text-center">
+                <h2>Registration Falied</h2>
+                <p class="text-center text-muted">Sorry Your registration has failed please try agian.</p>
+            </div>
+
+            <div class="card  w-100 my-3 p-4 mb-4">
+                <h5 class="fw-bold text-danger">Registration Failed:</h5>
+                <p class="pb-1">
+                    If any money has beed debited don't worry. contact us with your transaction details.
+                </p>
+            </div>
+            <div class="table-responsive my-3 p-4 mb-4">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col" colspan="2" class="text-center fw-bold">Transaction Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Transaction ID</th>
+                        <td>{{ payment.ref_no }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Amount</th>
+                        <td>{{ payment.pg_amount }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Payment Date</th>
+                        <td>{{ payment.date }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Payment Status Code</th>
+                        <td>{{ payment.status_code }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center my-3 ">
+                <a href="{% url 'basic_info' %}" class="btn btn-danger">Try Again</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
