@@ -117,26 +117,37 @@
             </div>
         </div>
     </section>
+
     <section id="abstract" style="margin-bottom: 7rem;">
         <div class="container mb-5">
             <div class="section-header text-center">
                 <h2>Abstract Submission</h2>
             </div>
             <div class="row">
-                <div class="col justify-content-center text-center fw-bold" style="text-align: justify;">
-                    <p class="mt-1">Authors are requested to submit a one-page abstract online on or before
+                <div class="col-lg-6 col-md-12 mb-4 justify-content-center">
+                    <img src="{% static 'img/current_applied_phy.jpg' %}" alt="Abstract Submission" class="img-fluid"
+                         style="max-height: 500px;">
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <p class="mt-1 fw-bold" style="text-align: justify;">
+                        Authors are requested to submit a one-page abstract online on or before
                         {{ dates.abstract_submission_end_date|date:"j" }}<sup>{{ dates.abstract_submission_end_date|date:"S" }}</sup>
                         {{ dates.abstract_submission_end_date|date:"F Y" }}.
                     </p>
-                        <p class="mt-1">Peer-reviewed papers will be pubpshed in <strong>SCOPUS Indexed Proceedings</strong>.</p>
-                        <p class="mt-1">Selected papers will be pubpshed in <strong>Elsevier - Current Appped Physics (IF:
-                            2.4).</strong></p>
-                        <p class="mt-1">Awards for Best Oral, Flash, and Poster Presentations.</p>
+                    <p class="mt-1" style="text-align: justify;">Peer-reviewed papers will be published in <strong>SCOPUS
+                        Indexed Proceedings</strong>.</p>
+                    <p class="mt-1" style="text-align: justify;">Selected papers will be published in <strong>Elsevier -
+                        Current Applied Physics (IF: 2.4).</strong></p>
+                    <p class="mt-1" style="text-align: justify;">Awards for Best Oral, Flash, and Poster
+                        Presentations.</p>
                     <small class="text-danger">*Publication charges applicable if necessary.</small>
+                    <br>
+                    <a class="btn btn-danger btn-sm mt-3" href="{% url 'abstract_details' %}"> Submit Abstract</a>
                 </div>
             </div>
         </div>
     </section>
+
 
     {% include 'others/dates.html' %}
 
