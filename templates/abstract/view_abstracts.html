@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container" style="margin-top: 8rem; min-height: 80vh">
+        <div class="section-header text-center">
+            <h2>Your Abstracts</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    {% for abstract in abstracts %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">{{ abstract.title_of_abstract|title }}</h5>
+                                    {% if abstract.mode_of_presentation == 'oral' %}
+                                        <p class="card-text mb-2 text-muted"><strong>Mode of Presentation </strong>Oral
+                                            presentation (10 mint) </p>
+                                    {% elif abstract.mode_of_presentation == 'flash' %}
+                                        <p class="card-text mb-2 text-muted"><strong>Mode of Presentation </strong>Flash
+                                            Presentation (5 mint)</p>
+                                    {% elif abstract.mode_of_presentation == 'poster' %}
+                                        <p class="card-text mb-2 text-muted"><strong>Mode of Presentation </strong>Poster
+                                            Presentation</p>
+                                    {% endif %}
+                                    <p class="card-text mb-2 text-muted"><strong>Submitted on: </strong>{{ abstract.created_at|date:'d-M-Y' }}</p>
+
+                                    <a href="{{ abstract.abstract.url }}" class="card-text"> view</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -29,7 +29,7 @@ class PaperAbstract(models.Model):
 	title = models.CharField(max_length=10, choices=TITLE, default='Mr')
 	name = models.CharField(max_length=100, default='')  # Removed the dynamic default
 	phone_number = models.CharField(max_length=15)
-	title_of_abstract = models.CharField(max_length=100)
+	title_of_abstract = models.CharField(max_length=500)
 	designation = models.CharField(max_length=100, default='')
 	organization = models.CharField(max_length=100, default='')
 	keywords = models.CharField(max_length=500, blank=True, null=True)

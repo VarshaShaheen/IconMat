@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 import logging
 
 from home.models import Dates
+from .models import PaperAbstract
 
 from .forms import PaperAbstractForm
 
@@ -58,3 +59,8 @@ class AbstractDetail(TemplateView):
 		context = super().get_context_data(**kwargs)
 		context['dates'] = Dates.objects.last()
 		return context
+
+
+def view_abstract(request):
+	abstracts = PaperAbstract.objects.filter(user=request.user)
+	return render(request, 'abstract/view_abstracts.html', {'abstracts': abstracts})
