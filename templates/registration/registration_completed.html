@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block title %}Registration Completed{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top: 10rem;">
+        <div class="col-md-10 col-lg-8 mx-auto">
+
+            <div class="section-header text-center">
+                <h2>Registration Completed</h2>
+                <p class="text-center text-muted">Thank you for registering. Below are your submitted details:</p>
+            </div>
+
+            <!-- Personal Information Table -->
+            <div class="table-responsive mb-5">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th colspan="2" class="text-center">Personal Information</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Title</strong></td>
+                        <td>{{ registration.title }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>First Name</strong></td>
+                        <td>{{ registration.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Last Name</strong></td>
+                        <td>{{ registration.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Designation</strong></td>
+                        <td>{{ registration.designation }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Affiliation/Institution</strong></td>
+                        <td>{{ registration.affiliation_or_institution }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email</strong></td>
+                        <td>{{ registration.email }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contact Number</strong></td>
+                        <td>{{ registration.contact_number }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Location & Category Table -->
+            <div class="table-responsive mb-5">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th colspan="2" class="text-center">Location & Category</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Country</strong></td>
+                        <td>
+                            {% if registration.country == 'Other' %}
+                                {% if not registration.other_country %}
+                                    <span class="text-danger">No Country Specified</span>
+                                {% else %}
+                                    {{ registration.other_country }}
+                                {% endif %}
+                            {% else %}
+                                {{ registration.country }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Category of Participant</strong></td>
+                        <td>{{ registration.category_of_participant }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Conference Details Table -->
+            <div class="table-responsive mb-5">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th colspan="2" class="text-center">Conference Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Conference Registration</strong></td>
+                        <td>{% if registration.conference_registration %} Yes {% else %} No {% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pre-conference Workshop Registration</strong></td>
+                        <td>{% if registration.pre_conference_workshop_registration %} Yes {% else %}
+                            No {% endif %}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Accommodation Preferences Table -->
+            <div class="table-responsive mb-5">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th colspan="2" class="text-center">Accommodation Preferences</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Accommodation Preference</strong></td>
+                        <td>{{ registration.accommodation_preference }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Fee Details Table -->
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                    <thead class="">
+                    <tr>
+                        <th colspan="2" class="text-center">Fee Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Registration Fee</strong></td>
+                        <td>₹{{ registration.fee_structure.registration_fee }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pre-conference Workshop Fee</strong></td>
+                        <td>₹{{ registration.fee_structure.pre_conference_workshop_fee }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Accommodation Fee</strong></td>
+                        <td>₹{{ registration.fee_structure.accommodation_fee }}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr class="table-success">
+                        <td><strong>Total Fee</strong></td>
+                        <td class="fw-bold fs-4">₹{{ registration.fee_structure.total_fee }}</td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="text-center">
+                <a href="/" class="btn btn-primary">Go to Homepage</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

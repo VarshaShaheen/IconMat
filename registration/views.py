@@ -121,6 +121,16 @@ def review_and_payment(request):
 		return redirect('registration_complete')
 
 
+def registration_completed(request):
+	registration, created = Registration.objects.get_or_create(user=request.user)
+	context = {'registration': registration}
+	# send email
+	# make event ticket
+	if registration.registration_completed:
+		return render(request, 'registration/registration_completed.html',context   )
+	else:
+		return redirect('basic_info')
+
 def calculate_payment(registration):
 	fee_details = FeeDetails.objects.first()
 	# Calculate the registration fee based on the category of the participant
@@ -207,14 +217,6 @@ def calculate_payment(registration):
 		accommodation_fee = 0
 
 	return [registration_fee, pre_conference_reg_fee, accommodation_fee]
-
-
-def registration_completed(request):
-	# send email
-	# make event ticket
-
-
-	return render(request, 'registration/registration_completed.html')
 
 
 def make_event_ticket():
