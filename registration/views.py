@@ -109,6 +109,7 @@ def review_and_payment(request):
 	if not registration.registration_completed:
 		registration_fee, pre_conference_reg_fee, accommodation_fee = calculate_payment(registration)
 		if registration.fee_structure:
+			print("Updating Fee Structure", registration.fee_structure)
 			# Update the existing FeeStructure
 			fee_structure = registration.fee_structure
 			fee_structure.registration_fee = registration_fee
@@ -245,7 +246,9 @@ def calculate_payment(registration):
 	else:
 		accommodation_fee = 0
 
-	return [registration_fee, pre_conference_reg_fee, accommodation_fee]
+	return [registration_fee if registration.conference_registration else 0, \
+	        pre_conference_reg_fee if registration.pre_conference_workshop_registration else 0, \
+	        accommodation_fee]
 
 
 def make_event_ticket():
