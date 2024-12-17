@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView
+
 from .models import *
 
 
@@ -43,3 +45,19 @@ def contact(request):
 def tourist_attractions(request):
 	context = {"attractions": TouristAttraction.objects.all()}
 	return render(request, 'home/tourist_attractions.html',context)
+
+
+class Terms(TemplateView):
+	template_name = 'home/terms.html'
+
+
+class Privacy(TemplateView):
+	template_name = 'home/privacy.html'
+
+
+class Refund(TemplateView):
+	template_name = 'home/refund.html'
+
+
+class Disclaimer(TemplateView):
+	template_name = 'home/disclaimer.html'

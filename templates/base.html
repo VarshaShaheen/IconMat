@@ -82,8 +82,8 @@
 <header id="header">
     <div class="container">
 
-        <div id="logo" class="pull-left" >
-            <a  href="{% url 'home' %}"><img src="{% static 'img/iconmat_logo.png' %}" alt="" title=""></a>
+        <div id="logo" class="pull-left">
+            <a href="{% url 'home' %}"><img src="{% static 'img/iconmat_logo.png' %}" alt="" title=""></a>
             {#            <a href="#intro" class="scrollto"><img height="80px" src="{% static 'img/cusat_logo.png' %}" alt="" title=""></a>#}
         </div>
 
@@ -142,25 +142,29 @@
                         (icONMAT 2025) will be held at Cochin University of Science and Technology from February 11-14,
                         2025.</p>
                 </div>
-
-                <div class="col-lg-3 col-md-6 footer-links">
-                    <h4>Useful Links</h4>
-                    <ul>
-                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'home' %}">Home</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="#team">Committie</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'speakers' %}">Speakers</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'programs' %}">Program</a></li>
-                    </ul>
-                </div>
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Links</h4>
                     <ul>
+                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'home' %}">Home</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="#team">Committee</a></li>
                         <li><i class="fa fa-angle-right"></i> <a href="{% url 'tourist_attractions' %}">Tourist
                             Attractions</a></li>
                         <li><i class="fa fa-angle-right"></i> <a href="{% url 'contact' %}">Contact Us</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'registration' %}">Registration</a></li>
+                        {#                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'registration' %}">Registration</a></li>#}
                     </ul>
                 </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Policies & Terms</h4>
+                    <ul>
+                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'terms' %}">Terms of service</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'privacy' %}">Privacy policy</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'refund' %}">Refund policy</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="{% url 'disclaimer' %}">Disclaimer policy</a>
+                        </li>
+                    </ul>
+                </div>
+
 
                 <div class="col-lg-3 col-md-6 footer-contact">
                     <h4>Contact Us</h4>
