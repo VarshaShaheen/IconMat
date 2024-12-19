@@ -5,6 +5,9 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+import threading
+
+from home.utils import send_html_email
 
 
 # Create your models here.
@@ -132,6 +135,16 @@ class Registration(models.Model):
 	def raw_mobile_no(self):
 		# last 10 digits of the mobile number
 		return self.contact_number[-10:]
+
+
+	def send_email(self, subject, content):
+		context = {
+			'subject'     : subject,
+			'content'     :content,
+			'user_name'   : self.full_name,
+		}
+		threading.Thread(target=send_html_email, args=(context['subject'], self.user.email, context)).start()
+
 
 
 @receiver(pre_save, sender=Registration)

@@ -1,8 +1,11 @@
+import threading
+
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 
+from home.utils import send_html_email
 from payment.models import Payment
 from .forms import *
 import requests
@@ -146,6 +149,7 @@ def registration_completed(request, pay_ref_no=None):
 	           'payment'     : payment, }
 
 	# send email
+	registration.send_email('Registration Completed', f'Your registration has been completed successfully. Your registration Id: {registration.reg_id}')
 	# make event ticket
 	if registration.registration_completed:
 		return render(request, 'registration/registration_completed.html', context)
@@ -156,6 +160,8 @@ def registration_completed(request, pay_ref_no=None):
 def registration_failed(request, pay_ref_no):
 	registration, created = Registration.objects.get_or_create(user=request.user)
 	payment = get_object_or_404(Payment, ref_no=pay_ref_no)
+	registration.send_email('Registration Failed', f'Your registration has failed. Please try again your payment reference number is {pay_ref_no}')
+
 	context = {'registration': registration,
 	           'payment'     : payment, }
 	return render(request, 'registration/registration_failed.html', context)
