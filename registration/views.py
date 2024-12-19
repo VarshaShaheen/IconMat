@@ -258,14 +258,14 @@ def make_event_ticket():
 
 
 
-def usd_to_inr(inr):
+def usd_to_inr(usd):
 	response = requests.get('https://v6.exchangerate-api.com/v6/b5fbb70e3bacbe3fecaa895b/latest/USD')
 	if response.status_code == 200:
 		data= Currency.objects.create(rates=response.json())
 		print(data)
-		usd = inr * data.rates['conversion_rates']['INR']
+		inr = usd * data.rates['conversion_rates']['INR']
 	else:
 		print("Failed to fetch exchange rate")
 		data = Currency.objects.last()
-		usd = inr * data.rates['conversion_rates']['INR']
-	return usd
+		inr = usd * data.rates['conversion_rates']['INR']
+	return float(round(inr, 2))
