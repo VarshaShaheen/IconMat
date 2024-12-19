@@ -4,6 +4,7 @@ from datetime import datetime
 import uuid
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+import json
 
 
 # Create your models here.
@@ -25,6 +26,10 @@ class Payment(models.Model):
 	@property
 	def pg_amount(self):
 		return str(self.fee_structure.total_fee())
+
+	@property
+	def fee_paid(self):
+		return str(json.loads(self.gateway_responce_data)["Transaction Amount"])
 
 
 @receiver(pre_save, sender=Payment)
