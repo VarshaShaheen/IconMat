@@ -60,7 +60,7 @@ class AbstractDetail(TemplateView):
 		context['dates'] = Dates.objects.last()
 		return context
 
-
+@login_required
 def view_abstract(request):
 	abstracts = PaperAbstract.objects.filter(user=request.user)
 	return render(request, 'abstract/view_abstracts.html', {'abstracts': abstracts})
