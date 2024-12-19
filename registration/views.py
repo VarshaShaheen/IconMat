@@ -5,10 +5,11 @@ from django.views.generic import TemplateView
 
 from payment.models import Payment
 from .forms import *
+import requests
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-from .models import Registration, FeeDetails, FeeStructure
+from .models import Registration, FeeDetails, FeeStructure,Currency
 
 
 @login_required
@@ -75,7 +76,7 @@ def conference_info(request):
 	else:
 		return redirect('registration_completed')
 
-
+@login_required
 def additional_info(request):
 	registration, created = Registration.objects.get_or_create(user=request.user)
 	if not registration.registration_completed:
@@ -103,7 +104,7 @@ def additional_info(request):
 	else:
 		return redirect('registration_completed')
 
-
+@login_required
 def review_and_payment(request):
 	registration, created = Registration.objects.get_or_create(user=request.user)
 	if not registration.registration_completed:
@@ -132,7 +133,7 @@ def review_and_payment(request):
 	else:
 		return redirect('registration_completed')
 
-
+@login_required
 def registration_completed(request, pay_ref_no=None):
 	registration, created = Registration.objects.get_or_create(user=request.user)
 	payment = Payment.objects.filter(ref_no=pay_ref_no).last()
@@ -151,7 +152,7 @@ def registration_completed(request, pay_ref_no=None):
 	else:
 		return redirect('basic_info')
 
-
+@login_required
 def registration_failed(request, pay_ref_no):
 	registration, created = Registration.objects.get_or_create(user=request.user)
 	payment = get_object_or_404(Payment, ref_no=pay_ref_no)
@@ -199,50 +200,50 @@ def calculate_payment(registration):
 	# Early Registration Fee for Foriegn Participants (Early)
 	if early and registration.foriegn_delegates():
 		if registration.category_of_participant == 'Student':
-			registration_fee = fee_details.registration_fee_foreign_student_early
-			pre_conference_reg_fee = fee_details.pre_conference_registration_fee_foreign_student_early
+			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_student_early)
+			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_student_early)
 		elif registration.category_of_participant == 'Faculty/Research Personnel' or registration.category_of_participant == 'Invited Speaker':
-			registration_fee = fee_details.registration_fee_foreign_faculty_or_research_personal_early
-			pre_conference_reg_fee = fee_details.pre_conference_registration_fee_foreign_faculty_or_research_personal_early
+			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_faculty_or_research_personal_early)
+			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_faculty_or_research_personal_early)
 		elif registration.category_of_participant == 'Industry':
-			registration_fee = fee_details.registration_fee_foreign_industry_early
-			pre_conference_reg_fee = fee_details.pre_conference_registration_fee_foreign_industry_early
+			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_industry_early)
+			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_industry_early)
 		else:
 			registration_fee = 0
 			pre_conference_reg_fee = 0
-	# Late Registration Fee for Foriegn Participants (Early)
+	# Late Registration Fee for Foriegn Participants
 	if not early and registration.foriegn_delegates():
 		if registration.category_of_participant == 'Student':
-			registration_fee = fee_details.registration_fee_foreign_student_late
-			pre_conference_reg_fee = fee_details.pre_conference_registration_fee_foreign_student_late
+			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_student_late)
+			pre_conference_reg_fee =  usd_to_inr(fee_details.pre_conference_registration_fee_foreign_student_late)
 		elif registration.category_of_participant == 'Faculty/Research Personnel' or registration.category_of_participant == 'Invited Speaker':
-			registration_fee = fee_details.registration_fee_foreign_faculty_or_research_personal_late
-			pre_conference_reg_fee = fee_details.pre_conference_registration_fee_foreign_faculty_or_research_personal_late
+			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_faculty_or_research_personal_late)
+			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_faculty_or_research_personal_late)
 		elif registration.category_of_participant == 'Industry':
-			registration_fee = fee_details.registration_fee_foreign_industry_late
-			pre_conference_reg_fee = fee_details.pre_conference_registration_fee_foreign_industry_late
+			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_industry_late)
+			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_industry_late)
 		else:
 			registration_fee = 0
 			pre_conference_reg_fee = 0
 
 	if registration.accommodation_required() and registration.foriegn_delegates():
 		if registration.category_of_participant == 'Student' and registration.accommodation_preference == 'Single Room':
-			accommodation_fee = fee_details.accommodation_foreign_student_single
+			accommodation_fee = usd_to_inr(fee_details.accommodation_foreign_student_single)
 		elif (
 				registration.category_of_participant == 'Faculty/Research Personnel' or registration.category_of_participant == 'Invited Speaker') and (
 				registration.accommodation_preference == 'Single Room'):
-			accommodation_fee = fee_details.accommodation_foreign_faculty_or_research_personal_single
+			accommodation_fee = usd_to_inr(fee_details.accommodation_foreign_faculty_or_research_personal_single)
 		elif registration.category_of_participant == 'Industry' and registration.accommodation_preference == 'Single Room':
-			accommodation_fee = fee_details.accommodation_foreign_industry_single
+			accommodation_fee = usd_to_inr(fee_details.accommodation_foreign_industry_single)
 
 		if registration.category_of_participant == 'Student' and registration.accommodation_preference == 'Shared Room':
-			accommodation_fee = fee_details.accommodation_foreign_student_shared
+			accommodation_fee = usd_to_inr(fee_details.accommodation_foreign_student_shared)
 		elif (
 				registration.category_of_participant == 'Faculty/Research Personnel' or registration.category_of_participant == 'Invited Speaker') and (
 				registration.accommodation_preference == 'Shared Room'):
-			accommodation_fee = fee_details.accommodation_foreign_faculty_or_research_personal_shared
+			accommodation_fee = usd_to_inr(fee_details.accommodation_foreign_faculty_or_research_personal_shared)
 		elif registration.category_of_participant == 'Industry' and registration.accommodation_preference == 'Shared Room':
-			accommodation_fee = fee_details.accommodation_foreign_industry_shared
+			accommodation_fee = usd_to_inr(fee_details.accommodation_foreign_industry_shared)
 	else:
 		accommodation_fee = 0
 
@@ -254,3 +255,17 @@ def calculate_payment(registration):
 def make_event_ticket():
 	# Create a ticket for the event
 	pass
+
+
+
+def usd_to_inr(inr):
+	response = requests.get('https://v6.exchangerate-api.com/v6/b5fbb70e3bacbe3fecaa895b/latest/USD')
+	if response.status_code == 200:
+		data= Currency.objects.create(rates=response.json())
+		print(data)
+		usd = inr * data.rates['conversion_rates']['INR']
+	else:
+		print("Failed to fetch exchange rate")
+		data = Currency.objects.last()
+		usd = inr * data.rates['conversion_rates']['INR']
+	return usd

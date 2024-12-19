@@ -138,3 +138,11 @@ class Registration(models.Model):
 def registration_completed(sender, instance, **kwargs):
 	if instance.registration_completed and not instance.reg_id:
 		instance.reg_id = f"ICO-{instance.user.id}-{instance.id}"
+
+
+class Currency(models.Model):
+	rates = models.JSONField()
+	created_at = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return self.created_at.strftime('%d-%m-%Y')
