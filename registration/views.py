@@ -12,7 +12,7 @@ import requests
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-from .models import Registration, FeeDetails, FeeStructure,Currency
+from .models import Registration, FeeDetails, FeeStructure, Currency
 
 
 @login_required
@@ -79,6 +79,7 @@ def conference_info(request):
 	else:
 		return redirect('registration_completed')
 
+
 @login_required
 def additional_info(request):
 	registration, created = Registration.objects.get_or_create(user=request.user)
@@ -107,6 +108,7 @@ def additional_info(request):
 	else:
 		return redirect('registration_completed')
 
+
 @login_required
 def review_and_payment(request):
 	registration, created = Registration.objects.get_or_create(user=request.user)
@@ -129,12 +131,19 @@ def review_and_payment(request):
 			)
 			registration.fee_structure = fee_structure
 			registration.save()
-		context = {'current_step': registration.step, 'total_steps': 4, 'registration': registration, }
+		rate = usd_to_inr(1)
+		converted_rates = {'registration_fee_usd'      : round(registration_fee / rate, 2),
+		                   'pre_conference_reg_fee_usd': round(pre_conference_reg_fee / rate, 2),
+		                   'accommodation_fee_usd'     : round(accommodation_fee / rate, 2),
+		                   'total_fee_usd'             : round((registration_fee + pre_conference_reg_fee + accommodation_fee) / rate, 2),}
+		context = {'current_step'   : registration.step, 'total_steps': 4, 'registration': registration,
+		           'converted_rates': converted_rates}
 
 		return render(request, 'registration/review_and_payment.html', context)
 
 	else:
 		return redirect('registration_completed')
+
 
 @login_required
 def registration_completed(request, pay_ref_no=None):
@@ -152,6 +161,7 @@ def registration_completed(request, pay_ref_no=None):
 		return render(request, 'registration/registration_completed.html', context)
 	else:
 		return redirect('basic_info')
+
 
 @login_required
 def registration_failed(request, pay_ref_no):
@@ -205,7 +215,8 @@ def calculate_payment(registration):
 			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_student_early)
 		elif registration.category_of_participant == 'Faculty/Research Personnel/Post Doctoral Fellow' or registration.category_of_participant == 'Invited Speaker':
 			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_faculty_or_research_personal_early)
-			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_faculty_or_research_personal_early)
+			pre_conference_reg_fee = usd_to_inr(
+				fee_details.pre_conference_registration_fee_foreign_faculty_or_research_personal_early)
 		elif registration.category_of_participant == 'Industry':
 			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_industry_early)
 			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_industry_early)
@@ -216,10 +227,11 @@ def calculate_payment(registration):
 	if not early and registration.foriegn_delegates():
 		if registration.category_of_participant == 'Student':
 			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_student_late)
-			pre_conference_reg_fee =  usd_to_inr(fee_details.pre_conference_registration_fee_foreign_student_late)
+			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_student_late)
 		elif registration.category_of_participant == 'Faculty/Research Personnel/Post Doctoral Fellow' or registration.category_of_participant == 'Invited Speaker':
 			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_faculty_or_research_personal_late)
-			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_faculty_or_research_personal_late)
+			pre_conference_reg_fee = usd_to_inr(
+				fee_details.pre_conference_registration_fee_foreign_faculty_or_research_personal_late)
 		elif registration.category_of_participant == 'Industry':
 			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_industry_late)
 			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_industry_late)
@@ -258,11 +270,14 @@ def make_event_ticket():
 	pass
 
 
-
 def usd_to_inr(usd):
 	response = requests.get('https://v6.exchangerate-api.com/v6/b5fbb70e3bacbe3fecaa895b/latest/USD')
 	if response.status_code == 200:
-		data= Currency.objects.create(rates=response.json())
+		try:
+			data = Currency.objects.create(rates=response.json())
+		except Exception as e:
+			print("Failed to save exchange rate")
+			data = Currency.objects.last()
 		print(data)
 		inr = usd * data.rates['conversion_rates']['INR']
 	else:

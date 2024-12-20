@@ -123,38 +123,76 @@
                     </div>
                 {% endif %}
 
-                <!-- Fee Details Table -->
-                <div class="table-responsive mb-4">
-                    <table class="table table-bordered">
-                        <thead class="">
-                        <tr>
-                            <th colspan="2" class="text-center">Fee Details</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><strong>Registration Fee</strong></td>
-                            <td>₹{{ registration.fee_structure.registration_fee }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Pre-conference Workshop Fee</strong></td>
-                            <td>₹{{ registration.fee_structure.pre_conference_workshop_fee }}</td>
-                        </tr>
-                        {% if registration.foriegn_delegates %}
-                        <tr>
-                            <td><strong>Accommodation Fee</strong></td>
-                            <td>₹{{ registration.fee_structure.accommodation_fee }}</td>
-                        </tr>
-                        {% endif %}
-                        </tbody>
-                        <tfoot>
-                        <tr class="table-success">
-                            <td><strong>Total Fee</strong></td>
-                            <td class="fw-bold fs-4">₹{{ registration.fee_structure.total_fee }}</td>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
+                {% if not registration.foriegn_delegates %}
+                    <!-- Fee Details Indian Table -->
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered">
+                            <thead class="">
+                            <tr>
+                                <th colspan="2" class="text-center">Fee Details</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><strong>Registration Fee</strong></td>
+                                <td>₹{{ registration.fee_structure.registration_fee }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pre-conference Workshop Fee</strong></td>
+                                <td>₹{{ registration.fee_structure.pre_conference_workshop_fee }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Accommodation Fee</strong></td>
+                                <td>₹{{ registration.fee_structure.accommodation_fee }}</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr class="table-success">
+                                <td><strong>Total Fee</strong></td>
+                                <td class="fw-bold fs-4">₹{{ registration.fee_structure.total_fee }}</td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                {% endif %}
+
+                {% if registration.foriegn_delegates %}
+                    <!-- Fee Details Foreign Table -->
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered">
+                            <thead class="">
+                            <tr>
+                                <th colspan="3" class="text-center">Fee Details</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><strong>Registration Fee</strong></td>
+                                <td>₹{{ registration.fee_structure.registration_fee }}</td>
+                                <td>{{ converted_rates.registration_fee_usd }} USD</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pre-conference Workshop Fee</strong></td>
+                                <td>₹{{ registration.fee_structure.pre_conference_workshop_fee }}</td>
+                                <td>{{ converted_rates.pre_conference_reg_fee_usd }} USD</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Accommodation Fee</strong></td>
+                                <td>₹{{ registration.fee_structure.accommodation_fee }}</td>
+                                <td>{{ converted_rates.accommodation_fee_usd }} USD</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr class="table-success">
+                                <td><strong>Total Fee</strong></td>
+                                <td class="fw-bold fs-4">₹{{ registration.fee_structure.total_fee }}</td>
+                                <td class="fw-bold fs-4">{{ converted_rates.total_fee_usd }} USD</td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                {% endif %}
+
 
                 <div class="text-center mt-4">
                     <a href="{% url 'initiate_payment' %}" class="btn btn-primary btn-lg w-100">Proceed to Payment</a>
