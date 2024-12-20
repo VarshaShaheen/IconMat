@@ -94,6 +94,7 @@ class Registration(models.Model):
 	email = models.EmailField()
 	contact_number = models.CharField(max_length=15)
 	affiliation_or_institution = models.CharField(max_length=100)
+	department = models.CharField(max_length=100)
 	designation = models.CharField(max_length=100)
 	country = models.CharField(max_length=50, choices=country_choices)
 	other_country = models.CharField(max_length=50, blank=True, null=True,

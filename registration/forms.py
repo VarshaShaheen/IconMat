@@ -7,7 +7,7 @@ from .models import Registration
 class BasicInfoForm(forms.ModelForm):
 	class Meta:
 		model = Registration
-		fields = ['title', 'first_name', 'last_name', 'email', 'contact_number', 'affiliation_or_institution',
+		fields = ['title', 'first_name', 'last_name', 'email', 'contact_number', 'affiliation_or_institution','department',
 		          'designation', 'country', 'other_country', 'category_of_participant', ]
 
 	def __init__(self, *args, **kwargs):
