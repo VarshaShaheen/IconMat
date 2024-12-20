@@ -173,7 +173,7 @@ def calculate_payment(registration):
 		if registration.category_of_participant == 'Student':
 			registration_fee = fee_details.registration_fee_indian_student_early
 			pre_conference_reg_fee = fee_details.pre_conference_registration_fee_indian_student_early
-		elif registration.category_of_participant == 'Faculty/Research Personnel' or registration.category_of_participant == 'Invited Speaker':
+		elif registration.category_of_participant == 'Faculty/Research Personnel/Post Doctoral Fellow' or registration.category_of_participant == 'Invited Speaker':
 			registration_fee = fee_details.registration_fee_indian_faculty_or_research_personal_early
 			pre_conference_reg_fee = fee_details.pre_conference_registration_fee_indian_faculty_or_research_personal_early
 		elif registration.category_of_participant == 'Industry':
@@ -188,7 +188,7 @@ def calculate_payment(registration):
 		if registration.category_of_participant == 'Student':
 			registration_fee = fee_details.registration_fee_indian_student_late
 			pre_conference_reg_fee = fee_details.pre_conference_registration_fee_indian_student_late
-		elif registration.category_of_participant == 'Faculty/Research Personnel' or registration.category_of_participant == 'Invited Speaker':
+		elif registration.category_of_participant == 'Faculty/Research Personnel/Post Doctoral Fellow' or registration.category_of_participant == 'Invited Speaker':
 			registration_fee = fee_details.registration_fee_indian_faculty_or_research_personal_late
 			pre_conference_reg_fee = fee_details.pre_conference_registration_fee_indian_faculty_or_research_personal_late
 		elif registration.category_of_participant == 'Industry':
@@ -203,7 +203,7 @@ def calculate_payment(registration):
 		if registration.category_of_participant == 'Student':
 			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_student_early)
 			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_student_early)
-		elif registration.category_of_participant == 'Faculty/Research Personnel' or registration.category_of_participant == 'Invited Speaker':
+		elif registration.category_of_participant == 'Faculty/Research Personnel/Post Doctoral Fellow' or registration.category_of_participant == 'Invited Speaker':
 			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_faculty_or_research_personal_early)
 			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_faculty_or_research_personal_early)
 		elif registration.category_of_participant == 'Industry':
@@ -217,7 +217,7 @@ def calculate_payment(registration):
 		if registration.category_of_participant == 'Student':
 			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_student_late)
 			pre_conference_reg_fee =  usd_to_inr(fee_details.pre_conference_registration_fee_foreign_student_late)
-		elif registration.category_of_participant == 'Faculty/Research Personnel' or registration.category_of_participant == 'Invited Speaker':
+		elif registration.category_of_participant == 'Faculty/Research Personnel/Post Doctoral Fellow' or registration.category_of_participant == 'Invited Speaker':
 			registration_fee = usd_to_inr(fee_details.registration_fee_foreign_faculty_or_research_personal_late)
 			pre_conference_reg_fee = usd_to_inr(fee_details.pre_conference_registration_fee_foreign_faculty_or_research_personal_late)
 		elif registration.category_of_participant == 'Industry':
@@ -231,7 +231,7 @@ def calculate_payment(registration):
 		if registration.category_of_participant == 'Student' and registration.accommodation_preference == 'Single Room':
 			accommodation_fee = usd_to_inr(fee_details.accommodation_foreign_student_single)
 		elif (
-				registration.category_of_participant == 'Faculty/Research Personnel' or registration.category_of_participant == 'Invited Speaker') and (
+				registration.category_of_participant == 'Faculty/Research Personnel/Post Doctoral Fellow' or registration.category_of_participant == 'Invited Speaker') and (
 				registration.accommodation_preference == 'Single Room'):
 			accommodation_fee = usd_to_inr(fee_details.accommodation_foreign_faculty_or_research_personal_single)
 		elif registration.category_of_participant == 'Industry' and registration.accommodation_preference == 'Single Room':
@@ -240,7 +240,7 @@ def calculate_payment(registration):
 		if registration.category_of_participant == 'Student' and registration.accommodation_preference == 'Shared Room':
 			accommodation_fee = usd_to_inr(fee_details.accommodation_foreign_student_shared)
 		elif (
-				registration.category_of_participant == 'Faculty/Research Personnel' or registration.category_of_participant == 'Invited Speaker') and (
+				registration.category_of_participant == 'Faculty/Research Personnel/Post Doctoral Fellow' or registration.category_of_participant == 'Invited Speaker') and (
 				registration.accommodation_preference == 'Shared Room'):
 			accommodation_fee = usd_to_inr(fee_details.accommodation_foreign_faculty_or_research_personal_shared)
 		elif registration.category_of_participant == 'Industry' and registration.accommodation_preference == 'Shared Room':
