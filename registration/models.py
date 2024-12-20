@@ -84,7 +84,7 @@ class Registration(models.Model):
 	category_choices = [('Invited Speaker', 'Invited Speaker'),
 	                    ('Faculty/Research Personnel/Post Doctoral Fellow', 'Faculty/Research Personnel/Post Doctoral Fellow'), ('Student', 'Student'),
 	                    ('Industry', 'Industry'), ]
-	accommodation_choices = [('Single Room', 'Single Room'),
+	accommodation_choices = [('Single Room', 'Accommodation Required'),
 	                         ('No Accommodation Required', 'No Accommodation Required'), ]
 
 	user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
