@@ -148,11 +148,15 @@ def process_payment(request):
 			if response_code == 'E000':  # Payment Success
 				payment.registration.registration_completed = True
 				payment.registration.save()
+				payment.registration.send_email('Registration Completed',
+				                        f'Your registration has been completed successfully. Your registration Id: {payment.registration.reg_id}')
 				return redirect('registration_completed_ref_no', ref_no_2)
+
 			else:  # Payment Failed
 				payment.registration.registration_completed = False
 				payment.registration.save()
-
+				payment.registration.send_email('Registration Failed',
+				                        f'Your registration has failed. Please try again. Your payment reference number is {payment.ref_no}')
 				print("Payment failed")
 				return redirect('registration_failed', ref_no_2)
 

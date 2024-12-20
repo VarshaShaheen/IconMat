@@ -148,9 +148,6 @@ def registration_completed(request, pay_ref_no=None):
 	context = {'registration': registration,
 	           'payment'     : payment, }
 
-	# send email
-	registration.send_email('Registration Completed', f'Your registration has been completed successfully. Your registration Id: {registration.reg_id}')
-	# make event ticket
 	if registration.registration_completed:
 		return render(request, 'registration/registration_completed.html', context)
 	else:
@@ -160,8 +157,6 @@ def registration_completed(request, pay_ref_no=None):
 def registration_failed(request, pay_ref_no):
 	registration, created = Registration.objects.get_or_create(user=request.user)
 	payment = get_object_or_404(Payment, ref_no=pay_ref_no)
-	registration.send_email('Registration Failed', f'Your registration has failed. Please try again your payment reference number is {pay_ref_no}')
-
 	context = {'registration': registration,
 	           'payment'     : payment, }
 	return render(request, 'registration/registration_failed.html', context)
