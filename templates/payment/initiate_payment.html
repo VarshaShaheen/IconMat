@@ -25,10 +25,12 @@
                         <td class="text-end fs-5 fw-bold">
                             ₹{{ registration.fee_structure.pre_conference_workshop_fee }}</td>
                     </tr>
-                    <tr>
-                        <td class="text-start"><strong>Accommodation Fee</strong></td>
-                        <td class="text-end fs-5 fw-bold">₹{{ registration.fee_structure.accommodation_fee }}</td>
-                    </tr>
+                    {% if registration.foriegn_delegates %}
+                        <tr>
+                            <td class="text-start"><strong>Accommodation Fee</strong></td>
+                            <td class="text-end fs-5 fw-bold">₹{{ registration.fee_structure.accommodation_fee }}</td>
+                        </tr>
+                    {% endif %}
                     </tbody>
                     <tfoot>
                     <tr class="table-success">

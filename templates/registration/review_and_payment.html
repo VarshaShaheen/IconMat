@@ -10,7 +10,7 @@
         <div class="row justify-content-center mb-5">
             <div class="col-md-10 col-lg-8">
                 <h2 class="text-center mb-4">Review and Payment</h2>
-            
+
                 <!-- Personal Information Table -->
                 <div class="table-responsive mb-4">
                     <table class="table table-bordered">
@@ -104,23 +104,24 @@
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Accommodation Preferences Table -->
-                <div class="table-responsive mb-4">
-                    <table class="table table-bordered">
-                        <thead class="">
-                        <tr>
-                            <th colspan="2" class="text-center">Accommodation Preferences</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><strong>Accommodation Preference</strong></td>
-                            <td>{{ registration.accommodation_preference }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                {% if registration.foriegn_delegates %}
+                    <!-- Accommodation Preferences Table -->
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered">
+                            <thead class="">
+                            <tr>
+                                <th colspan="2" class="text-center">Accommodation Preferences</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><strong>Accommodation Preference</strong></td>
+                                <td>{{ registration.accommodation_preference }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
 
                 <!-- Fee Details Table -->
                 <div class="table-responsive mb-4">
@@ -139,10 +140,12 @@
                             <td><strong>Pre-conference Workshop Fee</strong></td>
                             <td>₹{{ registration.fee_structure.pre_conference_workshop_fee }}</td>
                         </tr>
+                        {% if registration.foriegn_delegates %}
                         <tr>
                             <td><strong>Accommodation Fee</strong></td>
                             <td>₹{{ registration.fee_structure.accommodation_fee }}</td>
                         </tr>
+                        {% endif %}
                         </tbody>
                         <tfoot>
                         <tr class="table-success">
