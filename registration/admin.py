@@ -1,12 +1,17 @@
 from django.contrib import admin
 from .models import Registration, FeeDetails, FeeStructure
-
+from import_export import resources
+from import_export.admin import ExportMixin
 
 # Register your models here.
 
 
+class RegistrationResource(resources.ModelResource):
+	class Meta:
+		model = Registration
+
 @admin.register(Registration)
-class RegistrationAdmin(admin.ModelAdmin):
+class RegistrationAdmin(ExportMixin,admin.ModelAdmin):
 	list_display = ['title', 'first_name', 'last_name', 'email', 'contact_number', 'affiliation_or_institution', 'designation', 'country', 'category_of_participant', 'registration_completed', 'created_at']
 	search_fields = ['title', 'first_name', 'last_name', 'email', 'contact_number', 'affiliation_or_institution', 'designation', 'country', 'category_of_participant']
 	list_filter = ['country', 'category_of_participant', 'registration_completed']
@@ -16,6 +21,7 @@ class RegistrationAdmin(admin.ModelAdmin):
 	date_hierarchy = 'created_at'
 	ordering = ['-created_at']
 	# actions = ['mark_as_completed']
+	resource_classes = [RegistrationResource]
 
 	# def mark_as_completed(self, request, queryset):
 	# 	queryset.update(registration_completed=True)
