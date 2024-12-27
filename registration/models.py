@@ -67,9 +67,10 @@ class FeeStructure(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 
 	def total_fee(self):
-		return (self.registration_fee if self.registration_fee else 0) + (
+		return float(round((self.registration_fee if self.registration_fee else 0) + (
 			self.pre_conference_workshop_fee if self.pre_conference_workshop_fee else 0) + (
-			self.accommodation_fee if self.accommodation_fee else 0) + (self.other_fee if self.other_fee else 0)
+			                   self.accommodation_fee if self.accommodation_fee else 0) + (
+			                   self.other_fee if self.other_fee else 0), 2))
 
 	class Meta:
 		ordering = ('-created_at',)
@@ -82,7 +83,8 @@ class Registration(models.Model):
 	title_choices = [('Prof', 'Prof'), ('Dr', 'Dr'), ('Mr', 'Mr'), ('Ms', 'Ms'), ]
 	country_choices = [('India', 'India'), ('Other', 'Other'), ]
 	category_choices = [('Invited Speaker', 'Invited Speaker'),
-	                    ('Faculty/Research Personnel/Post Doctoral Fellow', 'Faculty/Research Personnel/Post Doctoral Fellow'), ('Student', 'Student'),
+	                    ('Faculty/Research Personnel/Post Doctoral Fellow',
+	                     'Faculty/Research Personnel/Post Doctoral Fellow'), ('Student', 'Student'),
 	                    ('Industry', 'Industry'), ]
 	accommodation_choices = [('Single Room', 'Accommodation Required'),
 	                         ('No Accommodation Required', 'No Accommodation Required'), ]
@@ -137,15 +139,13 @@ class Registration(models.Model):
 		# last 10 digits of the mobile number
 		return self.contact_number[-10:]
 
-
 	def send_email(self, subject, content):
 		context = {
-			'subject'     : subject,
-			'content'     :content,
-			'user_name'   : self.full_name,
+			'subject'  : subject,
+			'content'  : content,
+			'user_name': self.full_name,
 		}
 		threading.Thread(target=send_html_email, args=(context['subject'], self.user.email, context)).start()
-
 
 
 @receiver(pre_save, sender=Registration)
