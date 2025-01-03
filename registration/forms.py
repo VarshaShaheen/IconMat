@@ -7,9 +7,11 @@ from .models import Registration
 class BasicInfoForm(forms.ModelForm):
 	class Meta:
 		model = Registration
-		fields = ['title', 'first_name', 'last_name', 'email', 'contact_number', 'affiliation_or_institution','department',
+		fields = ['title', 'first_name', 'last_name', 'email', 'contact_number', 'affiliation_or_institution','cusat_student','department',
 		          'designation', 'country', 'other_country', 'category_of_participant', ]
-
+		help_texts = {
+			'cusat_student': 'Are you a student of CUSAT (Cochin University of Science and Technology.)',
+		}
 	def __init__(self, *args, **kwargs):
 		instance = kwargs.get('instance')
 		super().__init__(*args, **kwargs)

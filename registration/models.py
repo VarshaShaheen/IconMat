@@ -58,6 +58,8 @@ class FeeDetails(models.Model):
 	accommodation_foreign_faculty_or_research_personal_shared = models.FloatField(blank=True, null=True)
 	accommodation_foreign_industry_shared = models.FloatField(blank=True, null=True)
 
+	registration_fee_cusat_student = models.FloatField(blank=True, null=True)
+
 
 class FeeStructure(models.Model):
 	registration_fee = models.FloatField(blank=True, null=True)
@@ -113,6 +115,7 @@ class Registration(models.Model):
 	fee_structure = models.ForeignKey(FeeStructure, on_delete=models.CASCADE, blank=True, null=True)
 
 	registration_completed = models.BooleanField(default=False)
+	cusat_student = models.BooleanField(default=False)
 	created_at = models.DateTimeField(auto_now_add=True)
 	reg_id = models.CharField(max_length=100, blank=True, null=True)
 
