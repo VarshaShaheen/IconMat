@@ -59,3 +59,29 @@ class PaperAbstract(models.Model):
 			'mode_of_presentation': self.mode_of_presentation,
 		}
 		threading.Thread(target=send_html_email, args=(context['subject'], self.user.email, context)).start()
+
+
+
+class FullPaper(models.Model):
+	user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+	abstract = models.ForeignKey('abstract.PaperAbstract', on_delete=models.CASCADE)
+	title_of_manuscript = models.CharField(max_length=500)
+	institution = models.CharField(max_length=100, default='')
+	manuscript = models.FileField(upload_to='full-papers')
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
+
+	def __str__(self):
+		return self.title_of_manuscript
+
+	def send_email(self):
+		context = {
+			'subject'     : 'Full Paper Submitted',
+			'content'     : f"Full Paper {self.title_of_manuscript}, Submitted  by {self.user.first_name} {self.user.email} use the link to download the file https://iconmat2025.cusat.ac.in{self.manuscript.url} ",
+			'user_name'   : self.user.first_name,
+			'file'        : self.manuscript,
+			'created_at'  : self.created_at,
+			'updated_at'  : self.updated_at,
+			# 'mode_of_presentation': self.mode_of_presentation,
+		}
+		threading.Thread(target=send_html_email, args=(context['subject'], self.user.email, context)).start()

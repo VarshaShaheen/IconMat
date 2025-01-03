@@ -1,4 +1,4 @@
-from .models import PaperAbstract
+from .models import PaperAbstract, FullPaper
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ExportMixin
@@ -28,6 +28,12 @@ class PaperResource(resources.ModelResource):
 		          'designation', 'organization', 'symposia', 'abstract', 'mode_of_presentation']
 
 
+class FullPaperResource(resources.ModelResource):
+	class Meta:
+		model = FullPaper
+		# fields = ['title', 'name', 'phone_number', 'user_email', 'title_of_abstract',
+		#           'designation', 'organization', 'symposia', 'abstract', 'mode_of_presentation']
+
 
 @admin.register(PaperAbstract)
 class PaperAbstractAdmin(ExportMixin,admin.ModelAdmin):
@@ -41,3 +47,9 @@ class PaperAbstractAdmin(ExportMixin,admin.ModelAdmin):
 
 	user_email.short_description = "User Email"
 
+@admin.register(FullPaper)
+class FullPaperAdmin(ExportMixin,admin.ModelAdmin):
+	list_display = ['user', 'abstract','institution','title_of_manuscript','manuscript']
+	list_filter = ['user', 'abstract','institution','title_of_manuscript','manuscript']
+	search_fields = ['user', 'abstract','institution','title_of_manuscript','manuscript']
+	resource_classes = [FullPaperResource]
