@@ -1,8 +1,10 @@
+from django import forms
 from django.forms import ModelForm
 from .models import PaperAbstract, FullPaper
 
 
 class PaperAbstractForm(ModelForm):
+	mode_of_presentation = forms.ChoiceField(choices=[('poster', 'Poster Presentation')],initial='poster')
 	class Meta:
 		model = PaperAbstract
 		fields = ['title', 'name', 'designation', 'phone_number', 'title_of_abstract', 'organization', 'symposia',
