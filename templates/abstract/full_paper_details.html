@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Header Section -->
+    <section
+            style="background-image: url('{% static 'img/cusat_adm.jpg' %}'); background-size: cover; background-position: center; height: 500px; display: flex; align-items: center; justify-content: center; color: #fff; text-align: center;">
+    </section>
+
+    <!-- Abstract Detail Section -->
+    <section class="container my-5">
+        <div class="section-header text-center mb-5">
+            <h2 class="font-weight-bold display-4">Full Paper Submission</h2>
+        </div>
+
+        <div class="row">
+            <!-- Left Side (Images) -->
+            <div class="col-md-6 d-flex flex-column">
+                <div class="d-flex justify-content-between">
+                    <img src="{% static 'img/paper_template_1.png' %}" alt="Paper Template 1"
+                         class="border img-fluid" style="width: 48%; border-radius: 10px;">
+                    <img src="{% static 'img/paper_template_2.png' %}" alt="Paper Template 2"
+                         class="border img-fluid" style="width: 48%; border-radius: 10px;">
+                </div>
+            </div>
+
+            <!-- Right Side (Description and Button) -->
+            <div class="col-md-6 d-flex flex-column">
+                <h4 class="font-weight-bold">Submit Your Research Paper</h4>
+                <p>Submit your research paper here. Please follow the template guidelines for formatting and
+                    submission.</p>
+
+                <!-- Submission Dates Box -->
+                <div class="mt-3">
+                    <ul>
+                        <li>Peer-reviewed papers will be published in <strong>SCOPUS Indexed Proceedings</strong>.</li>
+                        <li>Selected papers will be published in <strong>Elsevier - Current Applied Physics (IF:
+                            2.4).</strong></li>
+                        <li>Awards for Best Oral, Flash, and Poster Presentations.</li>
+                    </ul>
+                    <small class="text-danger">*Publication charges applicable if necessary.</small>
+
+                    <div class="text-center mt-3">
+                        <img src="{% static 'img/current_applied_phy.jpg' %}" alt="Current Applied Physics Journal"
+                             class="img-fluid" style="max-height: 300px;">
+                    </div>
+                </div>
+
+                <!-- Download and Submit Links -->
+                <a class="mt-3" target="_blank" href="{% static 'files/full_paper_template.docm' %}">
+                    Download Paper Template
+                </a>
+                <a class="btn btn-danger btn-sm mt-3 align-self-start" target="_blank"
+                   href="{% url 'full_paper_submission' %}">
+                    Submit Paper
+                </a>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}
+
