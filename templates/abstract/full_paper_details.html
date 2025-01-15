@@ -2,70 +2,61 @@
 {% load static %}
 
 {% block content %}
-    <!-- Header Section -->
-    <section
-            style="background-image: url('{% static 'img/cusat_adm.jpg' %}'); background-size: cover; background-position: center; height: 500px; display: flex; align-items: center; justify-content: center; color: #fff; text-align: center;">
-    </section>
+  <!-- Header Section -->
+  <section style="background-image: url('{% static 'img/cusat_adm.jpg' %}'); background-size: cover; background-position: center; height: 500px; display: flex; align-items: center; justify-content: center; color: #fff; text-align: center;"></section>
 
-    <!-- Abstract Detail Section -->
-    <section class="container my-5">
-        <div class="section-header text-center mb-5">
-            <h2 class="font-weight-bold display-4">Full Paper Submission</h2>
+  <!-- Abstract Detail Section -->
+  <section class="container my-5">
+    <div class="section-header text-center mb-5">
+      <h2 class="font-weight-bold display-4">Full Paper Submission</h2>
+    </div>
+
+    <div class="row">
+      <!-- Left Side (Images) -->
+      <div class="col-md-6 d-flex flex-column">
+        <div class="d-flex justify-content-between">
+          <img src="{% static 'img/paper_template_1.png' %}" alt="Paper Template 1" class="border img-fluid" style="width: 48%; border-radius: 10px;" />
+          <img src="{% static 'img/paper_template_2.png' %}" alt="Paper Template 2" class="border img-fluid" style="width: 48%; border-radius: 10px;" />
+        </div>
+      </div>
+
+      <!-- Right Side (Description and Button) -->
+      <div class="col-md-6 d-flex flex-column">
+        <h4 class="font-weight-bold">Submit Your Research Paper</h4>
+        <p>Submit your research paper here. Please follow the template guidelines for formatting and submission.</p>
+
+        <!-- Submission Dates Box -->
+        <div class="mt-3">
+          <ul>
+            <li>
+              The selected papers meeting the required quality standards will be considered for publication in<strong>Elsevier – Current Applied Physics journal</strong>after peer review process.
+            </li>
+            <li>
+              All remaining accepted papers will be published in<strong>Springer conference proceedings.</strong>
+            </li>
+            <li>
+              The deadline for submission of the full paper is <strong>February 6, 2025</strong>
+            </li>
+            <li>
+              Full papers must be submitted only in word document (Not pdf or LaTeX), template as given in the above springer website. Download the template <a class="mt-3" target="_blank" href="{% static 'files/full_paper_template.docm' %}">here</a>.
+              </li>
+            <li>
+              For more details please visit the <a href="https://www.springer.com/gp/authors-editors/conference-proceedings/conference-proceedings-guidelines">springer website</a>
+            </li>
+          </ul>
+
+          <div class="text-center d-flex flex-column align-items-center mt-3">
+            <img src="{% static 'img/springer.png' %}" alt="Springer Logo" class="img-fluid mb-3" style="max-height: 300px;" />
+            <img src="{% static 'img/current_applied_phy.jpg' %}" alt="Current Applied Physics Journal" class="img-fluid" style="max-height: 300px;" />
+          </div>
         </div>
 
-        <div class="row">
-            <!-- Left Side (Images) -->
-            <div class="col-md-6 d-flex flex-column">
-                <div class="d-flex justify-content-between">
-                    <img src="{% static 'img/paper_template_1.png' %}" alt="Paper Template 1"
-                         class="border img-fluid" style="width: 48%; border-radius: 10px;">
-                    <img src="{% static 'img/paper_template_2.png' %}" alt="Paper Template 2"
-                         class="border img-fluid" style="width: 48%; border-radius: 10px;">
-                </div>
-            </div>
-
-            <!-- Right Side (Description and Button) -->
-            <div class="col-md-6 d-flex flex-column">
-                <h4 class="font-weight-bold">Submit Your Research Paper</h4>
-                <p>Submit your research paper here. Please follow the template guidelines for formatting and
-                    submission.</p>
-
-                <!-- Submission Dates Box -->
-                <div class="mt-3">
-                    <ul>
-                        <li>The selected papers meeting the required quality standards will be considered for
-                            publication in<strong> Elsevier – Current Applied Physics journal </strong>after peer review
-                            process.
-                        </li>
-                        <li>All remaining accepted papers will be published in<strong> Springer conference proceedings.
-                        </strong></li>
-                        <li>The deadline for submission of the full paper is <strong>February 6, 2025 </strong></li>
-                        <li> For more details please visit the <a href="https://www.springer.com/gp/authors-editors/conference-proceedings/conference-proceedings-guidelines">springer website</a></li>
-                    </ul>
-
-                    <div class="text-center d-flex flex-column align-items-center mt-3">
-                        <img src="{% static 'img/springer.png' %}" alt="Springer Logo"
-                             class="img-fluid mb-3" style="max-height: 300px;">
-                        <img src="{% static 'img/current_applied_phy.jpg' %}" alt="Current Applied Physics Journal"
-                             class="img-fluid" style="max-height: 300px;">
-                    </div>
-
-                </div>
-
-                <div class="d-flex flex-column align-items-center justify-content-center ">
-
-                <!-- Download and Submit Links -->
-                <a class="mt-3" target="_blank" href="{% static 'files/full_paper_template.docm' %}">
-                    Download Paper Template
-                </a>
-                <a class="btn btn-danger btn-sm mt-3" target="_blank"
-                   href="{% url 'full_paper_submission' %}">
-                    Submit Paper
-                </a>
-                    </div>
-            </div>
+        <div class="d-flex flex-column align-items-center justify-content-center">
+          <!-- Download and Submit Links -->
+          <a class="mt-3" target="_blank" href="{% static 'files/full_paper_template.docm' %}">Download Paper Template</a>
+          <a class="btn btn-danger btn-sm mt-3" target="_blank" href="{% url 'full_paper_submission' %}">Submit Paper</a>
         </div>
-
-    </section>
+      </div>
+    </div>
+  </section>
 {% endblock %}
-
