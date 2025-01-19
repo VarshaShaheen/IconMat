@@ -2,6 +2,8 @@ from django.contrib import admin
 
 from payment.models import Payment
 
-# Register your models here.
 
-admin.site.register(Payment)
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ['user__first_name', 'fee_structure', 'status_code', 'ref_no', 'date']
+    search_fields = ['user__first_name', 'ref_no']
