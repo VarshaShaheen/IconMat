@@ -14,6 +14,7 @@ admin.site.register(LocalOrganisingCommittiee)
 admin.site.register(Notification)
 admin.site.register(Dates)
 admin.site.register(TouristAttraction)
+admin.site.register(Sponsor)
 
 
 @admin.register(Settings)

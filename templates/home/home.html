@@ -34,8 +34,10 @@
                 </div>
             </section>
             <div class="text-center fw-bold mt-5">
-                <a href="{% static 'files/icONMAT_Brochure.pdf' %}" target="_blank" class="btn btn-sm btn-danger text-white">Download Bochure</a>
-                <a href="{% static 'files/icONMAT_flyerA3.pdf' %}" target="_blank" class="btn btn-sm btn-danger text-white">Download Flyer</a>
+                <a href="{% static 'files/icONMAT_Brochure.pdf' %}" target="_blank"
+                   class="btn btn-sm btn-danger text-white">Download Bochure</a>
+                <a href="{% static 'files/icONMAT_flyerA3.pdf' %}" target="_blank"
+                   class="btn btn-sm btn-danger text-white">Download Flyer</a>
             </div>
             <!-- Countdown Section -->
 
@@ -95,6 +97,30 @@
                         developments in the field.
                     </p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sponsor" class="py-5">
+        <div class="container">
+            <div class="section-header text-center mb-4">
+                <h2 class="font-weight-bold display-4">Our Sponsors</h2>
+            </div>
+            <div class="row">
+                {% for spo in sponsors %}
+                    <div class="col-lg-4 col-md-6 mb-4 d-flex">
+                        <div class="card w-100 d-flex flex-column position-relative">
+                            {% if spo.logo %}
+                                <div class="image-container">
+                                    <img src="{{ spo.logo.url }}" class="card-img-top" alt="{{ syn.name }}">
+                                </div>
+                            {% endif %}
+                            <div class="text-center card-body d-flex flex-column">
+                                <h5 class="card-title fw-bold">{{ spo.name }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </section>

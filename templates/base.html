@@ -107,6 +107,8 @@
                 </li>
                 <li class="{% if request.path == '/paper/fullpaper_details/' %}menu-active{% endif %}"><a
                         href="{% url 'full_paper_details' %}">Submit Full Paper</a>
+                </li><li><a
+                        href="{% static 'files/accommodation.pdf' %}">Accommodation</a>
                 </li>
                 {% if user.is_authenticated %}
                     <li class="{% if request.path == '/accounts/logout/' %}menu-active{% endif %}"><a

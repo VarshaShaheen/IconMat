@@ -148,3 +148,12 @@ class TouristAttraction(models.Model):
 	def __str__(self):
 		return self.title
 
+
+
+class Sponsor(models.Model):
+	name = models.CharField(max_length=100, null=True, blank=True)
+	description = models.CharField(max_length=500, null=True, blank=True,default="")
+	logo = models.ImageField(upload_to='sponsor', null=True, blank=True)
+
+	def __str__(self):
+		return self.name
