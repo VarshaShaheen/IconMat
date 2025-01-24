@@ -114,8 +114,10 @@ def review_and_payment(request):
 	registration, created = Registration.objects.get_or_create(user=request.user)
 	if not registration.registration_completed:
 		registration_fee, pre_conference_reg_fee, accommodation_fee = calculate_payment(registration)
-		if registration.cusat_student:
-			registration_fee = FeeDetails.objects.first().registration_fee_cusat_student
+		if registration.cusat_msc_student:
+			registration_fee = FeeDetails.objects.first().registration_fee_cusat_msc_student
+		if registration.cusat_research_scholar:
+			registration_fee = FeeDetails.objects.first().registration_fee_cusat_research_scholar
 		if registration.fee_structure:
 			print("Updating Fee Structure", registration.fee_structure)
 			# Update the existing FeeStructure

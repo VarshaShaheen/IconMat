@@ -60,6 +60,9 @@ class FeeDetails(models.Model):
 
 	registration_fee_cusat_student = models.FloatField(blank=True, null=True)
 
+	registration_fee_cusat_msc_student = models.FloatField(blank=True, null=True)
+	registration_fee_cusat_research_scholar = models.FloatField(blank=True, null=True)
+
 
 class FeeStructure(models.Model):
 	registration_fee = models.FloatField(blank=True, null=True)
@@ -115,6 +118,9 @@ class Registration(models.Model):
 	fee_structure = models.ForeignKey(FeeStructure, on_delete=models.CASCADE, blank=True, null=True)
 
 	registration_completed = models.BooleanField(default=False)
+	cusat_student = models.BooleanField(default=False)
+	cusat_msc_student = models.BooleanField(default=False)
+	cusat_research_scholar = models.BooleanField(default=False)
 	cusat_student = models.BooleanField(default=False)
 	created_at = models.DateTimeField(auto_now_add=True)
 	reg_id = models.CharField(max_length=100, blank=True, null=True)

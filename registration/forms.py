@@ -7,10 +7,11 @@ from .models import Registration
 class BasicInfoForm(forms.ModelForm):
 	class Meta:
 		model = Registration
-		fields = ['title', 'first_name', 'last_name', 'email', 'contact_number', 'affiliation_or_institution','cusat_student','department',
+		fields = ['title', 'first_name', 'last_name', 'email', 'contact_number', 'affiliation_or_institution','cusat_msc_student','cusat_research_scholar','department',
 		          'designation', 'country', 'other_country', 'category_of_participant', ]
 		help_texts = {
-			'cusat_student': 'Are you a student of CUSAT (Cochin University of Science and Technology.)',
+			'cusat_msc_student': 'Are you a MSC student of CUSAT (Cochin University of Science and Technology.)',
+			'cusat_research_scholar': 'Are you a  Research Scholar of CUSAT (Cochin University of Science and Technology.)',
 		}
 	def __init__(self, *args, **kwargs):
 		instance = kwargs.get('instance')
@@ -20,6 +21,18 @@ class BasicInfoForm(forms.ModelForm):
 			self.initial['first_name'] = instance.user.first_name.split(' ')[0]
 			self.initial['last_name'] = " ".join(instance.user.first_name.split(' ')[1:]) if len(instance.user.first_name.split(' ')) > 1 else ''
 			self.initial['email'] = instance.user.email
+
+	def clean(self):
+		cleaned_data = super().clean()
+		cusat_msc_student = cleaned_data.get('cusat_msc_student')
+		cusat_research_scholar = cleaned_data.get('cusat_research_scholar')
+
+		if cusat_msc_student and cusat_research_scholar:
+			raise forms.ValidationError(
+				"Both 'CUSAT MSc Student' and 'CUSAT Research Scholar' cannot be selected at the same time. Please select only one."
+			)
+
+		return cleaned_data
 
 
 class ConferenceInfoForm(forms.ModelForm):
