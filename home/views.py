@@ -1,10 +1,28 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from collections import defaultdict
+
 
 from .models import *
 
 
 def home(request):
+    sponsors = Sponsor.objects.all()
+    sponsors_by_category = {
+        "GVT FND": [],
+        "GOLD": [],
+        "SILVER": [],
+    }
+
+    # Group sponsors into categories
+    for sponsor in sponsors:
+        sponsors_by_category.setdefault(sponsor.category, []).append(sponsor)
+
+    # Include other categories if necessary
+    sponsors_by_category["OTHER"] = [
+        s for s in sponsors if s.category not in sponsors_by_category
+    ]
+
     context = {'chairs': People.objects.filter(designation='Conference Chair').order_by('priority'),
                'patrons': People.objects.filter(designation='Conference Patron').order_by('priority'),
                'speakers': Speaker.objects.all().order_by('priority'),
@@ -14,7 +32,7 @@ def home(request):
                'carousel_images': Carousel.objects.all(),
                'programs': Program.objects.all(),
                'dates': Dates.objects.last(),
-               'sponsors': Sponsor.objects.all().order_by('-id')
+               'sponsors_by_category': dict(sponsors_by_category)
                }
     return render(request, 'home/home.html', context)
 

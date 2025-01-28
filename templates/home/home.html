@@ -106,25 +106,43 @@
             <div class="section-header text-center mb-4">
                 <h2 class="font-weight-bold display-4">Our Sponsors</h2>
             </div>
-            <div class="row">
-                {% for spo in sponsors %}
-                    <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                        <div class="card w-100 d-flex flex-column position-relative">
-                            {% if spo.logo %}
-                                <div class="image-container">
-                                    <img src="{{ spo.logo.url }}" class="card-img-top" alt="{{ syn.name }}">
+
+            {% for category, sponsors in sponsors_by_category.items %}
+                {% if sponsors %}
+                    <div class="category-section my-5">
+                        {% if category == "GVT FND" %}
+                            <h3 class="text-center fw-bold ">Supported By</h3>
+                        {% elif category == "GOLD" %}
+                            <h3 class="text-center fw-bold ">Gold Sponsors</h3>
+                        {% elif category == "SILVER" %}
+                            <h3 class="text-center fw-bold ">Silver Sponsors</h3>
+                        {% else %}
+                            <h3 class="text-center fw-bold font-weight-bold">{{ category }}</h3>
+                        {% endif %}
+
+                        <div class="row mt-4">
+                            {% for spo in sponsors %}
+                                <div class="col-lg-4 col-md-6 mb-4 d-flex">
+                                    <div class="card w-100 d-flex flex-column position-relative border-0">
+                                        {% if spo.logo %}
+                                            <div class="image-container border-0">
+                                                <img
+                                                        src="{{ spo.logo.url }}"
+                                                        class="card-img-top img-fluid"
+                                                        alt="{{ spo.name }}"
+                                                        style="max-height: 100px; width: auto; max-width: 100%; margin: 0 auto; display: block;"
+                                                >
+                                            </div>
+                                        {% endif %}
+                                    </div>
                                 </div>
-                            {% endif %}
-                            <div class="text-center card-body d-flex flex-column">
-                                <h5 class="card-title fw-bold">{{ spo.name }}</h5>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
-                {% endfor %}
-            </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </section>
-
     <section id="synopsys" class="py-5">
         <div class="container">
             <div class="section-header text-center mb-4">
