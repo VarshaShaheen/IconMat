@@ -2,11 +2,14 @@ from django.contrib import admin
 from .models import Registration, FeeDetails, FeeStructure
 from import_export import resources
 from import_export.admin import ExportMixin
+from import_export import resources, fields
+from import_export.widgets import CharWidget
 
 # Register your models here.
 
 
 class RegistrationResource(resources.ModelResource):
+	fee_structure = fields.Field(attribute='fee_structure', column_name='Fee Structure', widget=CharWidget())
 	class Meta:
 		model = Registration
 
