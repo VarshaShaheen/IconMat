@@ -1,9 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <section id="programs" class="d-flex align-items-center justify-content-center min-vh-100 bg-light" style="min-height: 600px">
-        <div class="section-header container text-center">
-            <h3 class="font-weight-bold">This page will be updated soon</h3>
+<section id="programs" class="d-flex align-items-center justify-content-center min-vh-100 mt-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h2 class="fw-bold">Programs</h2>
+            <p class="text-muted">Explore available templates and resources.</p>
         </div>
-    </section>
+
+        <!-- Card Grid -->
+        <div class="row row-cols-1 row-cols-md-3 g-4 text-start">
+            <div class="col">
+                <div class="card h-100 border-1 rounded-sm">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h4 class="card-title">Poster Template</h4>
+                        <p class="card-text mb-4 text-muted">Get a professionally designed poster template to elevate your visuals.</p>
+                        <a href="{% static 'files/poster_template.pptx' %}" class="btn btn-sm btn-outline-danger w-100">Download Template</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
