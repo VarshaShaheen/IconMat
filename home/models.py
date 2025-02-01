@@ -163,3 +163,14 @@ class Sponsor(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class TechnicalSession(models.Model):
+    name = models.CharField(max_length=100)
+    message = models.TextField(default='Not Provided', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='speakers', null=True, blank=True)
+    priority = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name

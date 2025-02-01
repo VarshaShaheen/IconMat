@@ -8,6 +8,8 @@ admin.site.register(People)
 admin.site.register(Symposia)
 admin.site.register(Program)
 admin.site.register(Speaker)
+admin.site.register(TechnicalSession)
+
 admin.site.register(Social)
 admin.site.register(AdvisoryCommittee)
 admin.site.register(LocalOrganisingCommittiee)

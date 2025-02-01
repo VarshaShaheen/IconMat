@@ -44,7 +44,8 @@ def symposia_list(request):
 
 def speakers(request):
     speakers = Speaker.objects.all().order_by('priority')
-    return render(request, 'home/speakers.html', {'speakers': speakers})
+    tech_session = TechnicalSession.objects.all().order_by('priority')
+    return render(request, 'home/speakers.html', {'speakers': speakers, 'tech_session': tech_session})
 
 
 def programs(request):
