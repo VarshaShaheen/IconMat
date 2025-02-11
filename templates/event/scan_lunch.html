@@ -5,6 +5,8 @@
 {% block content %}
 <div class="container">
     <h4 class="text-center my-4 text-muted">Lunch Check-In (QR Scan)</h4>
+    <!-- Message display area -->
+    <div id="check-in-message" class="mt-4 text-center"></div>
 
     <!-- QR Code Scanner Container -->
     <div id="qr-reader" style="width:100%; max-width:400px; margin:0 auto;"></div>
@@ -15,8 +17,7 @@
         <input type="hidden" name="qr_code_data" id="qr_code_data">
     </form>
 
-    <!-- Message display area -->
-    <div id="check-in-message" class="mt-4 text-center"></div>
+
 </div>
 
 <!-- Include html5-qrcode library -->
@@ -47,12 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             checkInMessage.textContent = data.message;
-            checkInMessage.className = `alert ${data.status === 'success' ? 'alert-success' : 'alert-danger'}`;
+            checkInMessage.className = `my-4 alert ${data.status === 'success' ? 'alert-success' : 'alert-danger'}`;
         })
         .catch(error => {
             console.error("Error:", error);
             checkInMessage.textContent = "An error occurred. Please try again.";
-            checkInMessage.className = "alert alert-danger";
+            checkInMessage.className = "my-4 alert alert-danger";
         });
     }
 
