@@ -27,3 +27,21 @@ class CheckIn(models.Model):
 
     def __str__(self):
         return str(self.participant.iconmat_id + " " + self.participant.name + " " + str(self.timestamp.strftime('%Y-%m-%d %H:%M:%S')))
+
+
+class Lunch(models.Model):
+    participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.participant.iconmat_id + " " + self.participant.name + " " + str(
+            self.timestamp.strftime('%Y-%m-%d %H:%M:%S')))
+
+
+class Dinner(models.Model):
+    participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.participant.iconmat_id + " " + self.participant.name + " " + str(
+            self.timestamp.strftime('%Y-%m-%d %H:%M:%S')))

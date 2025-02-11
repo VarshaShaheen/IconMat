@@ -1,0 +1,67 @@
+{% extends "qr_base.html" %}
+{% load static %}
+{% block title %}Lunch Check-In{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h4 class="text-center my-4 text-muted">Lunch Check-In (QR Scan)</h4>
+
+    <!-- QR Code Scanner Container -->
+    <div id="qr-reader" style="width:100%; max-width:400px; margin:0 auto;"></div>
+
+    <!-- Hidden form to store QR data -->
+    <form id="qr-form" class="d-none">
+        {% csrf_token %}
+        <input type="hidden" name="qr_code_data" id="qr_code_data">
+    </form>
+
+    <!-- Message display area -->
+    <div id="check-in-message" class="mt-4 text-center"></div>
+</div>
+
+<!-- Include html5-qrcode library -->
+<script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const qrReader = new Html5QrcodeScanner("qr-reader", { fps: 5, qrbox: 250 });
+    const qrCodeDataInput = document.getElementById('qr_code_data');
+    const qrForm = document.getElementById('qr-form');
+    const checkInMessage = document.getElementById('check-in-message');
+    let lastQrCode = null;
+
+    function onScanSuccess(decodedText) {
+        if (decodedText === lastQrCode) return;  // Avoid duplicate processing
+        lastQrCode = decodedText;
+        qrCodeDataInput.value = decodedText;
+
+        // Automatically submit the QR data to the lunch endpoint
+        const formData = new FormData(qrForm);
+        formData.set('qr_code_data', decodedText);
+        fetch("{% url 'lunch_qr_check_in' %}", {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            checkInMessage.textContent = data.message;
+            checkInMessage.className = `alert ${data.status === 'success' ? 'alert-success' : 'alert-danger'}`;
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            checkInMessage.textContent = "An error occurred. Please try again.";
+            checkInMessage.className = "alert alert-danger";
+        });
+    }
+
+    function onScanError(error) {
+        console.error("QR Scan Error:", error);
+    }
+
+    // Start the QR scanner
+    qrReader.render(onScanSuccess, onScanError);
+});
+</script>
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from .models import Participant, CheckIn
+from .models import Participant, CheckIn, Lunch, Dinner
 
 
 class ParticipantResource(resources.ModelResource):
@@ -17,3 +17,5 @@ class ParticipantAdmin(ImportExportModelAdmin):
 
 
 admin.site.register(CheckIn)
+admin.site.register(Lunch)
+admin.site.register(Dinner)
