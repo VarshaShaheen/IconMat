@@ -1,238 +1,105 @@
 {% extends "qr_base.html" %}
-
 {% load static %}
 {% block title %}Scan QR{% endblock %}
 
 {% block content %}
-        <div class="container">
-            <h6 class="text-center my-4 text-muted">Scan QR Code For iconmat Check-In</h6>
-            <div class="d-flex justify-content-center mb-4">
-                <div id="qr-reader" style="width:100%"></div>
-            </div>
-            <div id="qr-reader-results" class="text-center mb-4"></div>
+<div class="container">
+    <h4 class="text-center my-4 text-muted">Scan QR Code for Check-In</h4>
 
-            <form id="qr-form" class="text-center">
-                {% csrf_token %}
-                <input type="hidden" name="qr_code_data" id="qr_code_data">
-                <input type="text" name="iconmat_id" placeholder="Enter Iconmat ID" class="form-control my-3 mx-0 w-100">
-                <button type="button" id="manual_mess_no_submit" class="btn btn-primary w-100">Enter
-                </button>
-                <div class="" id="finalMessage"></div>
-            </form>
-        </div>
+    <!-- QR Code Scanner -->
+    <div class="d-flex justify-content-center mb-4">
+        <div id="qr-reader" style="width:100%; max-width:400px;"></div>
+    </div>
 
-        <!-- Confirmation Modal -->
-        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true"
-             data-bs-backdrop="false">
-            <div class="modal-dialog ">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="confirmModalLabel">Confirm Attendance</h5>
-                    </div>
+    <!-- Hidden form for QR code submission -->
+    <form id="qrcode-form" class="d-none">
+        {% csrf_token %}
+        <input type="hidden" name="qr_code_data" id="qr_code_data">
+    </form>
 
+    <!-- Manual Input Form -->
+    <form id="manual-form" class="text-center">
+        {% csrf_token %}
+        <input type="text" name="iconmat_id" placeholder="Enter Iconmat ID (if needed)" class="form-control my-3 mx-0 w-100">
+        <button type="button" id="manual-submit" class="btn btn-primary w-100">Submit</button>
+    </form>
 
-                    <div class="modal-body " id="modalBody">
-                        <h5 class="my-2" id="modelHeading"></h5>
-                        <h6 class="text-muted text-center" id="modelText"></h6>
-                        <h5 class="text-center" id="modelHeading"></h5>
-                        <h6 class="alert alert-success text-center" id="modalMessage"></h6>
-                        <h6 class="alert alert-danger text-center" id="modalMessageMesscut"></h6>
-                    </div>
-                    <div class="modal-footer">
-                        {#                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>#}
-                        <button type="button" class="btn btn-success w-100" id="confirmSubmit">Confirm</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Message Area -->
+    <div id="check-in-message" class="mt-5 text-center"></div>
+</div>
 
-        <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
+<script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize the QR code scanner
+        const qrReader = new Html5QrcodeScanner("qr-reader", { fps: 5, qrbox: 250 });
+        const checkInMessage = document.getElementById('check-in-message');
+        const qrCodeDataInput = document.getElementById('qr_code_data');
+        const qrcodeForm = document.getElementById('qrcode-form');
+        const manualForm = document.getElementById('manual-form');
 
+        let lastQrCode = null;
 
-            let html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", {fps: 5, qrbox: 250});
-            html5QrcodeScanner.render(onScanSuccess, onScanError);
+        // Handle successful QR code scans
+        function onScanSuccess(decodedText) {
+            if (decodedText === lastQrCode) {
+                return; // Skip if the same QR code was processed
+            }
+            lastQrCode = decodedText;
+            qrCodeDataInput.value = decodedText;
 
-            let lastQrMessage = null; // Variable to store the last processed QR code
+            // Prepare form data for QR code processing
+            const formData = new FormData(qrcodeForm);
+            formData.set('qr_code_data', decodedText);
 
-            function onScanSuccess(qrMessage) {
-                // Compare the current QR code with the last processed one
-                if (qrMessage === lastQrMessage) {
-                    console.log("QR code already processed.");
-                    return; // Exit the function to prevent reprocessing
+            fetch("{% url 'process_qrcode' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
                 }
-
-                lastQrMessage = qrMessage; // Update the last processed QR code
-                console.log(qrMessage)
-
-                const modalBody = document.getElementById('modalBody');
-                const modelHeading = document.getElementById('modelHeading');
-                const modelText = document.getElementById('modelText');
-                const modalMessage = document.getElementById('modalMessage');
-                const modalMessageMesscut = document.getElementById('modalMessageMesscut');
-
-                // Show or hide elements as needed
-                modelHeading.className = 'text-center';
-                modelText.className = 'text-muted text-center';
-                modalMessage.className = 'alert alert-success text-center';
-                modalMessageMesscut.className = 'alert alert-danger text-center';
-
-                // Clear previous content or hide elements
-                modelHeading.hidden = true;
-                modelText.hidden = true;
-                modalMessage.hidden = true;
-                modalMessageMesscut.hidden = true;
-
-                document.getElementById('qr_code_data').value = qrMessage;
-                console.log(qrMessage);
-
-                // Prepare the form data for submission
-                const form = document.getElementById('qr-form');
-                const formData = new FormData(form);
-
-                // Fetch data to display in the modal
-                fetch("{% url 'check_in' %}", {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRFToken': formData.get('csrfmiddlewaretoken')
-                    }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.app_details && Object.keys(data.app_details).length > 0) {
-                            modelHeading.textContent = `${data.app_details.full_name} ${data.app_details.dept}`;
-                            modelText.textContent = `${data.app_details.mess_no}`;
-                            modelHeading.hidden = false;
-                            modelText.hidden = false;
-                        }
-
-                        modalMessage.textContent = data.message;
-                        modalMessage.hidden = false;
-
-                        if (data.messcut && Object.keys(data.messcut).length > 0) {
-                            modalMessageMesscut.textContent = `${data.messcut}`;
-                            modalMessageMesscut.hidden = false;
-                        } else {
-                            modalMessageMesscut.hidden = true;
-                        }
-
-                        // Show the modal
-                        const modal = new bootstrap.Modal(document.getElementById('confirmModal'), {
-                            backdrop: false
-                        });
-                        modal.show();
-
-                        // Handle the confirmation button click
-                        const confirmButton = document.getElementById('confirmSubmit');
-                        const handleConfirmClick = function () {
-                                                                    modal.hide();
-
-
-
-
-                        };
-
-                        confirmButton.addEventListener('click', handleConfirmClick);
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        modalBody.textContent = 'An error occurred. Please try again.';
-                        const modal = new bootstrap.Modal(document.getElementById('confirmModal'), {
-                            backdrop: false
-                        });
-                        modal.show();
-                    });
-            }
-
-
-            document.getElementById('manual_mess_no_submit').addEventListener('click', function () {
-                const form = document.getElementById('qr-form');
-                const formData = new FormData(form);
-
-                // Fetch data to display in the modal
-                fetch("{% url 'check_in' %}", {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRFToken': formData.get('csrfmiddlewaretoken')
-                    }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-
-                        // Get existing elements
-                        const modelHeading = document.getElementById('modelHeading');
-                        const modelText = document.getElementById('modelText');
-                        const modalMessage = document.getElementById('modalMessage');
-                        const modalMessageMesscut = document.getElementById('modalMessageMesscut');
-
-
-                        // Show or hide elements as needed
-                        modelHeading.className = 'text-center';
-                        modelText.className = 'text-muted text-center';
-                        modalMessage.className = 'alert alert-success text-center';
-                        modalMessageMesscut.className = 'alert alert-danger text-center';
-
-                        // Clear previous content or hide elements
-                        modelHeading.hidden = true;
-                        modelText.hidden = true;
-                        modalMessage.hidden = true;
-                        modalMessageMesscut.hidden = true;
-
-                        // Update elements based on the response data
-                        if (data.app_details && Object.keys(data.app_details).length > 0) {
-                            modelHeading.textContent = `${data.app_details.full_name} ${data.app_details.dept}`;
-                            modelText.textContent = `${data.app_details.mess_no}`;
-                            modelHeading.hidden = false;
-                            modelText.hidden = false;
-                        } else {
-                            modelHeading.hidden = true;
-                            modelText.hidden = true;
-                        }
-
-                        modalMessage.textContent = `${data.message}`;
-                        modalMessage.hidden = false;
-
-                        if (data.messcut && Object.keys(data.messcut).length > 0) {
-                            modalMessageMesscut.textContent = `${data.messcut}`;
-                            modalMessageMesscut.hidden = false;
-                        } else {
-                            modalMessageMesscut.hidden = true;
-                        }
-
-                        // Show the modal
-                        const modal = new bootstrap.Modal(document.getElementById('confirmModal'), {
-                            backdrop: false
-                        });
-                        modal.show();
-
-                        // Handle the confirmation button click
-                        const confirmButton = document.getElementById('confirmSubmit');
-                        const handleConfirmClick = function () {
-                            modal.hide();
-                        };
-                        confirmButton.addEventListener('click', handleConfirmClick);
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        const modalBody = document.getElementById('modalBody');
-                        modalBody.textContent = 'An error occurred. Please try again.';
-                        const modal = new bootstrap.Modal(document.getElementById('confirmModal'), {
-                            backdrop: false
-                        });
-                        modal.show();
-                    });
+            })
+            .then(response => response.json())
+            .then(data => {
+                checkInMessage.textContent = data.message;
+                checkInMessage.className = `mt-4 alert ${data.status === 'success' ? 'alert-success' : 'alert-danger'}`;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                checkInMessage.textContent = "An error occurred. Please try again.";
+                checkInMessage.className = "mt-4 alert alert-danger";
             });
+        }
 
-            function onScanError(errorMessage) {
-                console.error(errorMessage);
-                // handle scan error
-            }
+        // Handle QR code scan errors
+        function onScanError(error) {
+            console.error("Scan Error:", error);
+        }
 
-        </script>
+        // Render the QR code scanner
+        qrReader.render(onScanSuccess, onScanError);
 
+        // Handle manual Iconmat ID submission
+        document.getElementById('manual-submit').addEventListener('click', () => {
+            const formData = new FormData(manualForm);
+            fetch("{% url 'process_iconmat' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                checkInMessage.textContent = data.message;
+                checkInMessage.className = `mt-4 alert ${data.status === 'success' ? 'alert-success' : 'alert-danger'}`;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                checkInMessage.textContent = "An error occurred. Please try again.";
+                checkInMessage.className = "mt-4 alert alert-danger";
+            });
+        });
+    });
+</script>
 {% endblock %}
