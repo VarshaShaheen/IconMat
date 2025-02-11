@@ -5,6 +5,8 @@
 {% block content %}
 <div class="container">
     <h4 class="text-center my-4 text-muted">Scan QR Code for Check-In</h4>
+        <!-- Message Area -->
+    <div id="check-in-message" class="text-center"></div>
 
     <!-- QR Code Scanner -->
     <div class="d-flex justify-content-center mb-4">
@@ -24,8 +26,6 @@
         <button type="button" id="manual-submit" class="btn btn-primary w-100">Submit</button>
     </form>
 
-    <!-- Message Area -->
-    <div id="check-in-message" class="mt-5 text-center"></div>
 </div>
 
 <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
@@ -62,12 +62,12 @@
             .then(response => response.json())
             .then(data => {
                 checkInMessage.textContent = data.message;
-                checkInMessage.className = `mt-4 alert ${data.status === 'success' ? 'alert-success' : 'alert-danger'}`;
+                checkInMessage.className = `my-4 alert ${data.status === 'success' ? 'alert-success' : 'alert-danger'}`;
             })
             .catch(error => {
                 console.error("Error:", error);
                 checkInMessage.textContent = "An error occurred. Please try again.";
-                checkInMessage.className = "mt-4 alert alert-danger";
+                checkInMessage.className = "my-4 alert alert-danger";
             });
         }
 
@@ -92,12 +92,12 @@
             .then(response => response.json())
             .then(data => {
                 checkInMessage.textContent = data.message;
-                checkInMessage.className = `mt-4 alert ${data.status === 'success' ? 'alert-success' : 'alert-danger'}`;
+                checkInMessage.className = `my-4 alert ${data.status === 'success' ? 'alert-success' : 'alert-danger'}`;
             })
             .catch(error => {
                 console.error("Error:", error);
                 checkInMessage.textContent = "An error occurred. Please try again.";
-                checkInMessage.className = "mt-4 alert alert-danger";
+                checkInMessage.className = "my-4 alert alert-danger";
             });
         });
     });
