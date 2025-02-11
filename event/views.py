@@ -2,7 +2,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Participant, Lunch, Dinner
+from .models import Participant, Lunch, Dinner, CheckIn
+
 
 def process_check_in_by_iconmat_id(iconmat_id):
     """
